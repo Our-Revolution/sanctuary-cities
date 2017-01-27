@@ -21,6 +21,7 @@ class BaseTerritory(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ('name',)
 
     def __unicode__(self):
         return self.name
