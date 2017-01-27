@@ -22,6 +22,9 @@ class BaseTerritory(models.Model):
     class Meta:
         abstract = True
 
+    def __unicode__(self):
+        return self.name
+
 
 class State(BaseTerritory):
     TUITION_CHOICES = (
