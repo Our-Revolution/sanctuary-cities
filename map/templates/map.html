@@ -41,7 +41,7 @@
 
             var feature = L.geoJson({{ city.geojson | safe }}, {
                                     "color": "#0099DD",
-                                    "weight": 0,
+                                    "weight": 2,
                                     "fillOpacity": "0.5"
                                 });
             feature.bindPopup('{% spaceless %}
