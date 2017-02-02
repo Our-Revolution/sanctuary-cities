@@ -1,8 +1,10 @@
-from django.forms import ModelForm
+from django import forms
 from .models import City, State
 
 
-class CityForm(ModelForm):
+class CityForm(forms.ModelForm):
+    shapefile = forms.FileField(required=False)
+    shapefile_url = forms.URLField(required=False)
 
     class Meta:
         exclude = []
