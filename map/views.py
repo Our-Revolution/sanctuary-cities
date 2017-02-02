@@ -12,5 +12,5 @@ class MapView(TemplateView):
         context = super(MapView, self).get_context_data(**kwargs)
         simplified = RawSQL('ST_Transform(ST_Simplify(map_city.geom, 0.0005), 4326)', ())
         simplified.srid = True
-        context['cities'] = City.objects.select_related('state').defer('state__geom').annotate(simplified=simplified).annotate(geojson=AsGeoJSON('simplified', precision=4)).all()
+        context['cities'] = City.objects.select_related('state').defer('state__geom').annotate(simplified=simplified).annotate(geojson=AsGeoJSON('simplified', precision=3)).all()
         return context
