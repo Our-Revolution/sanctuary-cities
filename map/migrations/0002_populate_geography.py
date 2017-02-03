@@ -15,7 +15,7 @@ def populate_state(apps, schema_editor):
 
 
 def remove_state(apps, schema_editor):
-    State = apps.get_model('geography', 'State')
+    State = apps.get_model('map', 'State')
     State.objects.all().delete()
 
 
