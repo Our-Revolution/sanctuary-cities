@@ -21,7 +21,7 @@ class MapView(TemplateView):
         # cities
         simplified = RawSQL('ST_Simplify(map_county.geom, 0.0007)', ())
         simplified.srid = True
-        context['counties'] = County.objects.filter(limited_ice_cooperation__is_null=False).select_related('state').defer('state__geom') \
+        context['counties'] = County.objects.filter(limited_ice_cooperation__isnull=False).select_related('state').defer('state__geom') \
                                     .annotate(simplified=simplified,
                                             geojson=AsGeoJSON('simplified', precision=3))
 
