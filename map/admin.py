@@ -4,7 +4,7 @@ from django.db import models
 from django.forms.widgets import Textarea
 from .forms import CityForm
 from .mapping import UploadToDataSource
-from .models import State, City
+from .models import State, City, County
 
 
 
@@ -51,3 +51,13 @@ class StateAdmin(admin.OSMGeoAdmin):
 
     def get_queryset(self, request):
         return super(StateAdmin, self).get_queryset(request).defer('geom')
+
+
+@admin.register(County)
+class CountyAdmin(admin.OSMGeoAdmin):
+    list_display = ['name', 'state']
+    list_select_related = ['state']
+    list_filter = ['state__name']
+    
+    def get_queryset(self, request):
+        return super(CountyAdmin, self).get_queryset(request).select_related('state').defer('geom', 'state__geom')
