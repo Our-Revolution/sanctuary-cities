@@ -75,9 +75,33 @@
 
         {% endfor %}
 
-        var feature_group = L.featureGroup(cities);
-        map.fitBounds(feature_group.getBounds());
-        feature_group.addTo(map);
+        var city_feature_group = L.featureGroup(cities);
+        // map.fitBounds(city_feature_group.getBounds());
+        city_feature_group.addTo(map);
+
+
+
+
+
+        var counties = [];
+
+        {% for county in counties %}
+
+            var feature = L.geoJson({{ county.geojson | safe }}, {
+                                    "color": "#0099DD",
+                                    "weight": 2,
+                                    "fillOpacity": "0.5"
+                                });
+            feature.bindPopup('{% spaceless %}
+                    <h4>{{ county.name }} County, {{ county.state.name }}</h4>
+                    {% endspaceless %}');
+            counties.push(feature);
+
+        {% endfor %}
+
+        var county_feature_group = L.featureGroup(counties);
+        map.fitBounds(county_feature_group.getBounds());
+        county_feature_group.addTo(map);
 
 
     </script>

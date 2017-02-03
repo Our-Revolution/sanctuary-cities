@@ -1,7 +1,7 @@
 from django.contrib.gis.db.models.functions import AsGeoJSON
 from django.db.models.expressions import RawSQL
 from django.views.generic import TemplateView
-from .models import City
+from .models import City, County
 
 
 
@@ -10,9 +10,19 @@ class MapView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        simplified = RawSQL('ST_Simplify(map_city.geom, 0.0005)', ())
+
+        # # cities
+        # simplified = RawSQL('ST_Simplify(map_city.geom, 0.0005)', ())
+        # simplified.srid = True
+        # context['cities'] = City.objects.select_related('state').defer('state__geom') \
+        #                             .annotate(simplified=simplified,
+        #                                     geojson=AsGeoJSON('simplified', precision=4)).all()
+
+        # cities
+        simplified = RawSQL('ST_Simplify(map_county.geom, 0.0007)', ())
         simplified.srid = True
-        context['cities'] = City.objects.select_related('state').defer('state__geom') \
+        context['counties'] = County.objects.filter(limited_ice_cooperation__is_null=False).select_related('state').defer('state__geom') \
                                     .annotate(simplified=simplified,
-                                            geojson=AsGeoJSON('simplified', precision=3)).all()
+                                            geojson=AsGeoJSON('simplified', precision=3))
+
         return context

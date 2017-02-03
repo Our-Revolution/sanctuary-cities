@@ -22,8 +22,27 @@ class BaseTerritory(models.Model):
         return self.name
 
 
-class State(BaseTerritory):
+class FipsTerritory(BaseTerritory):
+    fips = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class State(FipsTerritory):
     pass
+
+
+class County(FipsTerritory):
+    LIMITED_ICE_COOPERATION_CHOICES = (
+            ('yes-by-law', 'Yes, by law'),
+            ('yes-in-practice', 'Yes, in practice (informal)'),
+            ('unlimited', 'Mark if there is unlimited ICE cooperation'),
+            (None, 'Information N/A')
+        )
+    state = models.ForeignKey(State)
+    limited_ice_cooperation = models.CharField(max_length=128, null=True, blank=True, choices=LIMITED_ICE_COOPERATION_CHOICES)
+    limited_ice_cooperation_short_answer = models.TextField(null=True, blank=True)
 
 
 class City(BaseTerritory):
