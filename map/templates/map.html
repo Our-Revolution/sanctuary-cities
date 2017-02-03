@@ -35,69 +35,74 @@
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var cities = [];
+        {% load cache %}
+        {% cache 120 map %}
 
-        {% for city in cities %}
+            var cities = [];
 
-            var feature = L.geoJson({{ city.geojson | safe }}, {
-                                    "color": "#0099DD",
-                                    "weight": 2,
-                                    "fillOpacity": "0.5"
-                                });
-            feature.bindPopup('{% spaceless %}
-                    <h4>{{ city.name }}, {{ city.state.name }}</h4>
+            {% for city in cities %}
 
-                    {% if city.limited_ice_cooperation is not None %}<p>Does the city have policy/legislation that limits or prohibits cooperation with ICE?: <strong>{{ city.get_limited_ice_cooperation_display | title }}</strong></p>{% endif %}
-                    {% if city.limited_ice_cooperation_short_answer %}<p>Please give brief explanation of the policies/practices.: <strong>{{ city.limited_ice_cooperation_short_answer | urlize }}</strong></p>{% endif %}
+                var feature = L.geoJson({{ city.geojson | safe }}, {
+                                        "color": "#0099DD",
+                                        "weight": 2,
+                                        "fillOpacity": "0.5"
+                                    });
+                feature.bindPopup('{% spaceless %}
+                        <h4>{{ city.name }}, {{ city.state.name }}</h4>
 
-                    {% if city.jails_honor_ice_detainers is not None %}<p>Do city jails honor ICE detainers/notices? (Some smaller cities do not have city jails and rely on a county jail. If using county data, please specify.): <strong>{{ city.jails_honor_ice_detainers | yesno | title }}</strong></p>{% endif %}
-                    {% if city.jails_honor_ice_detainers_short_answer %}<p>If yes, what are the stipulations?: <strong>{{ city.jails_honor_ice_detainers_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.limited_ice_cooperation is not None %}<p>Does the city have policy/legislation that limits or prohibits cooperation with ICE?: <strong>{{ city.get_limited_ice_cooperation_display | title }}</strong></p>{% endif %}
+                        {% if city.limited_ice_cooperation_short_answer %}<p>Please give brief explanation of the policies/practices.: <strong>{{ city.limited_ice_cooperation_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.participate_287g_program is not None %}<p>Does the city participate in the 287(g) program?: <strong>{{ city.participate_287g_program | yesno | title }}</strong></p>{% endif %}
-                    {% if city.participate_287g_program_short_answer %}<p>Source: <strong>{{ city.participate_287g_program_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.jails_honor_ice_detainers is not None %}<p>Do city jails honor ICE detainers/notices? (Some smaller cities do not have city jails and rely on a county jail. If using county data, please specify.): <strong>{{ city.jails_honor_ice_detainers | yesno | title }}</strong></p>{% endif %}
+                        {% if city.jails_honor_ice_detainers_short_answer %}<p>If yes, what are the stipulations?: <strong>{{ city.jails_honor_ice_detainers_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.provide_legal_representation is not None %}<p>Does this jurisdiction provide undocumented immigrants with legal representation in immigration court?: <strong>{{ city.provide_legal_representation | yesno | title }}</strong></p>{% endif %}
-                    {% if city.provide_legal_representation_short_answer %}<p>Please list any stipulations attached, e.g. if it's only for minors, etc.: <strong>{{ city.provide_legal_representation_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.participate_287g_program is not None %}<p>Does the city participate in the 287(g) program?: <strong>{{ city.participate_287g_program | yesno | title }}</strong></p>{% endif %}
+                        {% if city.participate_287g_program_short_answer %}<p>Source: <strong>{{ city.participate_287g_program_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.city_services is not None %}<p>Are people asked about their immigration status when applying for or accessing certain city services, like pools, library cards, local IDs or school registration? <strong>{{ city.city_services | yesno | title }}</strong></p>{% endif %}
-                    {% if city.city_services_short_answer %}<p>Please expand on services: <strong>{{ city.city_services_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.provide_legal_representation is not None %}<p>Does this jurisdiction provide undocumented immigrants with legal representation in immigration court?: <strong>{{ city.provide_legal_representation | yesno | title }}</strong></p>{% endif %}
+                        {% if city.provide_legal_representation_short_answer %}<p>Please list any stipulations attached, e.g. if it's only for minors, etc.: <strong>{{ city.provide_legal_representation_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.separate_form_of_id is not None %}<p>If drivers' licenses are not accessible, do cities provide their own form of ID? <strong>{{ city.separate_form_of_id | yesno | title }}</strong></p>{% endif %}
-                    {% if city.separate_form_of_id_short_answer %}<p>What are the limitations to these IDs? E.g. Do police recognize them as an official ID? Can they buy alcohol with these IDs?: <strong>{{ city.separate_form_of_id_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.city_services is not None %}<p>Are people asked about their immigration status when applying for or accessing certain city services, like pools, library cards, local IDs or school registration? <strong>{{ city.city_services | yesno | title }}</strong></p>{% endif %}
+                        {% if city.city_services_short_answer %}<p>Please expand on services: <strong>{{ city.city_services_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.office_civic_engagement_immigrant_affairs is not None %}<p>Does the city have an office dedicated to civic engagement and immigrant affairs? Ie. Citizen outreach, language access etc.: <strong>{{ city.office_civic_engagement_immigrant_affairs | yesno | title }}</strong></p>{% endif %}
-                    {% if city.office_civic_engagement_immigrant_affairs_short_answer %}<p>Brief description of the services provided: <strong>{{ city.office_civic_engagement_immigrant_affairs_short_answer | urlize }}</strong></p>{% endif %}
+                        {% if city.separate_form_of_id is not None %}<p>If drivers' licenses are not accessible, do cities provide their own form of ID? <strong>{{ city.separate_form_of_id | yesno | title }}</strong></p>{% endif %}
+                        {% if city.separate_form_of_id_short_answer %}<p>What are the limitations to these IDs? E.g. Do police recognize them as an official ID? Can they buy alcohol with these IDs?: <strong>{{ city.separate_form_of_id_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% if city.other_policies_and_services %}<p>Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants: <strong>{{ city.other_policies_and_services | urlize }}</strong></p>{% endif %}
+                        {% if city.office_civic_engagement_immigrant_affairs is not None %}<p>Does the city have an office dedicated to civic engagement and immigrant affairs? Ie. Citizen outreach, language access etc.: <strong>{{ city.office_civic_engagement_immigrant_affairs | yesno | title }}</strong></p>{% endif %}
+                        {% if city.office_civic_engagement_immigrant_affairs_short_answer %}<p>Brief description of the services provided: <strong>{{ city.office_civic_engagement_immigrant_affairs_short_answer | urlize }}</strong></p>{% endif %}
 
-                    {% endspaceless %}');
-            cities.push(feature);
+                        {% if city.other_policies_and_services %}<p>Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants: <strong>{{ city.other_policies_and_services | urlize }}</strong></p>{% endif %}
 
-        {% endfor %}
+                        {% endspaceless %}');
+                cities.push(feature);
 
-        var city_feature_group = L.featureGroup(cities);
-        // map.fitBounds(city_feature_group.getBounds());
-        city_feature_group.addTo(map);
+            {% endfor %}
+
+            var city_feature_group = L.featureGroup(cities);
+            // map.fitBounds(city_feature_group.getBounds());
+            city_feature_group.addTo(map);
 
 
 
 
 
-        var counties = [];
+            var counties = [];
 
-        {% for county in counties %}
+            {% for county in counties %}
 
-            var feature = L.geoJson({{ county.geojson | safe }}, {
-                                    "color": "#0099DD",
-                                    "weight": 2,
-                                    "fillOpacity": "0.5"
-                                });
-            feature.bindPopup('{% spaceless %}
-                    <h4>{{ county.name }} County, {{ county.state.name }}</h4>
-                    {% endspaceless %}');
-            counties.push(feature);
+                var feature = L.geoJson({{ county.geojson | safe }}, {
+                                        "color": {% if county.limited_ice_cooperation == "yes-by-law" %}"#9d0"{% elif county.limited_ice_cooperation == "yes-in-practice" %}"#dd6"{% elif county.limited_ice_cooperation == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
+                                        "weight": 2,
+                                        "fillOpacity": "0.5"
+                                    });
+                feature.bindPopup('{% spaceless %}
+                        <h4>{{ county.name }} County, {{ county.state.name }}</h4>
+                        {% endspaceless %}');
+                counties.push(feature);
 
-        {% endfor %}
+            {% endfor %}
+
+        {% endcache %}
 
         var county_feature_group = L.featureGroup(counties);
         map.fitBounds(county_feature_group.getBounds());
