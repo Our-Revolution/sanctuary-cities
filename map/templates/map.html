@@ -30,20 +30,43 @@
     <script>
         var map = L.map('map').setView([37.8, -96.9], 4);
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            layers: ['water', 'boundaries', 'landuse'],
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        var mapboxToken = 'pk.eyJ1Ijoiam9uY3VsdmVyIiwiYSI6ImNpZWllcGxrbDAwbWtza2tnZ2duc3A5M2IifQ.zIutWCVhGiXeRUpufIizkg';
+        var baseLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
+            maxZoom: 18
+          }
+        ).addTo(map);
 
         {% load cache %}
         {% cache 120 map %}
+
+
+            var states = [];
+
+            {% for state in states %}
+
+                var feature = L.geoJson({{ state.geojson | safe }}, {
+                                        "color": {% if state.limited_ice_cooperation == "yes-by-law" %}"#bf2"{% elif state.limited_ice_cooperation == "yes-in-practice" %}"#ff8"{% elif state.limited_ice_cooperation == "unlimited" %}"#f22"{% else %}"#bbb"{% endif %},
+                                        "weight": 2,
+                                        "fillOpacity": "0.5"
+                                    });
+                feature.bindPopup('{% spaceless %}
+                        <h4>{{ state.name }}</h4>
+                        {% endspaceless %}');
+                states.push(feature);
+
+            {% endfor %}
+
+            var state_feature_group = L.featureGroup(states);
+            // map.fitBounds(state_feature_group.getBounds());
+            state_feature_group.addTo(map);
+
 
             var cities = [];
 
             {% for city in cities %}
 
                 var feature = L.geoJson({{ city.geojson | safe }}, {
-                                        "color": "#0099DD",
+                                        "color": {% if city.limited_ice_cooperation == "yes-by-law" %}"#9d0"{% elif city.limited_ice_cooperation == "yes-in-practice" %}"#dd6"{% elif city.limited_ice_cooperation == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
                                         "weight": 2,
                                         "fillOpacity": "0.5"
                                     });
@@ -91,7 +114,7 @@
             {% for county in counties %}
 
                 var feature = L.geoJson({{ county.geojson | safe }}, {
-                                        "color": {% if county.limited_ice_cooperation == "yes-by-law" %}"#9d0"{% elif county.limited_ice_cooperation == "yes-in-practice" %}"#dd6"{% elif county.limited_ice_cooperation == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
+                                        "color": {% if county.jails_honor_ice_detainers == "yes-by-law" %}"#9d0"{% elif county.jails_honor_ice_detainers == "yes-in-practice" %}"#dd6"{% elif county.jails_honor_ice_detainers == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
                                         "weight": 2,
                                         "fillOpacity": "0.5"
                                     });
@@ -102,11 +125,12 @@
 
             {% endfor %}
 
+            var county_feature_group = L.featureGroup(counties);
+            map.fitBounds(county_feature_group.getBounds());
+            county_feature_group.addTo(map);
+
         {% endcache %}
 
-        var county_feature_group = L.featureGroup(counties);
-        map.fitBounds(county_feature_group.getBounds());
-        county_feature_group.addTo(map);
 
 
     </script>

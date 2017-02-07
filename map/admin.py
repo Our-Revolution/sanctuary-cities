@@ -58,6 +58,7 @@ class CountyAdmin(admin.OSMGeoAdmin):
     list_display = ['name', 'state']
     list_select_related = ['state']
     list_filter = ['state__name']
+    search_fields = ['name']
     
     def get_queryset(self, request):
         return super(CountyAdmin, self).get_queryset(request).select_related('state').defer('geom', 'state__geom')
