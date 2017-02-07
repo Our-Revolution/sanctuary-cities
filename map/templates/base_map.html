@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% block pre_map %}
+    {% endblock %}
+    <div id="map"></div>
+    <script>
+
+        // todo: might want a different mobile view.
+        var map = L.map('map').setView([37.8, -96.9], 4);
+
+        // todo: personal Mapbox account, we should swap out.
+        var mapboxToken = 'pk.eyJ1Ijoiam9uY3VsdmVyIiwiYSI6ImNpZWllcGxrbDAwbWtza2tnZ2duc3A5M2IifQ.zIutWCVhGiXeRUpufIizkg';
+        var baseLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
+            maxZoom: 18
+          }
+        ).addTo(map);
+
+
+        {% block map_content %}
+        {% endblock %}
+
+    </script>
+    {% block post_map %}
+    {% endblock %}
+{% endblock %}

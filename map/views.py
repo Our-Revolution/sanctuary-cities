@@ -1,12 +1,12 @@
 from django.contrib.gis.db.models.functions import AsGeoJSON
 from django.db.models.expressions import RawSQL
-from django.views.generic import TemplateView
+from django.views.generic import DetailView, TemplateView
 from .models import City, County, State
 
 
 
 class MapView(TemplateView):
-    template_name = "map.html"
+    template_name = "map/index.html"
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
@@ -34,3 +34,30 @@ class MapView(TemplateView):
 
 
         return context
+
+
+
+class MapDetailView(DetailView):
+
+    def get_template_name(self):
+        return "map/%s_detail.html" % self.object._meta.db_table
+    
+    def get_object(self):
+
+        obj = None
+        slug = self.kwargs.get(self.slug_url_kwarg)
+
+        models = [City, County, State]
+        slug_field = self.get_slug_field()
+
+        for model in models:
+            
+            try:
+                obj = model.objects.get(**{slug_field: slug})
+            except model.DoesNotExist:
+                continue
+
+        if not obj:
+            raise Http404("Could not find a map matching that URL")
+
+        return obj

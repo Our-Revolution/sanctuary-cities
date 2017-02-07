@@ -12,6 +12,7 @@ class BaseTerritory(models.Model):
         )
     name = models.CharField(max_length=128)
     geom = models.MultiPolygonField(blank=True, null=True, srid=4326)
+    slug = models.SlugField(null=True, blank=True, max_length=128)
 
 
     class Meta:

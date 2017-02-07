@@ -1,0 +1,21 @@
+{% extends "base_map.html" %}
+
+{% block map_content %}
+
+    var feature = L.geoJson({{ state.geom.geojson | safe }}, {
+                            "color": "#dd0000",
+                            "weight": 2,
+                            "fillOpacity": "0.5"
+                        });
+    feature.bindPopup('{% spaceless %}
+            <h4>{{ state.name }}</h4>
+            {% endspaceless %}');
+
+    feature.addTo(map);
+    map.fitBounds(feature.getBounds());
+
+{% endblock %}
+
+{% block post_map %}
+    <h1>{{ state.name }}</h1>
+{% endblock %}

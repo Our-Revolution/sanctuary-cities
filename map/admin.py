@@ -13,7 +13,7 @@ class CityAdmin(admin.OSMGeoAdmin):
     list_display = ['name']
     fieldsets = (
             (None, {
-                'fields': ('name', 'state', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
+                'fields': ('name', 'slug', 'state', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
                             'jails_honor_ice_detainers', 'jails_honor_ice_detainers_short_answer',
                             'participate_287g_program', 'participate_287g_program_short_answer',
                             'provide_legal_representation', 'provide_legal_representation_short_answer',
