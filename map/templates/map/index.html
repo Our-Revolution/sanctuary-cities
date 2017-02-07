@@ -17,6 +17,8 @@
                                 });
             feature.bindPopup('{% spaceless %}
                     <h4>{{ state.name }}</h4>
+
+                    <p><a href="{% url "map:detail" state.slug %}">Go to details ></a></p>
                     {% endspaceless %}');
             states.push(feature);
 
@@ -62,6 +64,8 @@
 
                     {% if city.other_policies_and_services %}<p>Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants: <strong>{{ city.other_policies_and_services | urlize }}</strong></p>{% endif %}
 
+                    <p><a href="{% url "map:detail" city.slug %}">Go to details ></a></p>
+
                     {% endspaceless %}');
             cities.push(feature);
 
@@ -86,6 +90,7 @@
                                 });
             feature.bindPopup('{% spaceless %}
                     <h4>{{ county.name }} County, {{ county.state.name }}</h4>
+                    <p><a href="{% url "map:detail" county.slug %}">Go to details ></a></p>
                     {% endspaceless %}');
             counties.push(feature);
 
