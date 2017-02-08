@@ -1,2 +1,10 @@
 // Our Revolootstrap
 @import 'vendor/bootstrap';
+
+@import 'helpers/variables';
+@import 'helpers/mixins';
+
+@import 'layout/global';
+
+@import 'components/nav';
+@import 'components/footer';
