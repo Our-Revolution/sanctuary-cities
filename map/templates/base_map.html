@@ -38,13 +38,33 @@
   		  
   		  var input = document.querySelector('.maps-auto-complete');
 
-  		  autocomplete = new google.maps.places.Autocomplete(
-  		    /** @type {!HTMLInputElement} */(input),
-  		    {
-  		      types: ['geocode'],
-  		      componentRestrictions: {country: "us"}
-  		    }
-  		  );
+        function initAutoComplete() {
+    		  autocomplete = new google.maps.places.Autocomplete(
+    		    /** @type {!HTMLInputElement} */(input),
+    		    {
+    		      types: ['geocode'],
+    		      componentRestrictions: {country: "us"}
+    		    }
+    		  );
+          
+          autocomplete.addListener('place_changed', getAddress);
+        }
+        
+        
+        function getAddress() {
+          var place = autocomplete.getPlace();
+          var geometry = [place.geometry.location.lat(),place.geometry.location.lng()]
+                    
+          positionMap(geometry);
+        }
+        
+        function positionMap(geometry) {
+          console.log(geometry);
+          
+          map.flyTo(geometry, 12, {duration:1});
+        }
+
+        initAutoComplete();
 
   		  var defaultPlaceholder = input.placeholder;
 
