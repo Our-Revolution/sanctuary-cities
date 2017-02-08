@@ -35,10 +35,18 @@
     
     <script>
   		addEventListener("load", function(e){
-  		  
   		  var input = document.querySelector('.maps-auto-complete');
-
+      
+        $(input).on('submit', function() {
+          console.log(this);
+        })
+        
+        initAutoComplete();
+      
+        // Functions
         function initAutoComplete() {
+          monitorAPI();
+          
     		  autocomplete = new google.maps.places.Autocomplete(
     		    /** @type {!HTMLInputElement} */(input),
     		    {
@@ -50,44 +58,46 @@
           autocomplete.addListener('place_changed', getAddress);
         }
         
-        
         function getAddress() {
-          var place = autocomplete.getPlace();
-          var geometry = [place.geometry.location.lat(),place.geometry.location.lng()]
-                    
-          positionMap(geometry);
+          var geometry, place = autocomplete.getPlace();
+          
+          if (!place.geometry) {
+            // TODO: Display this in .app__info
+            console.log("We can't find that place - try again.");
+            return;
+          } else {
+            geometry = [place.geometry.location.lat(),place.geometry.location.lng()]; 
+            positionMap(geometry);
+          }
         }
         
-        function positionMap(geometry) {
-          console.log(geometry);
-          
+        function positionMap(geometry) {          
           map.flyTo(geometry, 12, {duration:1});
         }
 
-        initAutoComplete();
+        function monitorAPI() {
+    		  var defaultPlaceholder = input.placeholder;
 
-  		  var defaultPlaceholder = input.placeholder;
+    		  setTimeout(function(){
+            
+    		  		input.value = '';
+    		  		setInterval(function(){
+                
+    		  			if(input.placeholder.indexOf('Oops') != -1){
 
-  		  setTimeout(function(){
-          
-  		  		input.value = '';
-  		  		setInterval(function(){
-              
-  		  			if(input.placeholder.indexOf('Oops') != -1){
+    		  				// undo Google grossness
+    		  				input.placeholder = defaultPlaceholder;
+    		  				input.removeAttribute('disabled');
+    		  				input.removeAttribute('style');
+    		  				input.classList.remove('gm-err-autocomplete');
 
-  		  				// undo Google grossness
-  		  				input.placeholder = defaultPlaceholder;
-  		  				input.removeAttribute('disabled');
-  		  				input.removeAttribute('style');
-  		  				input.classList.remove('gm-err-autocomplete');
-
-  		  				// kill events
-  		  				var clone = input.cloneNode(true);
-  		  				input.parentNode.replaceChild(clone, input);
-  		  			}
-  		  		}, 200);
-  		  }, 500);
-
+    		  				// kill events
+    		  				var clone = input.cloneNode(true);
+    		  				input.parentNode.replaceChild(clone, input);
+    		  			}
+    		  		}, 200);
+    		  }, 500);
+        }
   		}, false);
   	</script>
     {% block post_map %}
