@@ -8,7 +8,7 @@
     
       <div class="app__info col-sm-4 ba b--black-10 pa0">
         <div class="pa3 bg-light-gray bb b--black-10">
-          <input type="search" class="form-control" placeholder="Zip Code, City, or Address">
+          <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address">
         </div>
       </div>
       
@@ -32,6 +32,44 @@
         {% endblock %}
 
     </script>
+    
+    <script>
+  		addEventListener("load", function(e){
+  		  
+  		  var input = document.querySelector('.maps-auto-complete');
+
+  		  autocomplete = new google.maps.places.Autocomplete(
+  		    /** @type {!HTMLInputElement} */(input),
+  		    {
+  		      types: ['geocode'],
+  		      componentRestrictions: {country: "us"}
+  		    }
+  		  );
+
+  		  var defaultPlaceholder = input.placeholder;
+
+  		  setTimeout(function(){
+          
+  		  		input.value = '';
+  		  		setInterval(function(){
+              
+  		  			if(input.placeholder.indexOf('Oops') != -1){
+
+  		  				// undo Google grossness
+  		  				input.placeholder = defaultPlaceholder;
+  		  				input.removeAttribute('disabled');
+  		  				input.removeAttribute('style');
+  		  				input.classList.remove('gm-err-autocomplete');
+
+  		  				// kill events
+  		  				var clone = input.cloneNode(true);
+  		  				input.parentNode.replaceChild(clone, input);
+  		  			}
+  		  		}, 200);
+  		  }, 500);
+
+  		}, false);
+  	</script>
     {% block post_map %}
     {% endblock %}
 {% endblock %}
