@@ -3,14 +3,25 @@
 {% block content %}
     {% block pre_map %}
     {% endblock %}
-    <div id="map"></div>
+
+    <div class="app">
+    
+      <div class="app__info col-sm-4 ba b--black-10 pa0">
+        <div class="pa3 bg-light-gray bb b--black-10">
+          <input type="search" class="form-control" placeholder="Zip Code, City, or Address">
+        </div>
+      </div>
+      
+      <div class="app__map col-sm-8" id="map"></div>
+    
+    </div>
+    
     <script>
 
         // todo: might want a different mobile view.
         var map = L.map('map').setView([37.8, -96.9], 4);
 
-        // todo: personal Mapbox account, we should swap out.
-        var mapboxToken = 'pk.eyJ1Ijoiam9uY3VsdmVyIiwiYSI6ImNpZWllcGxrbDAwbWtza2tnZ2duc3A5M2IifQ.zIutWCVhGiXeRUpufIizkg';
+        var mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
         var baseLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
             maxZoom: 18
           }

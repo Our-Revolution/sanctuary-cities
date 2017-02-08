@@ -7,6 +7,10 @@
 
 	<title>{% block page_title %}Sanctuary Cities{% endblock %}</title>
 
+	<!--  Tachyons -->
+	<!--  TODO: Compile into regular CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+
 	<!-- Our Revolootstrap -->
 	{% load sass_tags %}
 	<link rel="stylesheet" href="{% sass_src "scss/main.scss" %}">
@@ -14,11 +18,9 @@
 
 	<!-- Leaflet -->
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	
+	<!-- OR Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-
-	<style>
-		#map { width: 100%; height: 40em; }
-	</style>
 
 	{% block extra_head %}
 	{% endblock %}
@@ -28,8 +30,6 @@
   {% include "partials/nav.html" %}
 
 	<div class="container">
-    
-		<h2>Sanctuary Cities</h2>
 		{% block content %}
 		{% endblock %}
 	</div>

@@ -6472,6 +6472,13 @@ body {
   .facebook-icon:hover, .navbar .social-icon--facebook:hover {
     opacity: 0.8; }
 
+.app__info {
+  padding: 0;
+  height: 600px; }
+
+.app__map {
+  height: 600px; }
+
 .navbar {
   border-radius: 0;
   width: 100%;
