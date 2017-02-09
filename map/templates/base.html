@@ -36,11 +36,21 @@
 </head>
 <body>
 
+	<div class="banner pa3 f3">
+		<div class="container">
+			<div class="row">
+				<a href="https://ourrevolution.com" class="link dim white">< Back to Our Revolution</a> | <strong>Sanctuary Cities</strong>
+			</div>
+		</div>
+	</div>
+
   {% include "partials/nav.html" %}
 
 	<div class="container">
-		{% block content %}
-		{% endblock %}
+		<div class="row">
+			{% block content %}
+			{% endblock %}
+		</div>
 	</div>
 
   {% include "partials/footer.html" %}

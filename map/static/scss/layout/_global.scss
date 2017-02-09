@@ -13,9 +13,16 @@ body {
   p {
     font-size: 16px;
   }
+}
 
-  @include until($medium) {
-    padding-top: 50px;
+.banner {
+  background: $blue;
+  color: white;
+  // font-weight: bolder;
+  
+  a {
+    color: white;
+    text-decoration: none;
   }
 }
 

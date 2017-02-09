@@ -6438,9 +6438,13 @@ body {
   -moz-osx-font-smoothing: grayscale; }
   body p {
     font-size: 16px; }
-  @media screen and (max-width: 767px) {
-    body {
-      padding-top: 50px; } }
+
+.banner {
+  background: #218fff;
+  color: white; }
+  .banner a {
+    color: white;
+    text-decoration: none; }
 
 .twitter-icon, .navbar .social-icon--twitter {
   height: 20px;

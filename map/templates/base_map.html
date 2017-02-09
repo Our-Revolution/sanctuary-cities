@@ -5,15 +5,18 @@
     {% endblock %}
 
     <div class="app">
-    
-      <div class="app__info col-sm-4 ba b--black-10 pa0">
-        <div class="pa3 bg-light-gray bb b--black-10">
+      <div class="app__info col-md-4 col-sm-5 ba b--black-10 pa0">
+        <div class="app__info__search pa3 bg-light-gray bb b--black-10">
           <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address">
+        </div>
+        
+        <div class="app__info__status pa5 text-left">
+          <h1 class="mt0">Sanctuary Cities</h1>
+          <p>Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         </div>
       </div>
       
-      <div class="app__map col-sm-8" id="map"></div>
-    
+      <div class="app__map col-md-8 col-sm-7" id="map"></div>
     </div>
     
     <script>
