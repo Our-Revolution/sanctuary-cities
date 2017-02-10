@@ -51,7 +51,11 @@ class State(FipsTerritory):
     in_state_tuition_short_answer = models.TextField(null=True, blank=True)
     barrier = models.NullBooleanField()
     barrier_short_answer = models.TextField(null=True, blank=True)
+    policies_against_profiling = models.NullBooleanField()
+    policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
+    local_effort = models.NullBooleanField()
+    local_effort_short_answer = models.TextField(null=True, blank=True)
 
 
 class County(FipsTerritory):
@@ -99,9 +103,16 @@ class City(BaseTerritory):
     separate_form_of_id_short_answer = models.TextField(null=True, blank=True)
     office_civic_engagement_immigrant_affairs = models.NullBooleanField()
     office_civic_engagement_immigrant_affairs_short_answer = models.TextField(null=True, blank=True)
+    police_use_body_cameras = models.NullBooleanField()
+    police_use_body_cameras_short_answer = models.TextField(null=True, blank=True)
+    policies_against_profiling = models.NullBooleanField()
+    policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
+    other_policies_and_services = models.TextField(null=True, blank=True)
+    local_effort = models.NullBooleanField()
+    local_effort_short_answer = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
     isga_short_answer = models.TextField(null=True, blank=True)
-    other_policies_and_services = models.TextField(null=True, blank=True)
+    political_landscape = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Cities'
