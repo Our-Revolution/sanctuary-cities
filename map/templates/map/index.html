@@ -2,7 +2,8 @@
 
 {% block map_content %}
   
-
+	{% load cache %}
+	{% cache 120 map %}
 
 		var states = [];
 
@@ -34,5 +35,6 @@
                 });
 		{% endfor %}
 
+	{% endcache %}
 
 {% endblock %}
