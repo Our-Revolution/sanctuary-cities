@@ -1,7 +1,14 @@
 from django.contrib.gis.db.models.functions import AsGeoJSON
+from django.contrib.gis.geos import Point
+from django.core.serializers import serialize
 from django.db.models.expressions import RawSQL
-from django.views.generic import DetailView, TemplateView
+from django.forms.models import model_to_dict
+from django.http import HttpResponse, JsonResponse
+from django.views.generic import DetailView, TemplateView, View
+from djgeojson.serializers import Serializer as GeoJSONSerializer
 from .models import City, County, State
+import json
+
 
 
 
@@ -34,6 +41,26 @@ class MapView(TemplateView):
 
 
         return context
+
+
+class TerritoriesView(View):
+
+    def get(self, request, *args, **kwargs):
+        lat, lng = float(request.GET.get('lat')), float(request.GET.get('lng'))
+
+        point = Point(x=lng, y=lat, srid=4326)
+        context = {}
+
+        serializer = GeoJSONSerializer()
+
+        for model in [City, County, State]:
+            context[model._meta.verbose_name_raw] = serializer.serialize(model.objects.filter(geom__contains=point), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, model._meta.local_fields)))
+            
+        return JsonResponse(context)
+
+
+
+
 
 
 
