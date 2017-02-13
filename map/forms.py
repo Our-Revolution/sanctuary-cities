@@ -30,8 +30,8 @@ class CityForm(forms.ModelForm):
             'other_policies_and_services': _("Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
             'local_effort': _("Is there already a known local effort to push for the city to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Source"),
-            'igsa': _("Do city jails have an Intergovernmental Service Agreement (IGSA)?"),
-            'igsa_short_answeer': _("Please explain"),
+            'isga': _("Do city jails have an Intergovernmental Service Agreement (IGSA)?"),
+            'isga_short_answeer': _("Please explain"),
             'political_landscape': _("What is the political landscape of the city? Briefly power-map the flow of power.")
         }
 

@@ -22,7 +22,7 @@ class CityAdmin(admin.OSMGeoAdmin):
                             'office_civic_engagement_immigrant_affairs_short_answer', 'police_use_body_cameras',
                             'police_use_body_cameras_short_answer', 'policies_against_profiling',
                             'policies_against_profiling_short_answer', 'other_policies_and_services',
-                            'local_effort', 'local_effort_short_answer', 'igsa', 'igsa_short_answer',
+                            'local_effort', 'local_effort_short_answer', 'isga', 'isga_short_answer',
                             'political_landscape') }),
             ('Advanced options', {
                 'classes': ('collapse',),
