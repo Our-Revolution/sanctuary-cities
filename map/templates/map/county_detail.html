@@ -2,20 +2,10 @@
 
 {% block map_content %}
 
-    var feature = L.geoJson({{ county.geom.geojson | safe }}, {
-                            "color": "#dd0000",
-                            "weight": 2,
-                            "fillOpacity": "0.5"
-                        });
-    feature.bindPopup('{% spaceless %}
-            <h4>{{ county }} County, {{ county.state.name }}</h4>
-            {% endspaceless %}');
-
-    feature.addTo(map);
-    map.fitBounds(feature.getBounds());
+  sanctuary.paintGeoJSON({{ county.geom.geojson | safe }});
+  <!-- addFeature({{ county.geom.geojson | safe }}, "{{county}}", "{{county.state.name}}"); -->
 
 {% endblock %}
 
 {% block post_map %}
-    <h1>{{ county.name }} County, {{ county.state.name }}</h1>
 {% endblock %}
