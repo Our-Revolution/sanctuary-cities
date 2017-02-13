@@ -7,6 +7,7 @@ Django==1.10.5
 django-appconf==1.0.2
 django-compressor==2.1.1
 django-dotenv==1.4.1
+django-geojson==2.9.1
 django-sass-processor==0.5.3
 EasyProcess==0.2.3
 enum34==1.1.6
@@ -23,6 +24,7 @@ prompt-toolkit==1.0.9
 psycopg2==2.6.2
 ptyprocess==0.5.1
 Pygments==2.2.0
+pyunpack==0.1.2
 rcssmin==1.0.6
 requests==2.13.0
 rjsmin==1.0.12
