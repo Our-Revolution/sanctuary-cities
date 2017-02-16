@@ -1,6 +1,6 @@
-var sanctuary = (function() {
+var sanctuary = (function($) {
     
-  var map, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
+  var map, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
     
   function init(mapDiv) {
     initMap(mapDiv);
@@ -13,6 +13,13 @@ var sanctuary = (function() {
         maxZoom: 18 
       }
     ).addTo(map);
+    
+    $(map).on('moveend', function() {
+      console.log('movement over');
+      console.log(map.getBounds());
+    })
+    
+    // populate(map);
   }
   
   function getAddress() {
@@ -29,7 +36,6 @@ var sanctuary = (function() {
   }
   
   function positionMap(geometry) {       
-    console.log(map);   
     map.flyTo(geometry, 12, {duration:1});
   }
   
@@ -57,22 +63,63 @@ var sanctuary = (function() {
     }, 500);
   }
   
+  function addFeature(feature) {
+    // console.log(feature);
+    // console.log(map);
+    feature.addTo(map);
+  }
+  
   function paintGeoJson(geometry, options) {
     var feature = L.geoJson(geometry, options);
-            
+    
+    // console.log(feature);
+    
     feature.addTo(map);
     // map.fitBounds(feature.getBounds());
+  }
+
+  function populate() {
+    $.ajax({
+      url: "/api/1/territories",
+      data: {
+        'lat':47.606209,
+        'lng':-122.332071
+      }
+    }).done( function(data) {
+      $.each(data, function(key) {
+        paintGeoJson(JSON.parse(data[key]))
+        updateInfo(JSON.parse(data[key])['features'])
+      })
+    })
+  }
+  
+  function updateInfo(data) {
+    var content, infoDiv = $('.app__info__status');
+    
+    // infoDiv.html('');
+        
+    $.each(data, function(key) {
+      console.log(data[key]['properties']['name']);
+      
+      $('.app__info__status').prepend(data[key]['properties']['name']);
+    })
+    
+  }
+  
+  function getMap() {
+    return map;
   }
   
   return {
     init: init,
     paintGeoJson: paintGeoJson,
-    map: this.map,
+    getMap: getMap,
     getAddress: getAddress,
-    mapboxToken: mapboxToken
+    data: data,
+    addFeature: addFeature
   }
   
-})();
+})(jQuery);
 
 var autocomplete;
 

@@ -1,40 +1,74 @@
 {% extends "base_map.html" %}
 
 {% block map_content %}
-  
-	{% load cache %}
-	{% cache 120 map %}
 
-		var states = [];
+		var states = [], cities = [], counties = [], featureGroups = {};
 
-		{% for state in states %}
-
-      sanctuary.paintGeoJson({{ state.geojson | safe }}, {
-									"color": {% if state.limited_ice_cooperation == "yes-by-law" %}"#bf2"{% elif state.limited_ice_cooperation == "yes-in-practice" %}"#ff8"{% elif state.limited_ice_cooperation == "unlimited" %}"#f22"{% else %}"#bbb"{% endif %},
-									"weight": 2,
-									"fillOpacity": "0.5"
-								});
-
-		{% endfor %}
+    var json = {{ counties | safe }}
     
-    {% for city in cities %}
+    $.each(json.features, function(feature) {
+      
+      var color;
+            
+      if(this.properties.limited_ice_cooperation == "yes-by-law") {
+        color = "#bf2";
+      } else if(this.properties.limited_ice_cooperation == "yes-in-practice") {
+        color = "#ff8";
+      } else if(this.properties.limited_ice_cooperation == "unlimited") {
+        color = "#f22";
+      } else {
+        color = "#bf2";
+      }
+      
+      var feature = L.geoJson(this.geometry,
+        {
+					"color": color,
+					"weight": 2,
+					"fillOpacity": "0.5"
+				});
+                
+        feature.properties = this.properties
+        
+        states.push(feature);
+    })
 
-      sanctuary.paintGeoJson({{ city.geojson | safe }}, {
-                  "color": {% if city.jails_honor_ice_detainers == "yes-by-law" %}"#9d0"{% elif city.jails_honor_ice_detainers == "yes-in-practice" %}"#dd6"{% elif city.jails_honor_ice_detainers == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
-                  "weight": 2,
-                  "fillOpacity": "0.5"
-                });
-		{% endfor %}
+    sanctuary.data = {
+      states: L.featureGroup(states),
+      cities: L.featureGroup(cities),
+      counties: L.featureGroup(counties)
+    }
     
-    {% for county in counties %}
-
-      sanctuary.paintGeoJson({{ county.geojson | safe }}, {
-                  "color": {% if county.jails_honor_ice_detainers == "yes-by-law" %}"#9d0"{% elif county.jails_honor_ice_detainers == "yes-in-practice" %}"#dd6"{% elif county.jails_honor_ice_detainers == "unlimited" %}"#d00"{% else %}"#999"{% endif %},
-                  "weight": 2,
-                  "fillOpacity": "0.5"
-                });
-		{% endfor %}
-
-	{% endcache %}
+    $.each(sanctuary.data, function(index) {
+      
+      sanctuary.data[index].eachLayer(function(layer) {
+        layer.on("click touchstart", function(e) {
+          console.log(layer);
+          
+          layer.options.oldColor = layer.options.color;
+          
+          bounds = layer.getBounds();
+          
+          sanctuary.getMap().flyToBounds(bounds, 12, {duration:1});
+          
+          $('.app__info__status').html("<h1>" + layer.properties.name + " County</h1><p>" + layer.properties.jails_honor_ice_detainers_short_answer + "</p>");
+          
+          layer.setStyle({"color":"#78a515"});
+          
+        });
+      })
+      
+      sanctuary.data[index].on("mouseover", function(e) {
+        
+        e.layer.options.oldColor = e.layer.options.color;
+        
+        e.layer.setStyle({"color":"#78a515"});
+      });
+      
+      sanctuary.data[index].on("mouseout", function(e) {
+        e.layer.setStyle({"color":e.layer.options.oldColor});
+      });
+      
+      sanctuary.addFeature(sanctuary.data[index]);
+    })
 
 {% endblock %}

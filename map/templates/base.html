@@ -23,6 +23,12 @@
 	<!-- Leaflet -->
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
+	<!-- jQuery -->
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+	
 	<!-- Sanctuary App -->
 	{% load static %}
 	<script src="{% static "js/sanctuary.js" %}"></script>
@@ -36,7 +42,7 @@
 
   {% include "partials/nav.html" %}
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			{% block content %}
 			{% endblock %}
@@ -45,13 +51,7 @@
 
   {% include "partials/footer.html" %}
 
-	<!-- Load Javascript Libraries -->
-	
-	<!-- jQuery -->
-	<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+	<!-- Load Javascript Libraries that we don't need initially -->
 	
 	<!--  Places Libary for Autocomplete -->
 	<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBbScgtw3tU0lX4OG1Ga_JW85Gqpwu0RmA&libraries=places&callback=initAutocomplete" async defer></script>
