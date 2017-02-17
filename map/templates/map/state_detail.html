@@ -2,7 +2,8 @@
 
 {% block map_content %}
 
-    var feature = L.geoJson({{ state.geom.geojson | safe }}, {
+    sanctuary.paintGeoJSON({{state.geom.geojson | safe}})
+    <!-- var feature = L.geoJson({{ state.geom.geojson | safe }}, {
                             "color": "#dd0000",
                             "weight": 2,
                             "fillOpacity": "0.5"
@@ -12,7 +13,7 @@
             {% endspaceless %}');
 
     feature.addTo(map);
-    map.fitBounds(feature.getBounds());
+    map.fitBounds(feature.getBounds()); -->
 
 {% endblock %}
 

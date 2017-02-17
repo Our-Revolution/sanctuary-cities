@@ -7,42 +7,38 @@
 
 	<title>{% block page_title %}Sanctuary Cities{% endblock %}</title>
 
+	<!--  TODO: Optimize all of this -->
+
 	<!--  Tachyons -->
-	<!--  TODO: Compile into regular CSS -->
 	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
 
 	<!-- Our Revolootstrap -->
 	{% load sass_tags %}
 	<link rel="stylesheet" href="{% sass_src "scss/main.scss" %}">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-
-	<!-- Leaflet -->
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
 	<!-- OR Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 	
-	<script src="//apis.google.com/js/client.js"></script>
-
-	<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBbScgtw3tU0lX4OG1Ga_JW85Gqpwu0RmA&libraries=places" async defer></script>
+	<!-- Leaflet -->
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
+	<!-- jQuery -->
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-
+	
+	<!-- Sanctuary App -->
+	{% load static %}
+	<script src="{% static "js/sanctuary.js" %}"></script>
+		
 	{% block extra_head %}
 	{% endblock %}
 </head>
 <body>
 
-	<div class="banner pa3 f3">
-		<div class="container">
-			<div class="row">
-				<a href="https://ourrevolution.com" class="link dim white">< Back to Our Revolution</a> | <strong>Sanctuary Cities</strong>
-			</div>
-		</div>
-	</div>
+	{% include "partials/banner.html" %}
 
   {% include "partials/nav.html" %}
 
@@ -55,5 +51,9 @@
 
   {% include "partials/footer.html" %}
 
+	<!-- Load Javascript Libraries that we don't need initially -->
+	
+	<!--  Places Libary for Autocomplete -->
+	<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBbScgtw3tU0lX4OG1Ga_JW85Gqpwu0RmA&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>

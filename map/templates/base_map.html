@@ -1,108 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% block pre_map %}
-    {% endblock %}
+  {% block pre_map %}
+  {% endblock %}
 
-    <div class="app">
-      <div class="app__info col-md-4 col-sm-5 ba b--black-10 pa0">
-        <div class="app__info__search pa3 bg-light-gray bb b--black-10">
-          <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address">
-        </div>
-        
-        <div class="app__info__status pa5 text-left">
-          <h1 class="mt0">Sanctuary Cities</h1>
-          <p>Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div>
+  <div class="app">
+    <div class="app-info col-lg-3 col-md-4 col-sm-5 ba b--black-10 pa0">
+      <div class="app-info__search pa3 bg-light-gray bb b--black-10">
+        <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address" id="autocomplete">
       </div>
       
-      <div class="app__map col-md-8 col-sm-7" id="map"></div>
+      <div class="app-info__status text-left">
+        <div class="component">
+          <div class="component__heading">
+            <h4 class="component__name">San Francisco</h4>
+          </div>
+          <div class="component__info">
+            <p class="component__description">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
+          
+            <a href="#" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <script>
+    <div class="app__map col-lg-9 col-md-8 col-sm-7" id="map-container"></div>
+  </div>
 
-        // todo: might want a different mobile view.
-        var map = L.map('map').setView([37.8, -96.9], 4);
+  <script>
+    var mapDiv = document.getElementById('map-container');
+    sanctuary.init(mapDiv);
+  </script>
 
-        var mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
-        var baseLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
-            maxZoom: 18
-          }
-        ).addTo(map);
-
-
-        {% block map_content %}
-        {% endblock %}
-
-    </script>
-    
-    <script>
-  		addEventListener("load", function(e){
-  		  var input = document.querySelector('.maps-auto-complete');
-      
-        $(input).on('submit', function() {
-          console.log(this);
-        })
-        
-        initAutoComplete();
-      
-        // Functions
-        function initAutoComplete() {
-          monitorAPI();
-          
-    		  autocomplete = new google.maps.places.Autocomplete(
-    		    /** @type {!HTMLInputElement} */(input),
-    		    {
-    		      types: ['geocode'],
-    		      componentRestrictions: {country: "us"}
-    		    }
-    		  );
-          
-          autocomplete.addListener('place_changed', getAddress);
-        }
-        
-        function getAddress() {
-          var geometry, place = autocomplete.getPlace();
-          
-          if (!place.geometry) {
-            // TODO: Display this in .app__info
-            console.log("We can't find that place - try again.");
-            return;
-          } else {
-            geometry = [place.geometry.location.lat(),place.geometry.location.lng()]; 
-            positionMap(geometry);
-          }
-        }
-        
-        function positionMap(geometry) {          
-          map.flyTo(geometry, 12, {duration:1});
-        }
-
-        function monitorAPI() {
-    		  var defaultPlaceholder = input.placeholder;
-
-    		  setTimeout(function(){
-            
-    		  		input.value = '';
-    		  		setInterval(function(){
-                
-    		  			if(input.placeholder.indexOf('Oops') != -1){
-
-    		  				// undo Google grossness
-    		  				input.placeholder = defaultPlaceholder;
-    		  				input.removeAttribute('disabled');
-    		  				input.removeAttribute('style');
-    		  				input.classList.remove('gm-err-autocomplete');
-
-    		  				// kill events
-    		  				var clone = input.cloneNode(true);
-    		  				input.parentNode.replaceChild(clone, input);
-    		  			}
-    		  		}, 200);
-    		  }, 500);
-        }
-  		}, false);
-  	</script>
-    {% block post_map %}
+  <script>
+    {% block map_content%}
     {% endblock %}
+  </script>
+
+  {% block post_map %}
+  {% endblock %}
 {% endblock %}

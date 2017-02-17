@@ -1,7 +1,14 @@
 from django.contrib.gis.db.models.functions import AsGeoJSON
+from django.contrib.gis.geos import Point
+from django.core.serializers import serialize
 from django.db.models.expressions import RawSQL
-from django.views.generic import DetailView, TemplateView
+from django.forms.models import model_to_dict
+from django.http import HttpResponse, JsonResponse
+from django.views.generic import DetailView, TemplateView, View
+from djgeojson.serializers import Serializer as GeoJSONSerializer
 from .models import City, County, State
+import json
+
 
 
 
@@ -10,30 +17,38 @@ class MapView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-
+        serializer = GeoJSONSerializer()
+        
         # states
-        simplified = RawSQL('ST_Simplify(map_state.geom, 0.0007)', ())
-        simplified.srid = True
-        context['states'] = State.objects \
-                                    .annotate(simplified=simplified).annotate(geojson=AsGeoJSON('simplified', precision=3)) \
-                                    .filter(geom__isnull=False, limited_ice_cooperation__isnull=False)
+        context['states'] = serializer.serialize(State.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, State._meta.local_fields)))        
+                                    
+        # counties  
+        context['counties'] = serializer.serialize(County.objects.filter(geom__isnull=False, jails_honor_ice_detainers__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, County._meta.local_fields)))
 
-        # counties
-        simplified = RawSQL('ST_Simplify(map_county.geom, 0.0007)', ())
-        simplified.srid = True
-        context['counties'] = County.objects.select_related('state').defer('state__geom') \
-                                    .annotate(simplified=simplified).annotate(geojson=AsGeoJSON('simplified', precision=3)) \
-                                    .filter(geom__isnull=False, jails_honor_ice_detainers__isnull=False)
-
-        # # cities
-        simplified = RawSQL('ST_Simplify(map_city.geom, 0.0005)', ())
-        simplified.srid = True
-        context['cities'] = City.objects.select_related('state').defer('state__geom') \
-                                    .annotate(simplified=simplified).annotate(geojson=AsGeoJSON('simplified', precision=4)) \
-                                    .filter(geom__isnull=False, limited_ice_cooperation__isnull=False)
-
+        # cities
+        context['cities'] = serializer.serialize(City.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, City._meta.local_fields)))
 
         return context
+
+
+class TerritoriesView(View):
+
+    def get(self, request, *args, **kwargs):
+        lat, lng = float(request.GET.get('lat')), float(request.GET.get('lng'))
+
+        point = Point(x=lng, y=lat, srid=4326)
+        context = {}
+
+        serializer = GeoJSONSerializer()
+
+        for model in [City, County, State]:
+            context[model._meta.verbose_name_raw] = serializer.serialize(model.objects.filter(geom__contains=point), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, model._meta.local_fields)))
+            
+        return JsonResponse(context)
+
+
+
+
 
 
 
