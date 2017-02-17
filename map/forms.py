@@ -10,7 +10,7 @@ class CityForm(forms.ModelForm):
         exclude = []
         labels = {
             'limited_ice_cooperation': _("Does the city have policy/legislation that limits or prohibits cooperation with ICE?"),
-            'limited_ice_cooperation_short_answer': _("Please give brief explanation of the policies/practices."),
+            'limited_ice_cooperation_short_answer': _("Source"),
             'jails_honor_ice_detainers': _("Do city jails honor ICE detainers/notices? (Some smaller cities do not have city jails and rely on a county jail. If using county data, please specify.)"),
             'jails_honor_ice_detainers_short_answer': _("If yes, what are the stipulations?"),
             'participate_287g_program': _("Does the city participate in the 287(g) program?"),
@@ -20,18 +20,13 @@ class CityForm(forms.ModelForm):
             'city_services': _("Are people asked about their immigration status when applying for or accessing certain city services, like pools, library cards, local IDs or school registration?"),
             'city_services_short_answer': _("Please expand on services"),
             'separate_form_of_id': _("If drivers' licenses are not accessible, do cities provide their own form of ID?"),
-            'separate_form_of_id_short_answer': _("What are the limitations to these IDs? E.g. Do police recognize them as an official ID? Can they buy alcohol with these IDs?"),
-            'office_civic_engagement_immigrant_affairs': _("Does the city have an office dedicated to civic engagement and immigrant affairs? Ie. Citizen outreach, language access etc."),
-            'office_civic_engagement_immigrant_affairs_short_answer': _("Brief description of the services provided"),
+            'separate_form_of_id_short_answer': _("What are the limitations to these IDs? E.g. Do police recognize them as an official ID?"),
             'police_use_body_cameras': _("Does City PD use body cameras?"),
             'police_use_body_cameras_short_answer': _("Source"),
-            'policies_against_profiling': _("Has local law enforcement adopted and implemented policies and directives against profiling based on actual or perceived sexual orientation, gender, gender identity, disability, immigration status, housing, HIV status, or age? Does it prohibit to use of race, religion, color, ethnicity, national origin, immigration status, gender, disability, sexual orientation, or gender identity as a factor in establishing reasonable suspicion or probable cause, exercising discretion to conduct a warrantless search or seek a search warrant?"),
-            'policies_against_profiling_short_answer': _("Brief description of the services provided"),
             'other_policies_and_services': _("Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
             'local_effort': _("Is there already a known local effort to push for the city to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Source"),
             'isga': _("Do city jails have an Intergovernmental Service Agreement (IGSA)?"),
-            'isga_short_answeer': _("Please explain"),
             'political_landscape': _("What is the political landscape of the city? Briefly power-map the flow of power.")
         }
 

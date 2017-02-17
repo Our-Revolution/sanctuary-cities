@@ -101,17 +101,12 @@ class City(BaseTerritory):
     city_services_short_answer = models.TextField(null=True, blank=True)
     separate_form_of_id = models.NullBooleanField()
     separate_form_of_id_short_answer = models.TextField(null=True, blank=True)
-    office_civic_engagement_immigrant_affairs = models.NullBooleanField()
-    office_civic_engagement_immigrant_affairs_short_answer = models.TextField(null=True, blank=True)
     police_use_body_cameras = models.NullBooleanField()
     police_use_body_cameras_short_answer = models.TextField(null=True, blank=True)
-    policies_against_profiling = models.NullBooleanField()
-    policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
-    isga_short_answer = models.TextField(null=True, blank=True)
     political_landscape = models.TextField(null=True, blank=True)
 
     class Meta:
