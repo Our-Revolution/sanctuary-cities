@@ -18,7 +18,7 @@ class MapView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
         serializer = GeoJSONSerializer()
-
+        
         # states
         context['states'] = serializer.serialize(State.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, State._meta.local_fields)))        
                                     

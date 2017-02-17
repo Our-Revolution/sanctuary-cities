@@ -1,11 +1,28 @@
 //Map App
 .app {
-  &__info {
+  &-info {
     padding: 0;
     height: 600px;
   }
   
   &__map {
     height: 600px;
+  }
+  
+  .component { 
+    &__heading{
+      background: #f4f4f4;
+      padding: 1em;
+      border-bottom: 1px solid rgba(0,0,0,.1)
+    }
+    
+    &__name {
+      margin: 0;
+    }
+    
+    &__info {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(0,0,0,.1)
+    }
   }
 }

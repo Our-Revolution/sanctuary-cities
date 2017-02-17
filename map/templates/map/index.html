@@ -2,35 +2,38 @@
 
 {% block map_content %}
 
+
 		var states = [], cities = [], counties = [], featureGroups = {};
 
-    var json = {{ counties | safe }}
+    var data = [{{ states | safe }}, {{ counties | safe }}, {{ cities | safe }}]
     
-    $.each(json.features, function(feature) {
+		for (var i=0; i < data.length; i++) {
+			$.each(data[i].features, function(feature) {
       
-      var color;
-            
-      if(this.properties.limited_ice_cooperation == "yes-by-law") {
-        color = "#bf2";
-      } else if(this.properties.limited_ice_cooperation == "yes-in-practice") {
-        color = "#ff8";
-      } else if(this.properties.limited_ice_cooperation == "unlimited") {
-        color = "#f22";
-      } else {
-        color = "#bf2";
-      }
-      
-      var feature = L.geoJson(this.geometry,
-        {
-					"color": color,
-					"weight": 2,
-					"fillOpacity": "0.5"
-				});
-                
+	      var color;
+	            
+	      if(this.properties.limited_ice_cooperation == "yes-by-law") {
+	        color = "#bf2";
+	      } else if(this.properties.limited_ice_cooperation == "yes-in-practice") {
+	        color = "#ff8";
+	      } else if(this.properties.limited_ice_cooperation == "unlimited") {
+	        color = "#f22";
+	      } else {
+	        color = "#bf2";
+	      }
+	      
+	      var feature = L.geoJson(this.geometry,
+	        {
+						"color": color,
+						"weight": 2,
+						"fillOpacity": "0.5"
+					});
+	                
         feature.properties = this.properties
         
         states.push(feature);
-    })
+			});
+		}
 
     sanctuary.data = {
       states: L.featureGroup(states),
@@ -42,6 +45,22 @@
       
       sanctuary.data[index].eachLayer(function(layer) {
         layer.on("click touchstart", function(e) {
+					var description = "Click the button below to learn more about this location's policies and how you can get involved.", name = "";
+					
+					if(layer.properties.model == "map.county") {
+						name = layer.properties.name + " County";
+						
+						if (!layer.properties.jails_honor_ice_detainers_short_answer.includes('N/A')) {
+							description = layer.properties.jails_honor_ice_detainers_short_answer;
+						}
+					} else {
+						name = layer.properties.name;
+						
+						if (!layer.properties.limited_ice_cooperation_short_answer.includes('N/A')) {
+							description = layer.properties.limited_ice_cooperation_short_answer;
+						}
+					}
+					
           console.log(layer);
           
           layer.options.oldColor = layer.options.color;
@@ -50,7 +69,17 @@
           
           sanctuary.getMap().flyToBounds(bounds, 12, {duration:1});
           
-          $('.app__info__status').html("<h1>" + layer.properties.name + " County</h1><p>" + layer.properties.jails_honor_ice_detainers_short_answer + "</p>");
+          $('.app-info__status').html('\
+						<div class="component__heading">\
+							<h4 class="component__name">' + name + '</h4>\
+						</div>\
+						<div class="component__info">\
+							<p class="component__description">\
+								' + description + '\
+							</p>\
+							<a class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>\
+						</div> \
+					');
           
           layer.setStyle({"color":"#78a515"});
           
@@ -70,5 +99,6 @@
       
       sanctuary.addFeature(sanctuary.data[index]);
     })
+		
 
 {% endblock %}
