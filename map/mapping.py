@@ -11,9 +11,9 @@ class UploadToDataSource(object):
         self.request = request
         self.file_param = file_param
         self.url_param = url_param
-        if self.request.user.is_superuser and self.request.FILES and self.file_param in self.request.FILES:
+        if self.request.user.is_superuser and self.request.FILES.get(self.file_param, None):
             self.zip_file_path = self.request.FILES[file_param].temporary_file_path()
-        elif self.url_param in self.request.POST:
+        elif self.url_param in self.request.POST.get(self.url_param, None):
             download_req = requests.get(self.request.POST[self.url_param], stream=True, headers={'User-Agent': 'bernadvisorybot http://bernadvisory.org'})
             with NamedTemporaryFile(delete=False) as f:
                 for chunk in download_req.iter_content(chunk_size=1024): 
