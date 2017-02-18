@@ -1,6 +1,6 @@
 var sanctuary = (function($) {
     
-  var map, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
+  var map, usedSearch = false, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
     
   function init(mapDiv) {
     initMap(mapDiv);
@@ -14,9 +14,12 @@ var sanctuary = (function($) {
       }
     ).addTo(map);
     
-    $(map).on('moveend', function() {
-      console.log('movement over');
-      console.log(map.getBounds());
+    $(map).on('zoomend', function() {
+      
+      // only do this after user has used search box
+      if (usedSearch) {
+        getLocationsWithinBounds(map.getBounds());
+      }  
     })
     
     // populate(map);
@@ -24,6 +27,7 @@ var sanctuary = (function($) {
   
   function getAddress() {
     var geometry, place = autocomplete.getPlace();
+    usedSearch = true;
 
     if (!place.geometry) {
       // TODO: Display this in .app__info
@@ -93,17 +97,74 @@ var sanctuary = (function($) {
     })
   }
   
-  function updateInfo(data) {
-    var content, infoDiv = $('.app__info__status');
+  function resetInfo() {
+    $('.app-info__status').html('');
+    console.log('reset')
+  }
+  
+  function updateInfo(layers) {
+    resetInfo();
     
-    // infoDiv.html('');
-        
-    $.each(data, function(key) {
-      console.log(data[key]['properties']['name']);
+    for (var i=0; i<layers.length; i++) {
+    
+      var description, name = "";
       
-      $('.app__info__status').prepend(data[key]['properties']['name']);
-    })
+      if(layers[i].properties.model == "map.county") {
+        name = layers[i].properties.name + " County";
+        
+        if (!layers[i].properties.jails_honor_ice_detainers_short_answer.includes('N/A')) {
+          description = layers[i].properties.jails_honor_ice_detainers_short_answer;
+        }
+      } else {
+        name = layers[i].properties.name;
+        
+        if (!layers[i].properties.limited_ice_cooperation_short_answer.includes('N/A')) {
+          description = layers[i].properties.limited_ice_cooperation_short_answer;
+        }
+      }
+      
+      if (!description) {
+        description = "Click the button below to learn more about " + layers[i].properties.name + "'s policies and how you can get involved."
+      }
+                
+      layers[i].options.oldColor = layers[i].options.color;
+      
+      $('.app-info__status').prepend('\
+        <div class="component">\
+          <div class="component__heading">\
+            <h4 class="component__name">' + name + '</h4>\
+          </div>\
+          <div class="component__info">\
+            <p class="component__description">\
+              ' + description + '\
+            </p>\
+            <a href="/'+ layers[i].properties.slug +'" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>\
+          </div> \
+        </div>\
+      ');
+      
+    }
     
+  }
+  
+  function getLocationsWithinBounds(bounds) {
+    var layers = [], t0 = performance.now();
+    
+    map.eachLayer(function (layer) {
+      if(layer.properties) {
+        layer.eachLayer(function (sublayer) {              
+          if(bounds.intersects(sublayer.getBounds())) {
+            layers.push(layer);
+          }
+        })
+      }
+      
+    });
+    
+    updateInfo(layers);
+    var t1 = performance.now();
+    console.log("Call took " + (t1 - t0) + " milliseconds.")
+    usedSearch = false;
   }
   
   function getMap() {
@@ -116,7 +177,9 @@ var sanctuary = (function($) {
     getMap: getMap,
     getAddress: getAddress,
     data: data,
-    addFeature: addFeature
+    addFeature: addFeature,
+    updateInfo: updateInfo,
+    getLocationsWithinBounds: getLocationsWithinBounds
   }
   
 })(jQuery);

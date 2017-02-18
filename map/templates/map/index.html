@@ -45,51 +45,14 @@
       
       sanctuary.data[index].eachLayer(function(layer) {
         layer.on("click touchstart", function(e) {
-					var description = "Click the button below to learn more about this location's policies and how you can get involved.", name = "";
-					
-					if(layer.properties.model == "map.county") {
-						name = layer.properties.name + " County";
-						
-						if (!layer.properties.jails_honor_ice_detainers_short_answer.includes('N/A')) {
-							description = layer.properties.jails_honor_ice_detainers_short_answer;
-						}
-					} else {
-						name = layer.properties.name;
-						
-						if (!layer.properties.limited_ice_cooperation_short_answer.includes('N/A')) {
-							description = layer.properties.limited_ice_cooperation_short_answer;
-						}
-					}
-					
-          console.log(layer);
-          
-          layer.options.oldColor = layer.options.color;
-          
-          bounds = layer.getBounds();
-          
-          sanctuary.getMap().flyToBounds(bounds, 12, {duration:1});
-          
-          $('.app-info__status').html('\
-						<div class="component__heading">\
-							<h4 class="component__name">' + name + '</h4>\
-						</div>\
-						<div class="component__info">\
-							<p class="component__description">\
-								' + description + '\
-							</p>\
-							<a href="/'+ layer.properties.slug +'" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>\
-						</div> \
-					');
-          
-          layer.setStyle({"color":"#78a515"});
-          
+					var bounds = layer.getBounds();
+			    sanctuary.getMap().flyToBounds(bounds, 12, {duration:1});
+					sanctuary.getLocationsWithinBounds(bounds);
         });
       })
       
       sanctuary.data[index].on("mouseover", function(e) {
-        
         e.layer.options.oldColor = e.layer.options.color;
-        
         e.layer.setStyle({"color":"#78a515"});
       });
       
