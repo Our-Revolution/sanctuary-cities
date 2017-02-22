@@ -74,7 +74,7 @@
             <div class="detail__section" id="ice-cooperation">
               <h3 class="fw7 mt0">{{state.name}} {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}has{% elif state.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
               
-              <p>{% if state.limited_ice_cooperation_short_answer %}{{ state.limited_ice_cooperation_short_answer }}{% endif %}</p>
+              <p>{% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}{{ state.limited_ice_cooperation_short_answer }}{% endif %}</p>
             </div>
           {% endif %}
           
