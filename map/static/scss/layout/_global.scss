@@ -72,10 +72,20 @@ body {
 }
 
 .detail__information {
-  padding-left: 30px;
-  padding-right: 30px;
+
 }
 
 .detail__heading {
   font-weight: bolder;
+}
+
+.detail__section {
+  background: white;
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  
+  p {
+    margin-bottom: 0;
+  }
 }
