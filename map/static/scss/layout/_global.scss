@@ -85,7 +85,15 @@ body {
   border-radius: 3px;
   margin-bottom: 20px;
   
+  h3 {
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  
   p {
-    margin-bottom: 0;
+    &:last-child{
+      margin-bottom: 0;
+    }
   }
 }

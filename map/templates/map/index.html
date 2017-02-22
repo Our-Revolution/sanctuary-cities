@@ -9,6 +9,8 @@
 
     var data = [{{ states | safe }}, {{ counties | safe }}, {{ cities | safe }}]
     
+		console.log(data);
+		
 		for (var i=0; i < data.length; i++) {
 			$.each(data[i].features, function(feature) {
       
