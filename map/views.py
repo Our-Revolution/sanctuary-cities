@@ -4,6 +4,8 @@ from django.core.serializers import serialize
 from django.db.models.expressions import RawSQL
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse, Http404
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView, TemplateView, View
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 from .models import City, County, State
@@ -12,6 +14,7 @@ import json
 
 
 
+@method_decorator(cache_page(300), name='dispatch')
 class MapView(TemplateView):
     template_name = "map/index.html"
 
