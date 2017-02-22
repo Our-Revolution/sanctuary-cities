@@ -59,3 +59,23 @@ body {
 
   @include text-indent();
 }
+
+.detail__header {
+  position: relative;
+}
+
+.detail__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.detail__information {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.detail__heading {
+  font-weight: bolder;
+}

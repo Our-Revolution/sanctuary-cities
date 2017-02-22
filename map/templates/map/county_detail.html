@@ -1,11 +1,5 @@
-{% extends "base_map.html" %}
+{% extends "base.html" %}
 
-{% block map_content %}
-
-  sanctuary.paintGeoJSON({{ county.geom.geojson | safe }});
-  <!-- addFeature({{ county.geom.geojson | safe }}, "{{county}}", "{{county.state.name}}"); -->
-
-{% endblock %}
-
-{% block post_map %}
+{% block content %}
+  <h1>{{ county.name }}</h1>
 {% endblock %}

@@ -3,7 +3,7 @@ from django.contrib.gis.geos import Point
 from django.core.serializers import serialize
 from django.db.models.expressions import RawSQL
 from django.forms.models import model_to_dict
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.views.generic import DetailView, TemplateView, View
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 from .models import City, County, State
@@ -50,8 +50,6 @@ class TerritoriesView(View):
 
 
 
-
-
 class MapDetailView(DetailView):
 
     def get_template_name(self):
@@ -73,6 +71,6 @@ class MapDetailView(DetailView):
                 continue
 
         if not obj:
-            raise Http404("Could not find a map matching that URL")
+            raise Http404("Could not find a place matching that URL.")
 
         return obj

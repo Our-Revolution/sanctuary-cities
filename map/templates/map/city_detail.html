@@ -1,22 +1,5 @@
-{% extends "base_map.html" %}
+{% extends "content.html" %}
 
-{% block map_content %}
-
-    sanctuary.paintGeoJSON({{city.geom.geojson | safe}});
-    <!-- var feature = L.geoJson({{ city.geom.geojson | safe }}, {
-                            "color": "#dd0000",
-                            "weight": 2,
-                            "fillOpacity": "0.5"
-                        });
-    feature.bindPopup('{% spaceless %}
-            <h4>{{ city }}, {{ city.state.name }}</h4>
-            {% endspaceless %}');
-
-    feature.addTo(map);
-    map.fitBounds(feature.getBounds()); -->
-
-{% endblock %}
-
-{% block post_map %}
-    <h1>{{ city.name }}, {{ city.state.name }}</h1>
+{% block content %}
+  <h1>{{ city.name }}, {{ city.state.name }}</h1>
 {% endblock %}
