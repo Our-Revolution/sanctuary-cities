@@ -102,6 +102,44 @@ var sanctuary = (function($) {
     console.log('reset')
   }
   
+  function getColor(feature) {
+    if(feature.properties.model == "map.state") {      
+      if(feature.properties.limited_ice_cooperation == "yes-by-law") {
+        color = "#bf2";
+      } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
+        color = "#ff8";
+      } else if(feature.properties.limited_ice_cooperation == "unlimited") {
+        color = "#f22";
+      } else {
+        color = "#bf2";
+      }
+    } else if (feature.properties.model == "map.city") {
+      if(feature.properties.limited_ice_cooperation == "yes-by-law") {
+        color = "#9d0";
+      } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
+        color = "#dd6";
+      } else if(feature.properties.limited_ice_cooperation == "unlimited") {
+        color = "#d00";
+      } else {
+        color = "#999";
+      }
+    } else if (feature.properties.model == "map.county") {
+      if(feature.properties.jails_honor_ice_detainers == "yes-by-law") {
+        color = "#9d0";
+      } else if(feature.properties.jails_honor_ice_detainers == "yes-in-practice") {
+        color = "#dd6";
+      } else if(feature.properties.jails_honor_ice_detainers == "unlimited") {
+        color = "#d00";
+      } else {
+        color = "#999";
+      }
+    } else {
+      color = "#000";
+    }
+    
+    return color;
+  }
+  
   function updateInfo(layers) {
     resetInfo();
     
@@ -179,7 +217,8 @@ var sanctuary = (function($) {
     data: data,
     addFeature: addFeature,
     updateInfo: updateInfo,
-    getLocationsWithinBounds: getLocationsWithinBounds
+    getLocationsWithinBounds: getLocationsWithinBounds,
+    getColor: getColor
   }
   
 })(jQuery);

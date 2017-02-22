@@ -8,24 +8,13 @@
 		var states = [], cities = [], counties = [], featureGroups = {};
 
     var data = [{{ states | safe }}, {{ counties | safe }}, {{ cities | safe }}]
-    
-		console.log(data);
-		
+    	
+			
 		for (var i=0; i < data.length; i++) {
 			$.each(data[i].features, function(feature) {
       
-	      var color;
-	            
-	      if(this.properties.limited_ice_cooperation == "yes-by-law") {
-	        color = "#bf2";
-	      } else if(this.properties.limited_ice_cooperation == "yes-in-practice") {
-	        color = "#ff8";
-	      } else if(this.properties.limited_ice_cooperation == "unlimited") {
-	        color = "#f22";
-	      } else {
-	        color = "#bf2";
-	      }
-	      
+	      var color = sanctuary.getColor(this);
+	      				
 	      var feature = L.geoJson(this.geometry,
 	        {
 						"color": color,
@@ -33,12 +22,23 @@
 						"fillOpacity": "0.5"
 					});
 	                
-        feature.properties = this.properties
-        feature.bindTooltip('<h4>' + this.properties.name + '</h4>')
+        feature.properties = this.properties;
 				
-        states.push(feature);
+				if (i==1) {
+					feature.properties.name += " County";
+				}
+				
+        feature.bindTooltip('<h4>' + this.properties.name + '</h4>');
+				
+				if(i==0) {
+	        states.push(feature);
+				} else if (i==1) {
+					counties.push(feature);
+				} else {
+					cities.push(feature);
+				}
 			});
-		}
+		}		
 
     sanctuary.data = {
       states: L.featureGroup(states),
@@ -46,8 +46,7 @@
       counties: L.featureGroup(counties)
     }
     
-    $.each(sanctuary.data, function(index) {
-      
+    $.each(sanctuary.data, function(index) {			
       sanctuary.data[index].eachLayer(function(layer) {
         layer.on("click touchstart", function(e) {
 					var bounds = layer.getBounds();

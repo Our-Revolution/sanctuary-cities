@@ -26,7 +26,7 @@ class MapView(TemplateView):
         context['counties'] = serializer.serialize(County.objects.filter(geom__isnull=False, jails_honor_ice_detainers__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, County._meta.local_fields)))
 
         # cities
-        context['cities'] = serializer.serialize(City.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, City._meta.local_fields)))
+        context['cities'] = serializer.serialize(City.objects.filter(limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, City._meta.local_fields)))
 
         return context
 
