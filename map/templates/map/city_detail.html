@@ -53,7 +53,7 @@
                 {% endif %}
                 
                 {% if city.separate_form_of_id is not None %}
-                  <li><a href="#tuition">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} form of ID if driver's licenses aren't available</a></li>
+                  <li><a href="#alternate-id">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} form of ID if driver's licenses aren't available</a></li>
                 {% endif %}
                 
                 {% if city.police_use_body_cameras is not None %}
@@ -123,8 +123,8 @@
           {% endif %}
           
           {% if city.separate_form_of_id is not None %}
-            <div class="detail__section" id="legal-representation">            
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} form of ID if driver's licenses aren't available</h3>
+            <div class="detail__section" id="alternate-id">            
+              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} alternate form of ID if driver's licenses aren't available</h3>
               <p>{% if city.separate_form_of_id_short_answer is not None %}{{ city.separate_form_of_id_short_answer }}{% endif %}</p>
             </div>
           {% endif %}
