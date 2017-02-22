@@ -4,6 +4,10 @@
     padding: 0;
     height: 600px;
     
+    @include until($medium) {
+      height: 300px;
+    };
+    
     &__status {
       max-height: calc(100% - 55px);
       overflow: auto;
