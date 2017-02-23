@@ -82,7 +82,7 @@
                 <div class="detail__section" id="ice-cooperation">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}has{% elif city.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
                   
-                  <p>{% if city.limited_ice_cooperation_short_answer and 'N/A' not in city.limited_ice_cooperation_short_answer %}{{ city.limited_ice_cooperation_short_answer }}{% endif %}</p>
+                  {% if city.limited_ice_cooperation_short_answer and 'N/A' not in city.limited_ice_cooperation_short_answer %}<p>{{ city.limited_ice_cooperation_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -90,7 +90,7 @@
                 <div class="detail__section" id="honor-detainers">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} jails {{city.jails_honor_ice_detainers|yesno:"honor, do not honor"}} ICE detainers or notices.</h3>
                   
-                  <p>{% if city.jails_honor_ice_detainers_short_answer is not None %}{{ city.jails_honor_ice_detainers_short_answer }}{% endif %}</p>
+                  {% if city.jails_honor_ice_detainers_short_answer is not None %}<p>{{ city.jails_honor_ice_detainers_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -98,7 +98,7 @@
                 <div class="detail__section" id="contracts">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{city.participate_287g_program|yesno:"participates, does not participate"}} in the 287(g) program.</h3>
                   
-                  <p>{% if city.participate_287g_program_short_answer is not None%}{{ city.participate_287g_program_short_answer }}{% endif %}</p>
+                  {% if city.participate_287g_program_short_answer is not None%}<p>{{ city.participate_287g_program_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -106,42 +106,42 @@
                 <div class="detail__section" id="igsa">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} city jails {{city.isga|yesno:"have, do not have"}} an Intergovernmental Service Agreement (IGSA)</h3>
                   <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
-                  <p>{% if city.isga_short_answer %}{{city.isga_short_answer}}{% endif %}</p>
+                  {% if city.isga_short_answer %}<p>{{city.isga_short_answer|urlize}}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.provide_legal_representation is not None %}
               <div class="detail__section" id="legal-representation">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{ city.provide_legal_representation|yesno:"provides, does not provide" }} undocumented immigrants with legal representation in immigration court.</h3>
-                  <p>{% if city.provide_legal_representation_short_answer is not None %}{{ city.provide_legal_representation_short_answer }}{% endif %}</p>
+                  {% if city.provide_legal_representation_short_answer is not None %}<p>{{ city.provide_legal_representation_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.city_services is not None %}
                 <div class="detail__section" id="city-services">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{ city.city_services|yesno:"asks, does not ask" }} about immigration status when applying for or accessing certain city services like pools, library cards, local IDs or school registration.</h3>
-                  <p>{% if city.city_services_short_answer is not None %}{{ city.city_services_short_answer }}{% endif %}</p>
+                  {% if city.city_services_short_answer is not None %}<p>{{ city.city_services_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.separate_form_of_id is not None %}
                 <div class="detail__section" id="alternate-id">            
-                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} alternate form of ID if driver's licenses aren't available</h3>
-                  <p>{% if city.separate_form_of_id_short_answer is not None %}{{ city.separate_form_of_id_short_answer }}{% endif %}</p>
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} alternate form of ID if driver's licenses aren't available.</h3>
+                  {% if city.separate_form_of_id_short_answer is not None %}<p>{{ city.separate_form_of_id_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
                 
               {% if city.police_use_body_cameras is not None %}
                 <div class="detail__section" id="body-cameras">            
-                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} city police {{city.police_use_body_cameras|yesno:"use,do not use"}} body cameras</h3>
-                  <p>{% if city.police_use_body_cameras_short_answer is not None %}{{ city.police_use_body_cameras_short_answer }}{% endif %}</p>
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} city police {{city.police_use_body_cameras|yesno:"use,do not use"}} body cameras.</h3>
+                  {% if city.police_use_body_cameras_short_answer is not None %}<p>{{ city.police_use_body_cameras_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.other_policies_and_services is not None %}
                 <div class="detail__section" id="other-policies">            
-                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} has implemented policies that make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</h3>
-                  <p>{% if city.other_policies_and_services_short_answer is not None %}{{ city.other_policies_and_services_short_answer }}{% endif %}</p>
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} has implemented policies that make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities.</h3>
+                  {% if city.other_policies_and_services_short_answer is not None %}<p>{{ city.other_policies_and_services_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
             </div>
