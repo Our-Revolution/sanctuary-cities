@@ -51,18 +51,13 @@
         layer.on("click touchstart", function(e) {
 					var bounds = layer.getBounds();
 			    sanctuary.getMap().flyToBounds(bounds, 12, {duration:1});
-					sanctuary.getLocationsWithinBounds(bounds);
+					sanctuary.updateInfo([layer]);
+				
+					sanctuary.setActive(e.layer);
         });
       })
       
-      sanctuary.data[index].on("mouseover", function(e) {
-        e.layer.options.oldColor = e.layer.options.color;
-        e.layer.setStyle({"color":"#78a515"});
-      });
-      
-      sanctuary.data[index].on("mouseout", function(e) {
-        e.layer.setStyle({"color":e.layer.options.oldColor});
-      });
+
       
       sanctuary.addFeature(sanctuary.data[index]);
     })

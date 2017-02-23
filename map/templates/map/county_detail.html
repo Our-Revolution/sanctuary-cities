@@ -1,128 +1,132 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="detail bw1 bl br b--light-gray bg-near-white">
-    <div class="detail__header bg-blue pa4 pt6 white">  
-      <div class="detail__back pa3 f3 bg-black-10">
-        <div class="container">
-          <div class="row">
-            <a href="/" class="link dim white">< Back to the Map</a>
+  <div class="container">
+    <div class="row">
+      <div class="detail bw1 bl br bb b--light-gray bg-near-white">
+        <div class="detail__header bg-blue pa4 pt6 white">  
+          <div class="detail__back pa3 f3 bg-black-10">
+            <div class="container">
+              <div class="row">
+                <a href="/" class="link dim white">< Back to the Map</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <h1 class="fw7 mb0">{{ county.name }} County, {{ county.state.name }}</h1>
-    </div>
-    
-    <div class="detail__content pa4 clearfix mt2 pb3 row">
-      {% if county.jails_honor_ice_detainers %}
-      
-        <div class="detail__overview col-md-4 mb4">
-          <div class="pa4 bg-white br3">
-            <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Policy Overview</h3>
-            
-              <ul class="f3 mr4">
-                {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}
-                  <li><a href="#ice-cooperation">Jails do not honor ICE detainers</a></li>
-                {% elif county.limited_ice_cooperation == "unlimited" %}
-                  <li><a href="#ice-cooperation">Jails honor ICE detainers</a></li>
-                {% endif %}
+          <h1 class="fw7 mb0">{{ county.name }} County, {{ county.state.name }}</h1>
+        </div>
+        
+        <div class="detail__content pa4 clearfix mt2 pb3">
+          {% if county.jails_honor_ice_detainers %}
+          
+            <div class="detail__overview col-md-4 mb4">
+              <div class="pa4 bg-white br3">
+                <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Policy Overview</h3>
+                
+                  <ul class="f3 mr4">
+                    {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}
+                      <li><a href="#ice-cooperation">Jails do not honor ICE detainers</a></li>
+                    {% elif county.limited_ice_cooperation == "unlimited" %}
+                      <li><a href="#ice-cooperation">Jails honor ICE detainers</a></li>
+                    {% endif %}
+                      
+                    {% if county.jails_prohibit_inquiries is not None %}
+                      <li><a href="#inquiries">Jails {{ county.jails_prohibit_inquiries|yesno:"prohibit,don't prohibit" }} inquiries into immigration status and/or place of birth</a></li>
+                    {% endif %}
+                    
+                    {% if county.ice_contracts is not None %}
+                      <li><a href="#contracts">{{ county.ice_contracts|yesno:"Participates,Does not participate"}} in programs like 287(g)</a></li>
+                    {% endif %}
+                    
+                    {% if county.isga is not None %}
+                      <li><a href="#igsa">Jails {{ county.jails_honor_ice_detainers|yesno:"have,do not have"}} an IGSA</a></li>
+                    {% endif %}
                   
-                {% if county.jails_prohibit_inquiries is not None %}
-                  <li><a href="#inquiries">Jails {{ county.jails_prohibit_inquiries|yesno:"prohibit,don't prohibit" }} inquiries into immigration status and/or place of birth</a></li>
-                {% endif %}
+                    {% if county.preventing_policies is not None %}
+                      <li><a href="#preventing-policies">Prevents local police from acting as immigration agents</a></li>
+                    {% endif %}
+                    
+                    {% if county.permitting_policies is not None %}
+                      <li><a href="#permitting-policies">Permits local police from acting as immigration agents</a></li>
+                    {% endif %}
+                    
+                    {% if county.other_policies_and_services is not None %}
+                      <li><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community or religious minorities</a></li>
+                    {% endif %}
+                  </ul>
                 
-                {% if county.ice_contracts is not None %}
-                  <li><a href="#contracts">{{ county.ice_contracts|yesno:"Participates,Does not participate"}} in programs like 287(g)</a></li>
+                <h2 class="fw7 bb b--light-gray bw1 pb3">Get Involved</h3>
+                {% if county.local_effort_short_answer is not None %}
+                  <p class="mb0">{{ county.local_effort_short_answer|urlize }}</p>
+                {% else %}
+                  <p class="mb0">We don't know of any local efforts to improve this county's policies. If you are aware of any, please let us know at <a href="mailto:sanctuary@ourrevolution.com?Subject={{'Share a Local Organizing Effort' | urlencode }}">sanctuary@ourrevolution.com</a>.
                 {% endif %}
-                
-                {% if county.isga is not None %}
-                  <li><a href="#igsa">Jails {{ county.jails_honor_ice_detainers|yesno:"have,do not have"}} an IGSA</a></li>
-                {% endif %}
-              
-                {% if county.preventing_policies is not None %}
-                  <li><a href="#preventing-policies">Prevents local police from acting as immigration agents</a></li>
-                {% endif %}
-                
-                {% if county.permitting_policies is not None %}
-                  <li><a href="#permitting-policies">Permits local police from acting as immigration agents</a></li>
-                {% endif %}
-                
-                {% if county.other_policies_and_services is not None %}
-                  <li><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community or religious minorities</a></li>
-                {% endif %}
-              </ul>
+              </div>
+            </div>
             
-            <h2 class="fw7 bb b--light-gray bw1 pb3">Get Involved</h3>
-            {% if county.local_effort_short_answer is not None %}
-              <p class="mb0">{{ county.local_effort_short_answer }}</p>
-            {% else %}
-              <p class="mb0">We don't know of any local efforts to improve this county's policies. If you are aware of any, please let us know at <a href="mailto:sanctuary@ourrevolution.com?Subject={{'Share a Local Organizing Effort' | urlencode }}">sanctuary@ourrevolution.com</a>.
-            {% endif %}
-          </div>
-        </div>
-        
-        <div class="detail__information col-md-8 pt0">
-          
-          {% if county.jails_honor_ice_detainers is not None %}
-            <div class="detail__section" id="ice-cooperation">
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}honors{% elif county.limited_ice_cooperation == "unlimited" %}does not honor{% endif %} ICE detainers.</h3>
+            <div class="detail__information col-md-8 pt0">
               
-              {% if county.jails_honor_ice_detainers_short_answer and 'N/A' not in county.jails_honor_ice_detainers_short_answer %}<p>{{ county.jails_honor_ice_detainers_short_answer }}</p>{% endif %}
-            </div>
-          {% endif %}
-          
-          {% if county.jails_prohibit_inquiries is not None %}
-            <div class="detail__section" id="inquiries">
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County  {{county.jails_prohibit_inquiries|yesno:"prohibits, does not prohibit"}} inquiries into immigration status and/or place of birth.</h3>
+              {% if county.jails_honor_ice_detainers is not None %}
+                <div class="detail__section" id="ice-cooperation">
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}honors{% elif county.limited_ice_cooperation == "unlimited" %}does not honor{% endif %} ICE detainers.</h3>
+                  
+                  {% if county.jails_honor_ice_detainers_short_answer and 'N/A' not in county.jails_honor_ice_detainers_short_answer %}<p>{{ county.jails_honor_ice_detainers_short_answer|urlize }}</p>{% endif %}
+                </div>
+              {% endif %}
               
-              {% if county.jails_prohibit_inquiries_short_answer is not None%}<p>{{ county.jails_prohibit_inquiries_short_answer }}</p>{% endif %}
-            </div>
-          {% endif %}
-          
-          {% if county.ice_contracts is not None %}
-            <div class="detail__section" id="contracts">
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County  {{county.ice_contracts|yesno:"participates, does not participate"}} in the 287(g) program or something similar to it.</h3>
+              {% if county.jails_prohibit_inquiries is not None %}
+                <div class="detail__section" id="inquiries">
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County  {{county.jails_prohibit_inquiries|yesno:"prohibits, does not prohibit"}} inquiries into immigration status and/or place of birth.</h3>
+                  
+                  {% if county.jails_prohibit_inquiries_short_answer is not None%}<p>{{ county.jails_prohibit_inquiries_short_answer|urlize }}</p>{% endif %}
+                </div>
+              {% endif %}
               
-              <p>The 287(g) program entangles ICE with things like the Joint Terrorism Task Force and the Organized Crime and Drug Enforcement Task Force.</p>
+              {% if county.ice_contracts is not None %}
+                <div class="detail__section" id="contracts">
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County  {{county.ice_contracts|yesno:"participates, does not participate"}} in the 287(g) program or something similar to it.</h3>
+                  
+                  <p>The 287(g) program entangles ICE with things like the Joint Terrorism Task Force and the Organized Crime and Drug Enforcement Task Force.</p>
+                  
+                  {% if county.ice_contracts_short_answer is not None%}<p>{{ county.ice_contracts_short_answer|urlize }}</p>{% endif %}
+                </div>
+              {% endif %}
               
-              {% if county.ice_contracts_short_answer is not None%}<p>{{ county.ice_contracts_short_answer }}</p>{% endif %}
+              {% if county.isga is not None %}
+                <div class="detail__section" id="igsa">
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County jails {{county.isga|yesno:"have, do not have"}} an Intergovernmental Service Agreement (IGSA).</h3>
+                  <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
+                  {% if county.isga_short_answer %}<p>{{county.isga_short_answer|urlize}}</p>{% endif %}
+                </div>
+              {% endif %}
+                
+              {% if county.preventing_policies is not None %}
+                <div class="detail__section" id="preventing-policies">            
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {{county.preventing_policies|yesno:"has, does not have"}} policies in place put forth by the County Sheriff's office that prevent local police from acting as immigration agents.</h3>
+                  {% if county.preventing_policies_short_answer is not None %}<p>{{ county.preventing_policies_short_answer|urlize }}</p>{% endif %}
+                </div>
+              {% endif %}
+              
+              {% if county.permitting_policies is not None %}
+                <div class="detail__section" id="permitting-policies">            
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {{county.permitting_policies|yesno:"has, does not have"}} policies in place put forth by the County Sheriff's office that prevent local police from acting as immigration agents.</h3>
+                  {% if county.permitting_policies_short_answer is not None %}<p>{{ county.permitting_policies_short_answer|urlize }}</p>{% endif %}
+                </div>
+              {% endif %}
+              
+              {% if county.other_policies_and_services is not None %}
+                <div class="detail__section" id="other-policies">            
+                  <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} has implemented policies that make the county more welcoming to immigrants, people of color, the LGBTQ community or religious minorities.</h3>
+                  <p>{{ county.other_policies_and_services|urlize }}</p>
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-          
-          {% if county.isga is not None %}
-            <div class="detail__section" id="igsa">
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County jails {{county.isga|yesno:"have, do not have"}} an Intergovernmental Service Agreement (IGSA).</h3>
-              <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
-              {% if county.isga_short_answer %}<p>{{county.isga_short_answer}}</p>{% endif %}
-            </div>
-          {% endif %}
             
-          {% if county.preventing_policies is not None %}
-            <div class="detail__section" id="preventing-policies">            
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {{county.preventing_policies|yesno:"has, does not have"}} policies in place put forth by the County Sheriff's office that prevent local police from acting as immigration agents.</h3>
-              {% if county.preventing_policies_short_answer is not None %}<p>{{ county.preventing_policies_short_answer }}</p>{% endif %}
-            </div>
-          {% endif %}
-          
-          {% if county.permitting_policies is not None %}
-            <div class="detail__section" id="permitting-policies">            
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} County {{county.permitting_policies|yesno:"has, does not have"}} policies in place put forth by the County Sheriff's office that prevent local police from acting as immigration agents.</h3>
-              {% if county.permitting_policies_short_answer is not None %}<p>{{ county.permitting_policies_short_answer }}</p>{% endif %}
-            </div>
-          {% endif %}
-          
-          {% if county.other_policies_and_services is not None %}
-            <div class="detail__section" id="other-policies">            
-              <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{county.name}} has implemented policies that make the county more welcoming to immigrants, people of color, the LGBTQ community or religious minorities.</h3>
-              <p>{{ county.other_policies_and_services }}</p>
-            </div>
+          {% else %}
+            {% include "partials/no-data.html" %}
           {% endif %}
         </div>
-        
-        {% else %}
-          {% include "partials/no-data.html" %}
-        {% endif %}
       </div>
+    </div>
   </div>
 {% endblock %}
