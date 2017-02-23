@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
-from django.db import models
 from django.contrib.gis.db import models
+from django.contrib.gis.geos import MultiPolygon
+from .mapping import URLToDataSource
 
 
 class BaseTerritory(models.Model):
@@ -108,6 +109,22 @@ class City(BaseTerritory):
     local_effort_short_answer = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
     political_landscape = models.TextField(null=True, blank=True)
+
+
+    def save(self, *args, **kwargs):
+
+        if not self.geom and self.state:
+
+            state_data_source = URLToDataSource(url='http://www2.census.gov/geo/tiger/GENZ2015/shp/cb_2015_%s_place_500k.zip' % self.state.fips).process()
+
+            geos = filter(lambda feature: str(feature['NAME']) == self.name, state_data_source)[0].geom.geos
+            if not isinstance(geos, MultiPolygon):
+                geos = MultiPolygon(geos)
+            self.geom = geos
+        
+        return super(City, self).save(*args, **kwargs)
+
+
 
     class Meta:
         verbose_name_plural = 'Cities'

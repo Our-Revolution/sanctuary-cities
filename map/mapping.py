@@ -4,6 +4,49 @@ from tempfile import NamedTemporaryFile
 import os, re, requests
 
 
+
+class URLToDataSource(object):
+
+    def __init__(self, url, directory='tiger', *args, **kwargs):
+        super(URLToDataSource, self).__init__(*args, **kwargs)
+        self.url = url
+        self.directory = directory
+
+    def process(self, *args, **kwargs):
+        self.fetch_and_unzip_data()
+        return self.get_data_source()
+
+    def fetch_and_unzip_data(self, *args, **kwargs):
+
+        base_save_path = 'map/geodata/%s' % self.directory
+
+        if not os.path.exists(base_save_path):
+            os.makedirs(base_save_path)
+
+        basename = os.path.basename(self.url).replace('.zip', '')
+        self.shapefile_directory = os.path.join(base_save_path, basename)
+
+        if not os.path.exists(self.shapefile_directory):
+        
+            download_req = requests.get(self.url, stream=True)
+            with NamedTemporaryFile(delete=False) as download:
+                for chunk in download_req.iter_content(chunk_size=1024): 
+                    if chunk: # filter out keep-alive new chunks
+                        download.write(chunk)
+                        download.flush()
+            
+            Archive(download.name).extractall(self.shapefile_directory, auto_create_dir=True)
+
+        self.shapefile = os.path.join(self.shapefile_directory, '%s.shp' % basename)
+
+        return self.shapefile
+
+    def get_data_source(self):
+        self.data_source = DataSource(self.shapefile)[0]
+        return self.data_source
+
+
+
 class UploadToDataSource(object):
 
     def __init__(self, request, file_param, url_param, *args, **kwargs):
