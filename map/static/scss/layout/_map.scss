@@ -3,6 +3,8 @@
   &-info {
     padding: 0;
     height: 600px;
+    width: 300px;
+    float: left;
     
     @include until($medium) {
       height: 300px;
@@ -16,6 +18,7 @@
   
   &__map {
     height: 600px;
+    margin-left: 300px; 
   }
   
   .component { 

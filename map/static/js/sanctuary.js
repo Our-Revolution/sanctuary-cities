@@ -1,6 +1,6 @@
 var sanctuary = (function($) {
     
-  var map, usedSearch = false, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
+  var map, active = null, usedSearch = false, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
     
   function init(mapDiv) {
     initMap(mapDiv);
@@ -68,18 +68,13 @@ var sanctuary = (function($) {
   }
   
   function addFeature(feature) {
-    // console.log(feature);
-    // console.log(map);
     feature.addTo(map);
   }
   
   function paintGeoJson(geometry, options) {
     var feature = L.geoJson(geometry, options);
     
-    // console.log(feature);
-    
     feature.addTo(map);
-    // map.fitBounds(feature.getBounds());
   }
 
   function populate() {
@@ -205,6 +200,23 @@ var sanctuary = (function($) {
     usedSearch = false;
   }
   
+  function setActive(layer) {
+    layer.options.oldColor = layer.options.color;
+    
+    if(active) {
+      var oldLayer = map._layers[active];
+      oldLayer.setStyle({"color": oldLayer.options.oldColor})
+    } 
+    
+    layer.setStyle({"color":"#78a515"});
+    
+    active = layer._leaflet_id;
+  }
+  
+  function getActive() {
+    return active;
+  }
+  
   function getMap() {
     return map;
   }
@@ -218,7 +230,9 @@ var sanctuary = (function($) {
     addFeature: addFeature,
     updateInfo: updateInfo,
     getLocationsWithinBounds: getLocationsWithinBounds,
-    getColor: getColor
+    getColor: getColor,
+    setActive: setActive,
+    getActive: getActive
   }
   
 })(jQuery);

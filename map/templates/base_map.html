@@ -4,27 +4,29 @@
   {% block pre_map %}
   {% endblock %}
 
-  <div class="app">
-    <div class="app-info col-lg-3 col-md-4 col-sm-5 ba b--black-10 pa0">
-      <div class="app-info__search pa3 bg-light-gray bb b--black-10">
-        <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address" id="autocomplete">
-      </div>
-      
-      <div class="app-info__status text-left">
-        <div class="component">
-          <div class="component__heading">
-            <h4 class="component__name">San Francisco</h4>
-          </div>
-          <div class="component__info">
-            <p class="component__description">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
-          
-            <a href="#" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>
+  <div class="app container container--lg">
+    <div class="row">
+      <div class="app-info ba b--black-10 pa0">
+        <div class="app-info__search pa3 bg-light-gray bb b--black-10">
+          <input type="search" class="form-control maps-auto-complete" placeholder="Zip Code, City, or Address" id="autocomplete">
+        </div>
+        
+        <div class="app-info__status text-left">
+          <div class="component">
+            <div class="component__heading">
+              <h4 class="component__name">San Francisco</h4>
+            </div>
+            <div class="component__info">
+              <p class="component__description">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p>
+            
+              <a href="#" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>
+            </div>
           </div>
         </div>
       </div>
+      
+      <div class="app__map" id="map-container"></div>
     </div>
-    
-    <div class="app__map col-lg-9 col-md-8 col-sm-7" id="map-container"></div>
   </div>
 
   <script>

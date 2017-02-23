@@ -26,6 +26,19 @@ body {
   }
 }
 
+// add wider widths to bootstrap containers
+@media (min-width: 1400px) {
+  .container--lg {
+    width: 1370px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container--lg {
+    width: 1570px;
+  }
+}
+
 .twitter-icon {
   height: 20px;
   width: 20px;
