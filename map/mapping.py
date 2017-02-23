@@ -29,7 +29,7 @@ class URLToDataSource(object):
         if not os.path.exists(self.shapefile_directory):
         
             download_req = requests.get(self.url, stream=True)
-            with NamedTemporaryFile(delete=False) as download:
+            with NamedTemporaryFile(delete=False, suffix='.zip') as download:
                 for chunk in download_req.iter_content(chunk_size=1024): 
                     if chunk: # filter out keep-alive new chunks
                         download.write(chunk)
