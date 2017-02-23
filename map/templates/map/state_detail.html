@@ -77,7 +77,7 @@
                 <div class="detail__section" id="ice-cooperation">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}has{% elif state.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
                   
-                  <p>{% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}{{ state.limited_ice_cooperation_short_answer }}{% endif %}</p>
+                  {% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}<p>{{ state.limited_ice_cooperation_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -86,7 +86,7 @@
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{ state.lice_contracts|yesno:"has,does not have" }} 287(g) contracts or other similar programs with ICE.</h3>
                   <p>These programs entangle ICE with things like the Joint Terrorism Task Force and the Organized Crime and Drug Enforcement Task Force.</p>
                   
-                  <p>{% if state.ice_contracts_short_answer is not None %}{{ state.ice_contracts_short_answer }}{% endif %}</p>
+                  {% if state.ice_contracts_short_answer is not None %}<p>{{ state.ice_contracts_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -94,35 +94,35 @@
                 <div class="detail__section" id="igsa">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{ state.name }} state jails {{ state.isga|yesno:"has,do not have" }} an Intergovernmental Service Agreement (IGSA) with ICE.</h3>
                   <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
-                  <p>{% if state.isga_short_answer is not None %}{{ state.isga_short_answer }}{% endif %}</p>
+                  {% if state.isga_short_answer is not None %}<p>{{ state.isga_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.provide_legal_representation is not None %}
                 <div class="detail__section" id="legal-representation">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{ state.provide_legal_representation|yesno:"provides, does not provide" }} undocumented immigrants with legal representation in immigration court.</h3>
-                  <p>{{ state.provide_legal_representation_answer }}</p>
+                  {% if state.provide_legal_representation_answer is not None %}<p>{{ state.provide_legal_representation_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.drivers_license is not None %}
                 <div class="detail__section" id="drivers-license">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Undocumented immigrants {{ state.drivers_license|yesno:"can, cannot" }} get driver's licenses in {{ state.name }}.</h3>
-                  <p>{{ state.drivers_license_answer }}</p>
+                  {% if state.drivers_license_answer is not None %}<p>{{ state.drivers_license_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.in_state_tuition is not None %}
                 <div class="detail__section" id="tuition">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Undocumented students {{ state.in_state_tuition|yesno:"can, cannot" }} access in-state tuition at public colleges.</h3>
-                  <p>{{ state.in_state_tuition_answer }}</p>
+                  {% if state.in_state_tuition_answer is not None %}<p>{{ state.in_state_tuition_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.barrier is not None %}
                 <div class="detail__section" id="state-services">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Immigration status {{state.barrier|yesno:"acts,does not act"}} as a barrier in accessing state services in {{state.name}}.</h3>
-                  <p>{{ state.barrier_answer }}</p>
+                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -130,14 +130,14 @@
                 <div class="detail__section" id="profiling">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{state.policies_against_profiling|yesno:"has,has not have"}} adopted policies against profiling.</h3>
                   <p>{{state.name}} {{state.policies_against_profiling|yesno:"has,has not"}} adopted and implemented policies or directives against profiling based on actual or perceived sexual orientation, gender, gender identity, disability, immigration status, housing, HIV status, or age. {{state.name}} {{state.policies_against_profiling|yesno:"does,does not"}} prohibit the use of race, religion, color, ethnicity, national origin, immigration status, gender, disability, sexual orientation, or gender identity as a factor in establishing reasonable suspicion or probable cause, exercising discretion to conduct a warrantless search or seek a search warrant</p>
-                  <p>{{ state.barrier_answer }}</p>
+                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.other_policies_and_services is not None %}
                 <div class="detail__section" id="other-policies">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} has other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities.</h3>
-                  <p>{{ state.other_policies_and_services }}</p>
+                  {% if state.other_policies_and_services is not None %}<p>{{ state.other_policies_and_services|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
             </div>
