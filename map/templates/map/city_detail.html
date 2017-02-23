@@ -69,7 +69,7 @@
                 
                 <h2 class="fw7 bb b--light-gray bw1 pb3">Get Involved</h3>
                 {% if city.local_effort_short_answer is not None %}
-                  <p class="mb0">{{ city.local_effort_short_answer }}</p>
+                  <p class="mb0">{{ city.local_effort_short_answer|urlize }}</p>
                 {% else %}
                   <p class="mb0">We don't know of any local efforts to improve this city's policies. If you are aware of any, please let us know at <a href="mailto:sanctuary@ourrevolution.com?Subject={{'Share a Local Organizing Effort' | urlencode }}">sanctuary@ourrevolution.com</a>.
                 {% endif %}
