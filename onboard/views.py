@@ -47,6 +47,8 @@ class OnboardView(FormView):
             user.set_password(password)
             user.save()
 
+            # todo: add as a Staff
+
             messages.success(self.request, mark_safe("Your account has been created &mdash; your username is <strong>%s</strong> and your password is <strong>%s</strong> ;) Please store these somewhere safe!" % (candidate_username, password)))
 
             # login
@@ -63,9 +65,11 @@ class OnboardView(FormView):
             params.append("last_name=%s" % last_name)
 
         if form.cleaned_data['state']:
-            params.append("channels=C36H4LW4V")
+            params.append("channels=C3X6H70L9")
 
 
         req = requests.post('https://slack.com/api/users.admin.invite?%s' % '&'.join(params))
+
+        # todo: add Google Sheets access (?)
 
         return super(OnboardView, self).form_valid(form)
