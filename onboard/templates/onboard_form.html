@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+
+                    <h4>Our Revolution</h3>
+
+                    <h3>Get Started</h3>
+
+                    <p class="lead">First things first &mdash; please read over our Code of Conduct
+                    before we turn you loose in this new research project.</p>
+
+                    <h3 class="text-muted">Code of Conduct</h3>
+
+                    <p>The Our Revolution team is made up of volunteers and staff
+                    of numerous and diverse backgrounds, united by their
+                    commitment to a set of values - namely social, economic,
+                    environmental and racial justice - which were at the core of
+                    the 2016 Presidential Campaign of Senator Bernie Sanders. By
+                    his example, Senator Sanders has shown us that it is
+                    possible to work with people whose ideologies and
+                    personalities may be diametrically opposed to our own, when
+                    the results could provide real, positive change, and the
+                    alternative is gridlock and dysfunction. We know from
+                    experience that we can be a positive force in driving the
+                    political direction of our society. Infighting, disunity,
+                    and feuding only lead to deterioration of the political
+                    power we have worked tirelessly to amass. We will practice
+                    radical inclusivity and forgiveness, for the well-being of
+                    the movement is as stake.</p>
+
+                    <p>To that end, we agree to make every effort to work together
+                    under the following terms:</p>
+
+                    <ul>
+
+                        <li>We will work together toward a common goal.</li>
+
+                        <li>We accept differences of personality and opinion.</li>
+
+                        <li>We agree to treat one another with respect.</li>
+
+                        <li>When making observations about others, we will remain
+                        objective.</li>
+
+                        <li>When debating, we will not let our differences of opinion
+                        over policy or strategy descend into personal attacks.</li>
+
+                        <li>We do not condone bullying or harassment, and will actively
+                        take steps to mitigate either should they occur.</li>
+
+                        <li>We will not discriminate against anyone on the basis of
+                        their race, religion, age, gender or gender identity, sexual
+                        orientation, place of origin, level of abilities or
+                        socioeconomic status.</li>
+
+                        <li>We will work together to find equitable solutions to any
+                        issues which may arise.</li>
+
+                        <li>We trust one another to abide by these guidelines and act in
+                        the group's best interest.</li>
+
+                        <li>We are aware of our own limitations, and if we have been
+                        given a task which we are unable to complete, we will seek
+                        out assistance.</li>
+
+                        <li>We value and encourage feedback, and will not retaliate
+                        against those who give it.</li>
+
+                        <li>In our interactions with one another, and with the wider
+                        public, we will act in a way that adheres to the moral and
+                        philosophical values of Our Revolution.</li>
+
+                    </ul>
+
+                    <p>If a volunteer is unable to agree to and abide by any of the
+                    above terms, progressive discipline will be applied. In
+                    other words, the behavior will first be addressed in
+                    private, either over the phone or in private message. If the
+                    behavior persists, that volunteer will be asked to leave the
+                    Our Revolution volunteer team. We do not wish to disallow
+                    people from participating in our vital work, however, we
+                    must place our common welfare first.</p>
+
+
+                    <form action="" method="post">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% bootstrap_field form.accept_coc %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% bootstrap_field form.email %}
+                            </div>
+                            <div class="col-sm-6">
+                                {% bootstrap_field form.full_name %}
+                            </div>
+                        </div>
+
+                        {% buttons %}
+                            {% bootstrap_button "Let's go!" button_type="submit" button_class="btn-lg btn-block btn-primary" %}
+                        {% endbuttons %}
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

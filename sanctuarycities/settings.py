@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # niceties
+    'bootstrap3',
     'sass_processor',
 
     'map',
+    'onboard'
 ]
 
 MIDDLEWARE = [
