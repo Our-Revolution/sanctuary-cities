@@ -23,11 +23,12 @@ class CityForm(forms.ModelForm):
             'separate_form_of_id_short_answer': _("What are the limitations to these IDs? E.g. Do police recognize them as an official ID?"),
             'police_use_body_cameras': _("Does City PD use body cameras?"),
             'police_use_body_cameras_short_answer': _("Source"),
-            'other_policies_and_services': _("Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
+            # 'other_policies_and_services': _("Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
             'local_effort': _("Is there already a known local effort to push for the city to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Source"),
             'isga': _("Do city jails have an Intergovernmental Service Agreement (IGSA)?"),
-            'political_landscape': _("What is the political landscape of the city? Briefly power-map the flow of power.")
+            # 'political_landscape': _("What is the political landscape of the city? Briefly power-map the flow of power."),
+            'city_council_contact_info': _("List city council contact information: Name, Title (District 1/ At Large/ Etc), Phone, Email")
         }
 
 

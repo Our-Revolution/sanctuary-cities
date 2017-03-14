@@ -109,6 +109,7 @@ class City(BaseTerritory):
     local_effort_short_answer = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
     political_landscape = models.TextField(null=True, blank=True)
+    city_council_contact_info = models.TextField(null=True, blank=True)
 
 
     def save(self, *args, **kwargs):
