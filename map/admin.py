@@ -19,8 +19,8 @@ class CityAdmin(admin.OSMGeoAdmin):
                             'provide_legal_representation', 'provide_legal_representation_short_answer',
                             'city_services', 'city_services_short_answer', 'separate_form_of_id',
                             'separate_form_of_id_short_answer', 'police_use_body_cameras',
-                            'police_use_body_cameras_short_answer',
-                            'local_effort', 'local_effort_short_answer', 'isga') }),
+                            'police_use_body_cameras_short_answer', 'local_effort',
+                            'local_effort_short_answer', 'isga', 'city_council_contact_info') }),
             ('Advanced options', {
                 'classes': ('collapse',),
                 'fields': ('geom', 'shapefile', 'shapefile_url',),
