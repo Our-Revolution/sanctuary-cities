@@ -1,4 +1,3 @@
-from django.contrib.gis.db.models.functions import AsGeoJSON
 from django.contrib.gis.geos import Point
 from django.core.serializers import serialize
 from django.db.models.expressions import RawSQL
@@ -7,8 +6,8 @@ from django.http import HttpResponse, JsonResponse, Http404
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView, TemplateView, View
-from djgeojson.serializers import Serializer as GeoJSONSerializer
 from .models import City, County, State
+from .serializers import CitySerializer, CountySerializer, StateSerializer
 import json
 
 
@@ -20,16 +19,15 @@ class MapView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MapView, self).get_context_data(**kwargs)
-        serializer = GeoJSONSerializer()
         
         # states
-        context['states'] = serializer.serialize(State.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, State._meta.local_fields)))        
+        context['states'] = json.dumps(StateSerializer(State.objects.filter(geom__isnull=False, limited_ice_cooperation__isnull=False), many=True).data)
                                     
         # counties  
-        context['counties'] = serializer.serialize(County.objects.filter(geom__isnull=False, jails_honor_ice_detainers__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, County._meta.local_fields)))
+        context['counties'] = json.dumps(CountySerializer(County.objects.filter(geom__isnull=False, jails_honor_ice_detainers__isnull=False), many=True).data)
 
         # cities
-        context['cities'] = serializer.serialize(City.objects.filter(limited_ice_cooperation__isnull=False), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, City._meta.local_fields)))
+        context['cities'] = json.dumps(CitySerializer(City.objects.filter(limited_ice_cooperation__isnull=False), many=True).data)
 
         return context
 

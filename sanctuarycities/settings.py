@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # niceties
     'bootstrap3',
     'sass_processor',
+    'rest_framework',
+    'rest_framework_gis',
 
     'map',
     'onboard'

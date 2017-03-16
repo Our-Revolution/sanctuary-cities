@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import MultiPolygon
 from .mapping import URLToDataSource
+from .fields import CachedMultiPolygonField
 
 
 class BaseTerritory(models.Model):
@@ -13,8 +14,8 @@ class BaseTerritory(models.Model):
         )
     name = models.CharField(max_length=128)
     geom = models.MultiPolygonField(blank=True, null=True, srid=4326)
+    geom_cached = CachedMultiPolygonField(field_name='geom', simplify=0.0007, precision=3)
     slug = models.SlugField(null=True, blank=True, max_length=128)
-
 
     class Meta:
         abstract = True
