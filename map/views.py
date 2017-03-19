@@ -47,5 +47,30 @@ class TerritoriesView(View):
             
         return JsonResponse(context)
         
+class MapDetailView(DetailView):
+
+    def get_template_name(self):
+        return "map/%s_detail.html" % self.object._meta.db_table
+    
+    def get_object(self):
+
+        obj = None
+        slug = self.kwargs.get(self.slug_url_kwarg)
+
+        models = [City, County, State]
+        slug_field = self.get_slug_field()
+
+        for model in models:
+            
+            try:
+                obj = model.objects.get(**{slug_field: slug})
+            except model.DoesNotExist:
+                continue
+
+        if not obj:
+            raise Http404("Could not find a place matching that URL.")
+
+        return obj        
+
 class IndexView(TemplateView):
     template_name = "index.html"
