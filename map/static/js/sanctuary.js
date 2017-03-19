@@ -143,7 +143,7 @@ var sanctuary = (function($) {
       var description, name = "";
       
       if(layers[i].properties.model == "map.county") {
-        name = layers[i].properties.name + " County";
+        name = layers[i].properties.name;
         
         if (!layers[i].properties.jails_honor_ice_detainers_short_answer.includes('N/A')) {
           description = layers[i].properties.jails_honor_ice_detainers_short_answer;
