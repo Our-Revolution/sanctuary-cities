@@ -46,11 +46,7 @@ class TerritoriesView(View):
             context[model._meta.verbose_name_raw] = serializer.serialize(model.objects.filter(geom__contains=point), simplify=0.0007, precision=3, geometry_field='geom', properties=filter(lambda f: f not in ['geom', 'id'], map(lambda f: f.name, model._meta.local_fields)))
             
         return JsonResponse(context)
-
-
-
-
-
+        
 class MapDetailView(DetailView):
 
     def get_template_name(self):
@@ -74,4 +70,7 @@ class MapDetailView(DetailView):
         if not obj:
             raise Http404("Could not find a place matching that URL.")
 
-        return obj
+        return obj        
+
+class IndexView(TemplateView):
+    template_name = "index.html"

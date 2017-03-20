@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="bg-blue-flag white sanctuary-intro">
+    <div class="container container--lg container--table flag-bg">
+      <div class="row">
+        <div class="col-md-5 col-lg-5 table-cell intro-text">
+        
+          <h1>We're creating communities that work for all of us.</h1>
+          <p class="fs18">Browse our map of sanctuary community policies and find out how you can get involved to help build communities where we all feel welcomed and safe.</p>
+          
+          <a href="/map" class="btn btn-success btn-uppercase">Get Started</a>
+        
+        </div>
+        <div class="col-md-7 col-lg-7 table-cell align-bottom intro-image">
+          <div class="intro-screenshot">
+            <a href="/map" class="image-wrapper">
+              {% load static %}
+              <img src="{% static "img/screenshot.png" %}">
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <a href="#resist" data-scroll class="learn-more-bar"><span class="glyphicon glyphicon-chevron-down"></span></a>
+  
+  <div class="container container--table" id="resist">
+    <div class="row">
+      <div class="col-md-7 table-cell pt6 pb6 pr6 pl4 pullquote">
+        <h2>This administration wants to divide us - we’re not going to let that happen.</h2>
+        <p>We have moved into an era of constant attack, where we must fight against hate, racism, homophobia, xenophobia, and sexism. Disorientation, fear, and pain are now an everyday reality for millions in our communities.</p>
+
+        <p>Banning our Muslim brothers and sisters from entering the country; launching massive raids to deport, incarcerate, and separate millions of undocumented families; expanding private prisons to fill them up with more black and brown bodies; giving more power to local police to racially profile our communities.</p>
+
+        <p>Every one of these actions has a common denominator: this administration wants to divide us. Based on our immigration status, our skin color, our religious affiliation, or our sexual identity.</p>
+
+        <p>It is our job to resist. It is our job to say loud and clear: not on our watch. Not in my home. Not in my neighborhood. Not in my community. Not in my movement.</p>
+      </div>
+      
+      <div class="col-md-5 bg-blue erika-bg table-cell pullquote-image">
+        <div class="row">
+          <div class="image-caption">
+            <h2>Erika Andiola</h2>
+            <p><strong>Undocumented</strong> | Political Director, Our Revolution</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="bg-near-white pt6 pb6 three">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="three-header">These attacks are coming from all branches of our federal government, and – because of that – we must:</h2>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container container--lg container--table plan">
+      <div class="row">
+        <div class="col-md-4 table-cell bg-blue plan__item">
+          <h3>1. Demand</h3>
+          <p>Demand that local elected officials stand with us in defiance.</p>
+        </div>
+        
+        <div class="col-md-4 table-cell bg-blue plan__item">
+          <h3>2. Build</h3>
+          <p>Build sanctuary communities where hospitals, schools, business owners, faith communities, neighborhoods, cities, counties and states are safe spaces for those under attack.</p>
+        </div>
+        
+        <div class="col-md-4 table-cell bg-blue plan__item">
+          <h3>3. Run</h3>
+          <p>Run for office and replace elected officials who do not take meaningful action to resist the divisive attacks being perpetrated by this administration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row pt6 pb6">
+      <div class="col-md-8 col-md-offset-2">
+        <h2>Join the fight.</h2>
+        <p class="fs18">We must fight to ensure that we ALL feel safe in our local communities – and it will require a focus on places and people many of us tend to ignore in our advocacy. There is no one-size-fits-all plan, and no law, legislator or national movement leader who will come save us. The responsibility lies with us and, we must start this work in our own backyards.</p>
+
+        <p class="fs18 pb4"><strong>To get started, browse our map of community policy, and then find out how you can get involved in your community to make it a place where all feel safe.</strong></p>
+        
+        <a href="/map" class="btn btn-block btn-success btn-uppercase btn-lg">Get Started</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-near-white pt6 pb6">
+    <div class="container">
+    
+      <div class="row">
+        <div class="col-md-7 col-md-offset-2 pb4">
+          <h2>Our Principles for Sanctuary Communites</h2>
+          <!-- <p>Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper.</p> -->
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="principle">
+            <h3>1. We must stop the constant criminalization of people of color.</h3>
+
+            <p>If current trends continue, one in four black men born today can expect to spend time in prison during their lifetime. African-Americans are imprisoned at six times the rate of whites and a report by the Department of Justice found that African-Americans were three times more likely to be searched during a traffic stop, compared to white motorists. Together, African-Americans and Latinos comprised 57 percent of all prisoners in 2014, even though African-Americans and Latinos make up approximately one quarter of the US population. These outcomes are not reflective of increased crime by communities of color, but rather a disparity in enforcement and reporting mechanisms. African-Americans are twice as likely to be arrested and almost four times as likely to experience the use of force during encounters with the police. This is an unspeakable tragedy.</p>
+          </div>
+          
+          <div class="principle">
+            <h3>2. We must stop police abuse and brutality.</h3>
+
+            <p>We must ensure police departments are not abusing avenues of due process to shield bad actors from accountability. Local governments and police management must show zero tolerance for abuses of police power at all levels. All employees of any kind deserve due process protections, but it must be clear that departments will vigorously investigate and, if necessary, prosecute every allegation of wrongdoing to the fullest extent.</p>
+          </div>
+          
+          <div class="principle">
+            <h3>3. We must stop private prisons from profiting from black and brown bodies.</h3>
+
+            <p>African-Americans and Latinos comprise well over half of all prisoners, even though African-Americans and Latinos make up approximately one quarter of the total U.S. population. We must fight to end federal, state and municipal contracts with for-profit private prisons within two years. Termination of these contracts will eliminate the incentive for the private prison industry to support punitive, overinclusive laws that lead to the detention of 34,000 immigrants on any given day.</p>
+          </div>
+          
+          <div class="principle">
+            <h3>4. Decouple Local Law Enforcement from Immigration Enforcement.</h3>
+
+            <p>In too many instances, deportation programs like the Priority Enforcement Program (PEP), the 287(g) program, and the Criminal Alien Program have unjustly turned local law enforcement officials into immigration officers. Racial profiling and the criminalization of communities of color form the foundation of these deportation programs which should be eliminated.</p>
+          </div>
+          
+          <div class="principle">
+            <h3>5. Promote Cooperation Between Immigrants and Local Law Enforcement.</h3>
+
+            <p>We must fight to wholeheartedly reject the “The Great Sanctuary City Slander” as the politics of fear, and support enacting community trust policies. These policies will strengthen relationships between community members and local law enforcement, respect the constitutional rights of immigrants, and reflect the will of the local electorate.</p>
+          </div>
+          
+          <div class="principle">
+            <h3>6. Expand Access to Counsel for Immigrants.</h3>
+
+            <p>Based on the constitutionally enshrined principle of habeas corpus, we need to increase access to legal counsel for detained immigrants.</p>
+          </div>
+          
+          <a href="/map" class="btn btn-block btn-success btn-uppercase btn-lg">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    smoothScroll.init();
+  </script>
+{% endblock %}
