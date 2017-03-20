@@ -201,11 +201,12 @@ var sanctuary = (function($) {
   }
   
   function setActive(layer) {
-    layer.options.oldColor = layer.options.color;
+    // layer.options.oldColor = layer.options.color;
     
     if(active) {
       var oldLayer = map._layers[active];
-      oldLayer.setStyle({"color": oldLayer.options.oldColor})
+      console.log(oldLayer)
+      oldLayer.setStyle({"color": oldLayer.defaultOptions.color})
     } 
     
     layer.setStyle({"color":"#78a515"});
