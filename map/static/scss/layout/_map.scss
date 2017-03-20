@@ -43,6 +43,7 @@
     }
     
     &__description {
+      @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
       font-size: 14px;
     }
   }
