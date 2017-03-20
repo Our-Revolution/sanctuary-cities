@@ -64,12 +64,8 @@ class OnboardView(FormView):
         if last_name:
             params.append("last_name=%s" % last_name)
 
-        if form.cleaned_data['state']:
-            params.append("channels=C3X6H70L9")
-
+        params.append("channels=C3X6H70L9")
 
         req = requests.post('https://slack.com/api/users.admin.invite?%s' % '&'.join(params))
-
-        # todo: add Google Sheets access (?)
 
         return super(OnboardView, self).form_valid(form)
