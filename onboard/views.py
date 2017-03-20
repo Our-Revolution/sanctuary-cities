@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils.safestring import mark_safe
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
@@ -43,13 +43,13 @@ class OnboardView(FormView):
 
             password = "sanctuary"
 
-            user = User.objects.create(username=candidate_username, first_name=first_name, last_name=last_name, email=form.cleaned_data['email'])
+            user = User.objects.create(username=candidate_username, first_name=first_name, last_name=last_name, email=form.cleaned_data['email'], is_staff=True)
             user.set_password(password)
             user.save()
 
-            # todo: add as a Staff
+            Group.objects.get(name="Research Team").user_set.add(new_user)
 
-            messages.success(self.request, mark_safe("Your account has been created &mdash; your username is <strong>%s</strong> and your password is <strong>%s</strong> ;) Please store these somewhere safe!" % (candidate_username, password)))
+            messages.success(self.request, mark_safe("Your account has been created. Your username is <strong>%s</strong> and your password is <strong>%s</strong> &mdash; please store these somewhere safe!" % (candidate_username, password)))
 
             # login
             login(self.request, user)
