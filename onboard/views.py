@@ -47,7 +47,7 @@ class OnboardView(FormView):
             user.set_password(password)
             user.save()
 
-            Group.objects.get(name="Research Team").user_set.add(new_user)
+            Group.objects.get(name="Research Team").user_set.add(user)
 
             messages.success(self.request, mark_safe("Your account has been created. Your username is <strong>%s</strong> and your password is <strong>%s</strong> &mdash; please store these somewhere safe!" % (candidate_username, password)))
 
