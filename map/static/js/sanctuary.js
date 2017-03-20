@@ -1,6 +1,6 @@
 var sanctuary = (function($) {
     
-  var map, active = null, usedSearch = false, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
+  var map, active = null, usedSearch = false, palceName = null, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
     
   function init(mapDiv) {
     initMap(mapDiv);
@@ -34,13 +34,16 @@ var sanctuary = (function($) {
       console.log("We can't find that place - try again.");
       return;
     } else {
+      if (place.name) {
+        placeName = place.name;
+      }
       geometry = [place.geometry.location.lat(),place.geometry.location.lng()]; 
       positionMap(geometry);
     }
   }
   
-  function positionMap(geometry) {       
-    map.flyTo(geometry, 12, {duration:1});
+  function positionMap(geometry) {   
+    map.flyTo(geometry, 8, {duration:1});
   }
   
   function monitorAPI(input) {
@@ -162,7 +165,7 @@ var sanctuary = (function($) {
                 
       layers[i].options.oldColor = layers[i].options.color;
       
-      $('.app-info__status').prepend('\
+      $('.app-info__status').append('\
         <div class="component">\
           <div class="component__heading">\
             <h4 class="component__name">' + name + '</h4>\
@@ -176,6 +179,16 @@ var sanctuary = (function($) {
         </div>\
       ');
       
+      if(i==0 && layers.length>1) {
+        $('.app-info__status').append('\
+        <div class="component">\
+          <div class="component__heading component__heading--dark">\
+            <h4 class="component__name">Nearby Communities</h4>\
+          </div>\
+        </div>\
+        ');
+      }
+      
     }
     
   }
@@ -187,7 +200,21 @@ var sanctuary = (function($) {
       if(layer.properties) {
         layer.eachLayer(function (sublayer) {              
           if(bounds.intersects(sublayer.getBounds())) {
-            layers.push(layer);
+            if (layer.properties.name.indexOf(placeName) >= 0) {
+              // add to front of array if we have a match on what they typed
+              console.log('match');
+              console.log(layer);
+              $.each(layer._layers, function() {
+                setActive(this);
+                var bounds = this.getBounds();
+      			    map.flyToBounds(bounds, 12, {duration:1});
+              })
+              
+              // setActive(layer);
+              layers.unshift(layer);
+            } else {
+              layers.push(layer);
+            }
           }
         })
       }
@@ -198,6 +225,7 @@ var sanctuary = (function($) {
     var t1 = performance.now();
     console.log("Call took " + (t1 - t0) + " milliseconds.")
     usedSearch = false;
+    map.invalidateSize();
   }
   
   function setActive(layer) {
