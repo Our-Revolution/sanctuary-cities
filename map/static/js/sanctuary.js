@@ -171,7 +171,7 @@ var sanctuary = (function($) {
             <p class="component__description">\
               ' + description + '\
             </p>\
-            <a href="/'+ layers[i].properties.slug +'" class="component__cta btn btn-block btn-primary">Learn More & Get Involved</a>\
+            <a href="/'+ layers[i].properties.slug +'" class="component__cta btn btn-block btn-success btn-uppercase">Get Involved</a>\
           </div> \
         </div>\
       ');

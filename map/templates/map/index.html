@@ -2,8 +2,6 @@
 
 {% block map_content %}
 
-	{% load cache %}
-	{% cache 120 map %}
 
 		var states = [], cities = [], counties = [], featureGroups = {};
 
@@ -42,8 +40,8 @@
 
     sanctuary.data = {
       states: L.featureGroup(states),
-      cities: L.featureGroup(cities),
-      counties: L.featureGroup(counties)
+			counties: L.featureGroup(counties),
+      cities: L.featureGroup(cities)
     }
     
     $.each(sanctuary.data, function(index) {			
@@ -62,6 +60,5 @@
       sanctuary.addFeature(sanctuary.data[index]);
     })
 
-	{% endcache %}
 
 {% endblock %}
