@@ -1,6 +1,6 @@
 var sanctuary = (function($) {
     
-  var map, active = null, usedSearch = false, palceName = null, data = {}, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
+  var map, active = null, usedSearch = false, palceName = null, data = {}, match=false, mapboxToken = 'pk.eyJ1Ijoib3VycmV2b2x1dGlvbiIsImEiOiJjaXl4aWlrc3IwMDlzMzJycXJqejNmcTVnIn0.ufXFguXsHIg_J7z96ZTn7A';
     
   function init(mapDiv) {
     initMap(mapDiv);
@@ -179,7 +179,7 @@ var sanctuary = (function($) {
         </div>\
       ');
       
-      if(i==0 && layers.length>1) {
+      if(i==0 && layers.length>1 && match) {
         $('.app-info__status').append('\
         <div class="component">\
           <div class="component__heading component__heading--dark">\
@@ -196,6 +196,8 @@ var sanctuary = (function($) {
   function getLocationsWithinBounds(bounds) {
     var layers = [], t0 = performance.now();
     
+    match = false;
+    
     map.eachLayer(function (layer) {
       if(layer.properties) {
         layer.eachLayer(function (sublayer) {              
@@ -204,6 +206,7 @@ var sanctuary = (function($) {
               // add to front of array if we have a match on what they typed
               console.log('match');
               console.log(layer);
+              match = true;
               $.each(layer._layers, function() {
                 setActive(this);
                 var bounds = this.getBounds();
