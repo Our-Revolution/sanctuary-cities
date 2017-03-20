@@ -224,7 +224,16 @@ var sanctuary = (function($) {
       
     });
     
-    updateInfo(layers);
+    if (layers.length == 0) {
+      resetInfo();
+      $('.app-info__status').append('\
+          <p class="pa4">\
+            <strong>We haven\'t made it to this place yet.</strong> Want to help document this area\'s policies? Let us know at <a href="mailto:sanctuary@ourrevolution.com">sanctuary@ourrevolution.com</a>.\
+          </p>');
+    } else {
+      updateInfo(layers);
+    }
+    
     var t1 = performance.now();
     console.log("Call took " + (t1 - t0) + " milliseconds.")
     usedSearch = false;
