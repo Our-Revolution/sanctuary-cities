@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.contrib.gis import admin
 from django.contrib.gis.geos import MultiPolygon
 from django.db import models
@@ -10,7 +12,10 @@ from .models import State, City, County
 
 @admin.register(City)
 class CityAdmin(admin.OSMGeoAdmin):
-    list_display = ['name']
+    list_display = ['name', 'limited_ice_cooperation_bool', 'jails_honor_ice_detainers_bool',
+                        'participate_287g_program_bool', 'provide_legal_representation_bool',
+                        'separate_form_of_id_bool', 'police_use_body_cameras_bool',
+                        'local_effort_bool', 'isga_bool']
     fieldsets = (
             (None, {
                 'fields': ('name', 'slug', 'state', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
@@ -31,6 +36,38 @@ class CityAdmin(admin.OSMGeoAdmin):
         models.TextField: {'widget': Textarea(attrs={'rows':3, 'cols':60})},
     }
     prepopulated_fields = {"slug": ("name",)}
+
+    def limited_ice_cooperation_bool(self, obj):
+        return '' if obj.limited_ice_cooperation == None else '✅'
+    limited_ice_cooperation_bool.short_description = "ICE Cooperation"
+
+    def jails_honor_ice_detainers_bool(self, obj):
+        return '' if obj.jails_honor_ice_detainers == None else '✅'
+    jails_honor_ice_detainers_bool.short_description = "ICE Detainers"
+
+    def participate_287g_program_bool(self, obj):
+        return '' if obj.participate_287g_program == None else '✅'
+    participate_287g_program_bool.short_description = "287G"
+
+    def provide_legal_representation_bool(self, obj):
+        return '' if obj.provide_legal_representation == None else '✅'
+    provide_legal_representation_bool.short_description = "Legal Rep"
+
+    def separate_form_of_id_bool(self, obj):
+        return '' if obj.separate_form_of_id == None else '✅'
+    separate_form_of_id_bool.short_description = "Separate ID"
+
+    def police_use_body_cameras_bool(self, obj):
+        return '' if obj.police_use_body_cameras == None else '✅'
+    police_use_body_cameras_bool.short_description = "Body Cameras"
+
+    def local_effort_bool(self, obj):
+        return '' if obj.local_effort == None else '✅'
+    local_effort_bool.short_description = "Local"
+
+    def isga_bool(self, obj):
+        return '' if obj.isga == None else '✅'
+    isga_bool.short_description = "ISGA"
 
 
     def save_model(self, request, obj, form, change):
