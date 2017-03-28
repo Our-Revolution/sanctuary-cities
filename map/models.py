@@ -118,7 +118,7 @@ class City(BaseTerritory):
         if not self.geom and self.state:
 
             try:
-                state_data_source = URLToDataSource(url='http://www2.census.gov/geo/tiger/GENZ2015/shp/cb_2015_%s_place_500k.zip' % str(self.state.fips).zfill(2)).process()
+                state_data_source = URLToDataSource(url='https://www2.census.gov/geo/tiger/TIGER2015/PLACE/tl_2015_%s_place.zip' % str(self.state.fips).zfill(2)).process()
 
                 geos = None
 
