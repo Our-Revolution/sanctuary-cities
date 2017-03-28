@@ -117,15 +117,16 @@ class City(BaseTerritory):
 
         if not self.geom and self.state:
 
-            try:
+            # try:
+            if True:
                 state_data_source = URLToDataSource(url='http://www2.census.gov/geo/tiger/GENZ2015/shp/cb_2015_%s_place_500k.zip' % self.state.fips).process()
                 geos = filter(lambda feature: str(feature['NAME']) == self.name, state_data_source)[0].geom.geos
                 if not isinstance(geos, MultiPolygon):
                     geos = MultiPolygon(geos)
                 self.geom = geos
 
-            except:
-                pass
+            # except:
+            #     pass
         
         return super(City, self).save(*args, **kwargs)
 
