@@ -228,7 +228,7 @@ var sanctuary = (function($) {
       resetInfo();
       $('.app-info__status').append('\
           <p class="pa4">\
-            <strong>We haven\'t made it to this place yet.</strong> Want to help document this area\'s policies? Let us know at <a href="mailto:sanctuary@ourrevolution.com">sanctuary@ourrevolution.com</a>.\
+            <strong>We haven\'t made it to this place yet.</strong> Want to help document this area\'s policies? <a href="https://go.ourrevolution.com/page/s/contribute-sanctuary-policy-info?source=sanctuary-no-data" target="_blank">Click here to let us know</a>.\
           </p>');
     } else {
       updateInfo(layers);
