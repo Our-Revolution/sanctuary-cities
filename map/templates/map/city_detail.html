@@ -21,7 +21,17 @@
           
             <div class="detail__overview col-md-4 mb4">
               <div class="pa4 bg-white br3">
-                <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Policy Overview</h3>
+                <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
+                {% if city.local_effort_short_answer is not None %}
+                  <p>{{ city.local_effort_short_answer|urlize|linebreaks }}</p>
+                {% else %}
+                  <p>We don't know of any local efforts to improve this city's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{city.slug}}-click" target="_blank">click here to let us know</a>.
+                {% endif %}
+                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{city.slug}}" target="_blank">Volunteer</a>
+                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{city.slug}}-button" target="_blank">Add your Campaign</a>
+                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/contribute-sanctuary-policy-info?source=sanctuary-{{city.slug}}" target="_blank">Add Policy Info</a>
+                
+                <h2 class="fw7 bb b--light-gray bw1 pb3">Policy Overview</h3>
                 
                   <ul class="f3 mr4">
                     {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}
@@ -66,13 +76,6 @@
                       <li><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
                     {% endif %}
                   </ul>
-                
-                <h2 class="fw7 bb b--light-gray bw1 pb3">Get Involved</h3>
-                {% if city.local_effort_short_answer %}
-                  <p class="mb0">{{ city.local_effort_short_answer|urlize }}</p>
-                {% else %}
-                  <p class="mb0">We don't know of any local efforts to improve this city's policies. If you are aware of any, please let us know at <a href="mailto:sanctuary@ourrevolution.com?Subject={{'Share a Local Organizing Effort' | urlencode }}">sanctuary@ourrevolution.com</a>.
-                {% endif %}
               </div>
             </div>
             

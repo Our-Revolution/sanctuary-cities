@@ -20,9 +20,19 @@
           {% if state.limited_ice_cooperation %}
             <div class="detail__overview col-md-4 mb4">
               <div class="pa4 bg-white br3">
-                <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Policy Overview</h3>
+                <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
+                {% if state.local_effort_short_answer is not None %}
+                  <p>{{ state.local_effort_short_answer|urlize|linebreaks }}</p>
+                {% else %}
+                  <p>We don't know of any local efforts to improve this state's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{state.slug}}-click" target="_blank">click here to let us know</a>.
+                {% endif %}
+                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{state.slug}}" target="_blank">Volunteer</a>
+                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{state.slug}}-button" target="_blank">Add your Campaign</a>
+                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/contribute-sanctuary-policy-info?source=sanctuary-{{state.slug}}" target="_blank">Add Policy Info</a>
                 
-                  <ul class="f3 mr4">
+                <h2 class="fw7 bb b--light-gray bw1 pb3">Policy Overview</h3>
+                
+                  <ul class="f3 mr4 policy-list">
                     {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}
                       <li><a href="#ice-cooperation">Limited cooperation with ICE</a></li>
                     {% elif state.limited_ice_cooperation == "unlimited" %}
@@ -61,13 +71,6 @@
                       <li><a href="#other-policies">Has other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
                     {% endif %}
                   </ul>
-                
-                <h2 class="fw7 bb b--light-gray bw1 pb3">Get Involved</h3>
-                {% if state.local_effort_short_answer is not None %}
-                  <p class="mb0">{{ state.local_effort_short_answer|urlize }}</p>
-                {% else %}
-                  <p class="mb0">We don't know of any local efforts to improve this state's policies. If you are aware of any, please let us know at <a href="mailto:sanctuary@ourrevolution.com?Subject={{'Share a Local Organizing Effort' | urlencode }}">sanctuary@ourrevolution.com</a>.
-                {% endif %}
               </div>
             </div>
             
@@ -77,7 +80,7 @@
                 <div class="detail__section" id="ice-cooperation">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}has{% elif state.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
                   
-                  {% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}<p>{{ state.limited_ice_cooperation_short_answer|urlize }}</p>{% endif %}
+                  {% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}<p>{{ state.limited_ice_cooperation_short_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -86,7 +89,7 @@
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{ state.lice_contracts|yesno:"has,does not have" }} 287(g) contracts or other similar programs with ICE.</h3>
                   <p>These programs entangle ICE with things like the Joint Terrorism Task Force and the Organized Crime and Drug Enforcement Task Force.</p>
                   
-                  {% if state.ice_contracts_short_answer is not None %}<p>{{ state.ice_contracts_short_answer|urlize }}</p>{% endif %}
+                  {% if state.ice_contracts_short_answer is not None %}<p>{{ state.ice_contracts_short_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -94,35 +97,35 @@
                 <div class="detail__section" id="igsa">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{ state.name }} state jails {{ state.isga|yesno:"has,do not have" }} an Intergovernmental Service Agreement (IGSA) with ICE.</h3>
                   <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
-                  {% if state.isga_short_answer is not None %}<p>{{ state.isga_short_answer|urlize }}</p>{% endif %}
+                  {% if state.isga_short_answer is not None %}<p>{{ state.isga_short_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.provide_legal_representation is not None %}
                 <div class="detail__section" id="legal-representation">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{ state.provide_legal_representation|yesno:"provides, does not provide" }} undocumented immigrants with legal representation in immigration court.</h3>
-                  {% if state.provide_legal_representation_answer is not None %}<p>{{ state.provide_legal_representation_answer|urlize }}</p>{% endif %}
+                  {% if state.provide_legal_representation_answer is not None %}<p>{{ state.provide_legal_representation_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.drivers_license is not None %}
                 <div class="detail__section" id="drivers-license">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Undocumented immigrants {{ state.drivers_license|yesno:"can, cannot" }} get driver's licenses in {{ state.name }}.</h3>
-                  {% if state.drivers_license_answer is not None %}<p>{{ state.drivers_license_answer|urlize }}</p>{% endif %}
+                  {% if state.drivers_license_answer is not None %}<p>{{ state.drivers_license_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.in_state_tuition is not None %}
                 <div class="detail__section" id="tuition">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Undocumented students {{ state.in_state_tuition|yesno:"can, cannot" }} access in-state tuition at public colleges.</h3>
-                  {% if state.in_state_tuition_answer is not None %}<p>{{ state.in_state_tuition_answer|urlize }}</p>{% endif %}
+                  {% if state.in_state_tuition_answer is not None %}<p>{{ state.in_state_tuition_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.barrier is not None %}
                 <div class="detail__section" id="state-services">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">Immigration status {{state.barrier|yesno:"acts,does not act"}} as a barrier in accessing state services in {{state.name}}.</h3>
-                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize }}</p>{% endif %}
+                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
@@ -130,14 +133,14 @@
                 <div class="detail__section" id="profiling">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} {{state.policies_against_profiling|yesno:"has,has not have"}} adopted policies against profiling.</h3>
                   <p>{{state.name}} {{state.policies_against_profiling|yesno:"has,has not"}} adopted and implemented policies or directives against profiling based on actual or perceived sexual orientation, gender, gender identity, disability, immigration status, housing, HIV status, or age. {{state.name}} {{state.policies_against_profiling|yesno:"does,does not"}} prohibit the use of race, religion, color, ethnicity, national origin, immigration status, gender, disability, sexual orientation, or gender identity as a factor in establishing reasonable suspicion or probable cause, exercising discretion to conduct a warrantless search or seek a search warrant</p>
-                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize }}</p>{% endif %}
+                  {% if state.barrier_answer is not None %}<p>{{ state.barrier_answer|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if state.other_policies_and_services is not None %}
                 <div class="detail__section" id="other-policies">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{state.name}} has other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities.</h3>
-                  {% if state.other_policies_and_services is not None %}<p>{{ state.other_policies_and_services|urlize }}</p>{% endif %}
+                  {% if state.other_policies_and_services is not None %}<p>{{ state.other_policies_and_services|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
             </div>

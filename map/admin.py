@@ -91,11 +91,10 @@ class StateAdmin(admin.OSMGeoAdmin):
     fieldsets = (
             (None, {
                 'fields': ('name', 'slug', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
-                            'ice_contracts', 'ice_contracts_short_answer', 'igsa', 'igsa_short_answer',
+                            'ice_contracts', 'ice_contracts_short_answer', 'isga', 'isga_short_answer',
                             'provide_legal_representation', 'provide_legal_representation_short_answer',
                             'drivers_license', 'drivers_license_short_answer', 'in_state_tuition', 'in_state_tuition_short_answer',
-                            'barrier', 'barrier_short_answer', 'policies_against_profiling_short_answer', 'other_policies_and_services',
-                            'other_policies_and_services_short_answer', 'local_effort', 'local_effort_short_answer') }),
+                            'barrier', 'barrier_short_answer', 'policies_against_profiling_short_answer', 'other_policies_and_services', 'local_effort', 'local_effort_short_answer') }),
             ('Advanced options', {
                 'classes': ('collapse',),
                 'fields': ('geom', 'shapefile', 'shapefile_url',),

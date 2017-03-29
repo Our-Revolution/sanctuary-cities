@@ -6710,6 +6710,18 @@ h1, h2 {
     bottom: 0;
     left: 10px; } }
 
+.policy-list {
+  list-style-type: none;
+  padding: 0; }
+  .policy-list .policy, .policy-list .policy--good, .policy-list li--good, .policy-list .policy--bad, .policy-list li--bad, .policy-list li {
+    border-left: 5px solid #218fff;
+    padding-left: 8px;
+    margin-bottom: 10px; }
+    .policy-list .policy--good, .policy-list li--good {
+      border-left: 5px solid #45d363; }
+    .policy-list .policy--bad, .policy-list li--bad {
+      border-left: 5px solid #d74e5b; }
+
 .app-info {
   padding: 0;
   height: 600px;
