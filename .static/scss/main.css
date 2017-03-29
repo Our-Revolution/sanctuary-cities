@@ -6512,6 +6512,9 @@ h1, h2 {
     color: white;
     text-decoration: none; }
 
+.detail__information, .detail__overview {
+  overflow-wrap: break-word; }
+
 .detail__heading {
   font-weight: bolder; }
 
