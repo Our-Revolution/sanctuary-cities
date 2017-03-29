@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', None)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DEBUG', '1')))
 
-ALLOWED_HOSTS = ['sanctuary-cities.herokuapp.com', 'localhost', 'sanctuary.ourrevolution.com','https://sanctuary-staging.herokuapp.com/']
+ALLOWED_HOSTS = ['sanctuary-cities.herokuapp.com', 'localhost', 'sanctuary.ourrevolution.com','sanctuary-staging.herokuapp.com/']
 
 
 # Application definition
