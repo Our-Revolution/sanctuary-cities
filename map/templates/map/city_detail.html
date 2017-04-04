@@ -79,8 +79,7 @@
               </div>
             </div>
             
-            <div class="detail__information col-md-8 pt0">
-              
+            <div class="detail__information col-md-8 pt0">  
               {% if city.limited_ice_cooperation is not None %}
                 <div class="detail__section" id="ice-cooperation">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}has{% elif city.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
@@ -147,6 +146,10 @@
                   {% if city.other_policies_and_services_short_answer is not None %}<p>{{ city.other_policies_and_services_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
+              
+              <div class="detail__section" id="disclaimer">                
+                <p>While we strive to display accurate policy info, Sanctuary relies on research compiled daily by volunteers. Because of this, we cannot guarauntee the validity or compeleteness of all the information presented on this page.</p>
+              </div>
             </div>
             
           {% else %}

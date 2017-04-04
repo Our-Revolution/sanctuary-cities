@@ -6597,10 +6597,12 @@ h1, h2 {
   .container--table .row {
     height: 100%;
     display: table-row; }
-  .container--table .table-cell {
+  .container--table .table-cell, .container--table .table-cell--top {
     float: none;
     display: table-cell;
     vertical-align: middle; }
+    .container--table .table-cell--top {
+      vertical-align: top; }
 
 .image-caption {
   color: white;

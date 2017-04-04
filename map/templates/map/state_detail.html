@@ -143,6 +143,10 @@
                   {% if state.other_policies_and_services is not None %}<p>{{ state.other_policies_and_services|urlize|linebreaks }}</p>{% endif %}
                 </div>
               {% endif %}
+              
+              <div class="detail__section" id="disclaimer">                
+                <p>While we strive to display accurate policy info, Sanctuary relies on research compiled daily by volunteers. Because of this, we cannot guarauntee the validity or compeleteness of all the information presented on this page.</p>
+              </div>
             </div>
             
           {% else %}

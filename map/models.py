@@ -58,6 +58,8 @@ class State(FipsTerritory):
     other_policies_and_services = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
+    local_effort_link = models.URLField(null=True, blank=True)
+    resources = models.TextField(null=True, blank=True)
 
 
 class County(FipsTerritory):
@@ -81,6 +83,9 @@ class County(FipsTerritory):
     permitting_policies = models.NullBooleanField()
     permitting_policies_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
+    local_effort = models.NullBooleanField()
+    local_effort_short_answer = models.TextField(null=True, blank=True)
+    local_effort_link = models.URLField(null=True, blank=True)
 
 
 class City(BaseTerritory):
@@ -93,22 +98,32 @@ class City(BaseTerritory):
     state = models.ForeignKey(State)
     limited_ice_cooperation = models.CharField(max_length=128, null=True, blank=True, choices=LIMITED_ICE_COOPERATION_CHOICES)
     limited_ice_cooperation_short_answer = models.TextField(null=True, blank=True)
+    limited_ice_cooperation_source = models.URLField(null=True, blank=True)
     jails_honor_ice_detainers = models.NullBooleanField()
     jails_honor_ice_detainers_short_answer = models.TextField(null=True, blank=True)
+    jails_honor_ice_detainers_source = models.URLField(null=True, blank=True)
     participate_287g_program = models.NullBooleanField()
     participate_287g_program_short_answer = models.TextField(null=True, blank=True)
+    participate_287g_program_source = models.URLField(null=True, blank=True)
     provide_legal_representation = models.NullBooleanField()
     provide_legal_representation_short_answer = models.TextField(null=True, blank=True)
+    provide_legal_representation_source = models.URLField(null=True, blank=True)
     city_services = models.NullBooleanField()
     city_services_short_answer = models.TextField(null=True, blank=True)
+    city_services_source = models.URLField(null=True, blank=True)
     separate_form_of_id = models.NullBooleanField()
     separate_form_of_id_short_answer = models.TextField(null=True, blank=True)
+    separate_form_of_id_source = models.URLField(null=True, blank=True)
     police_use_body_cameras = models.NullBooleanField()
     police_use_body_cameras_short_answer = models.TextField(null=True, blank=True)
+    police_use_body_cameras_source = models.URLField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
+    other_policies_short_answer = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
+    local_effort_link = models.URLField(null=True, blank=True)
     isga = models.NullBooleanField()
+    isga_source = models.URLField(null=True, blank=True)
     political_landscape = models.TextField(null=True, blank=True)
     city_council_contact_info = models.TextField(null=True, blank=True)
 
@@ -144,4 +159,3 @@ class City(BaseTerritory):
 
     class Meta:
         verbose_name_plural = 'Cities'
-

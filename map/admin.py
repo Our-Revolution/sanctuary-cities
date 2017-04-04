@@ -18,14 +18,13 @@ class CityAdmin(admin.OSMGeoAdmin):
                         'local_effort_bool', 'isga_bool']
     fieldsets = (
             (None, {
-                'fields': ('name', 'slug', 'state', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
-                            'jails_honor_ice_detainers', 'jails_honor_ice_detainers_short_answer',
-                            'participate_287g_program', 'participate_287g_program_short_answer',
-                            'provide_legal_representation', 'provide_legal_representation_short_answer',
-                            'city_services', 'city_services_short_answer', 'separate_form_of_id',
-                            'separate_form_of_id_short_answer', 'police_use_body_cameras',
-                            'police_use_body_cameras_short_answer', 'local_effort',
-                            'local_effort_short_answer', 'isga', 'city_council_contact_info') }),
+                'fields': ('name', 'slug', 'state', 'limited_ice_cooperation', 
+                            'limited_ice_cooperation_short_answer', 'limited_ice_cooperation_source',
+                            'jails_honor_ice_detainers', 'jails_honor_ice_detainers_short_answer', 'jails_honor_ice_detainers_source',
+                            'participate_287g_program', 'participate_287g_program_short_answer', 'participate_287g_program_source',
+                            'provide_legal_representation', 'provide_legal_representation_short_answer', 'provide_legal_representation_source',
+                            'city_services', 'city_services_short_answer', 'city_services_source', 'separate_form_of_id', 'separate_form_of_id_short_answer', 'separate_form_of_id_source', 'police_use_body_cameras', 'police_use_body_cameras_short_answer', 'police_use_body_cameras_source','local_effort',
+                            'local_effort_short_answer', 'local_effort_link', 'isga', 'isga_source', 'city_council_contact_info') }),
             ('Advanced options', {
                 'classes': ('collapse',),
                 'fields': ('geom', 'shapefile', 'shapefile_url',),
