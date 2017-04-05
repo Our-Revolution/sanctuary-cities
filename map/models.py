@@ -57,9 +57,8 @@ class State(FipsTerritory):
     policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
-    local_effort_short_answer = models.TextField(null=True, blank=True)
-    local_effort_link = models.URLField(null=True, blank=True)
     resources = models.TextField(null=True, blank=True)
+    local_effort_link = models.URLField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
 
@@ -85,7 +84,7 @@ class County(FipsTerritory):
     permitting_policies_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
-    local_effort_short_answer = models.TextField(null=True, blank=True)
+    resources = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
@@ -121,9 +120,11 @@ class City(BaseTerritory):
     police_use_body_cameras_source = models.URLField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
     other_policies_short_answer = models.TextField(null=True, blank=True)
+    other_policies_source = models.URLField(null=True, blank=True)
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
+    resources = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
     isga_source = models.URLField(null=True, blank=True)
     political_landscape = models.TextField(null=True, blank=True)
