@@ -20,18 +20,18 @@
           {% if city.limited_ice_cooperation %}
           
             <div class="detail__overview col-md-4 mb4">
-              <div class="pa4 bg-white br3">
+              <div class="card pa4 bg-white br3 mb4">
                 <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
-                {% if city.local_effort_short_answer is not None %}
+                {% if city.local_effort_short_answer %}
                   <p>{{ city.local_effort_short_answer|urlize|linebreaks }}</p>
                 {% else %}
                   <p>We don't know of any local efforts to improve this city's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{city.slug}}-click" target="_blank">click here to let us know</a>.
                 {% endif %}
-                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{city.slug}}" target="_blank">Volunteer</a>
-                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{city.slug}}-button" target="_blank">Add your Campaign</a>
-                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/contribute-sanctuary-policy-info?source=sanctuary-{{city.slug}}" target="_blank">Add Policy Info</a>
-                
-                <h2 class="fw7 bb b--light-gray bw1 pb3">Policy Overview</h3>
+                <a class="btn btn-success btn-block btn-uppercase btn-lg mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{city.slug}}" target="_blank">Volunteer</a>
+              </div>
+              
+              <div class="card pa4 bg-white br3">  
+                <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Policy Overview</h3>
                 
                   <ul class="f3 mr4 policy-list">
                     {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}
@@ -81,7 +81,7 @@
             
             <div class="detail__information col-md-8 pt0">  
               {% if city.limited_ice_cooperation is not None %}
-                <div class="detail__section" id="ice-cooperation">
+                <div class="detail__section card" id="ice-cooperation">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}has{% elif city.limited_ice_cooperation == "unlimited" %}does not have{% endif %} policy/legislation that limits or prohibits cooperation with ICE.</h3>
                   
                   {% if city.limited_ice_cooperation_short_answer and 'N/A' not in city.limited_ice_cooperation_short_answer %}<p>{{ city.limited_ice_cooperation_short_answer|urlize }}</p>{% endif %}
@@ -89,7 +89,7 @@
               {% endif %}
               
               {% if city.jails_honor_ice_detainers is not None %}
-                <div class="detail__section" id="honor-detainers">
+                <div class="detail__section card" id="honor-detainers">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} jails {{city.jails_honor_ice_detainers|yesno:"honor, do not honor"}} ICE detainers or notices.</h3>
                   
                   {% if city.jails_honor_ice_detainers_short_answer is not None %}<p>{{ city.jails_honor_ice_detainers_short_answer|urlize }}</p>{% endif %}
@@ -97,7 +97,7 @@
               {% endif %}
               
               {% if city.participate_287g_program is not None %}
-                <div class="detail__section" id="contracts">
+                <div class="detail__section card" id="contracts">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{city.participate_287g_program|yesno:"participates, does not participate"}} in the 287(g) program.</h3>
                   
                   {% if city.participate_287g_program_short_answer is not None%}<p>{{ city.participate_287g_program_short_answer|urlize }}</p>{% endif %}
@@ -105,7 +105,7 @@
               {% endif %}
               
               {% if city.isga is not None %}
-                <div class="detail__section" id="igsa">
+                <div class="detail__section card" id="igsa">
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} city jails {{city.isga|yesno:"have, do not have"}} an Intergovernmental Service Agreement (IGSA)</h3>
                   <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
                   {% if city.isga_short_answer %}<p>{{city.isga_short_answer|urlize}}</p>{% endif %}
@@ -113,41 +113,41 @@
               {% endif %}
               
               {% if city.provide_legal_representation is not None %}
-              <div class="detail__section" id="legal-representation">            
+              <div class="detail__section card" id="legal-representation">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{ city.provide_legal_representation|yesno:"provides, does not provide" }} undocumented immigrants with legal representation in immigration court.</h3>
                   {% if city.provide_legal_representation_short_answer is not None %}<p>{{ city.provide_legal_representation_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.city_services is not None %}
-                <div class="detail__section" id="city-services">            
+                <div class="detail__section card" id="city-services">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} {{ city.city_services|yesno:"asks, does not ask" }} about immigration status when applying for or accessing certain city services like pools, library cards, local IDs or school registration.</h3>
                   {% if city.city_services_short_answer is not None %}<p>{{ city.city_services_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.separate_form_of_id is not None %}
-                <div class="detail__section" id="alternate-id">            
+                <div class="detail__section card" id="alternate-id">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} alternate form of ID if driver's licenses aren't available.</h3>
                   {% if city.separate_form_of_id_short_answer is not None %}<p>{{ city.separate_form_of_id_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
                 
               {% if city.police_use_body_cameras is not None %}
-                <div class="detail__section" id="body-cameras">            
+                <div class="detail__section card" id="body-cameras">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} city police {{city.police_use_body_cameras|yesno:"use,do not use"}} body cameras.</h3>
                   {% if city.police_use_body_cameras_short_answer is not None %}<p>{{ city.police_use_body_cameras_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
               {% if city.other_policies_and_services is not None %}
-                <div class="detail__section" id="other-policies">            
+                <div class="detail__section card" id="other-policies">            
                   <h3 class="fw7 bl b--blue bw3 pl3 mt0">{{city.name}} has implemented policies that make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities.</h3>
                   {% if city.other_policies_and_services_short_answer is not None %}<p>{{ city.other_policies_and_services_short_answer|urlize }}</p>{% endif %}
                 </div>
               {% endif %}
               
-              <div class="detail__section" id="disclaimer">                
+              <div class="detail__section card" id="disclaimer">                
                 <p>While we strive to display accurate policy info, Sanctuary relies on research compiled daily by volunteers. Because of this, we cannot guarauntee the validity or compeleteness of all the information presented on this page.</p>
               </div>
             </div>

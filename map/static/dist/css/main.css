@@ -6394,6 +6394,9 @@ h1, h2 {
   letter-spacing: 2px;
   font-weight: 900; }
 
+.btn-lg {
+  border-radius: 3px; }
+
 .banner {
   background: #218fff;
   color: white;
@@ -6483,7 +6486,7 @@ h1, h2 {
   border-color: #45d363; }
 
 .info--bad .detail__heading {
-  border-color: #d74e5b; }
+  border-color: #f23d3d; }
 
 .detail__section {
   background: white;
@@ -6696,7 +6699,10 @@ h1, h2 {
   .policy--good, .policy-list li--good {
     border-left: 5px solid #45d363 !important; }
   .policy--bad, .policy-list li--bad {
-    border-left: 5px solid #d74e5b !important; }
+    border-left: 5px solid #f23d3d !important; }
+
+.card {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1); }
 
 .app.container-fluid {
   -webkit-box-flex: 1;

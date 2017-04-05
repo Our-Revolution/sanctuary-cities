@@ -19,18 +19,18 @@
         <div class="detail__content clearfix mt4 pb3">
           {% if state.limited_ice_cooperation %}
             <div class="detail__overview col-md-4 mb4">
-              <div class="pa4 bg-white br3">
+              <div class="card pa4 bg-white br3 mb4">
                 <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
-                {% if state.local_effort_short_answer is not None %}
+                {% if state.local_effort_short_answer %}
                   <p>{{ state.local_effort_short_answer|urlize|linebreaks }}</p>
                 {% else %}
                   <p>We don't know of any local efforts to improve this state's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{state.slug}}-click" target="_blank">click here to let us know</a>.
                 {% endif %}
-                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{state.slug}}" target="_blank">Volunteer</a>
-                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{state.slug}}-button" target="_blank">Add your Campaign</a>
-                <a class="btn btn-primary btn-block btn-uppercase" href="https://go.ourrevolution.com/page/s/contribute-sanctuary-policy-info?source=sanctuary-{{state.slug}}" target="_blank">Add Policy Info</a>
+                <a class="btn btn-success btn-block btn-uppercase btn-lg mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{state.slug}}" target="_blank">Volunteer</a>
+              </div>
                 
-                <h2 class="fw7 bb b--light-gray bw1 pb3">Policy Overview</h3>
+              <div class="card pa4 bg-white br3 mb4">
+                <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Policy Overview</h3>
                 
                   <ul class="f3 mr4 policy-list">
                     {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}
@@ -77,7 +77,7 @@
             <div class="detail__information col-md-8 pt0">
               
               {% if state.limited_ice_cooperation is not None %}
-                <div class="detail__section {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}info--good{% elif state.limited_ice_cooperation == "unlimited" %}info--bad{% endif %}" id="ice-cooperation">
+                <div class="detail__section card {% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}info--good{% elif state.limited_ice_cooperation == "unlimited" %}info--bad{% endif %}" id="ice-cooperation">
                   
                   <div class="detail__heading">
                     <div class="detail__status">{% if state.limited_ice_cooperation == "yes-by-law" or state.limited_ice_cooperation == "yes-in-practice" %}Helpful{% elif state.limited_ice_cooperation == "unlimited" %}Harmful{% endif %}</div>
@@ -90,7 +90,7 @@
               {% endif %}
               
               {% if state.ice_contracts is not None %}
-                <div class="detail__section {{ state.ice_contracts|yesno:"info--bad,info--good" }}" id="contracts">
+                <div class="detail__section card {{ state.ice_contracts|yesno:"info--bad,info--good" }}" id="contracts">
                   <div class="detail__heading">
                     <div class="detail__status">{{ state.ice_contracts|yesno:"Harmful,Helpful" }}</div>
                     <h3 >{{state.name}} {{ state.ice_contracts|yesno:"has,does not have" }} 287(g) contracts or other similar programs with ICE.</h3>
@@ -105,7 +105,7 @@
               {% endif %}
               
               {% if state.isga is not None %}
-                <div class="detail__section {{ state.isga|yesno:"info--bad,info--good" }}" id="igsa">
+                <div class="detail__section card {{ state.isga|yesno:"info--bad,info--good" }}" id="igsa">
                   <div class="detail__heading">
                     <div class="detail__status">{{ state.isga|yesno:"Harmful,Helpful" }}</div>
                     <h3>{{ state.name }} state jails {{ state.isga|yesno:"has,do not have" }} an Intergovernmental Service Agreement (IGSA) with ICE.</h3>
@@ -119,7 +119,7 @@
               {% endif %}
               
               {% if state.provide_legal_representation is not None %}
-                <div class="detail__section {{ state.provide_legal_representation|yesno:"info--good, info--bad" }}" id="legal-representation">
+                <div class="detail__section card {{ state.provide_legal_representation|yesno:"info--good, info--bad" }}" id="legal-representation">
                   <div class="detail__heading"> 
                     <div class="detail__status">{{ state.provide_legal_representation|yesno:"Helpful, Harmful" }}</div>          
                     <h3>{{state.name}} {{ state.provide_legal_representation|yesno:"provides, does not provide" }} undocumented immigrants with legal representation in immigration court.</h3>
@@ -132,7 +132,7 @@
               {% endif %}
               
               {% if state.drivers_license is not None %}
-                <div class="detail__section {{ state.drivers_license|yesno:"info--good, info--bad" }}" id="drivers-license"> 
+                <div class="detail__section card {{ state.drivers_license|yesno:"info--good, info--bad" }}" id="drivers-license"> 
                   
                   <div class="detail__heading"> 
                     <div class="detail__status">{{ state.drivers_license|yesno:"Helpful, Harmful" }}</div>           
@@ -146,7 +146,7 @@
               {% endif %}
               
               {% if state.in_state_tuition is not None %}
-                <div class="detail__section {{ state.in_state_tuition|yesno:"info--good, info--bad" }}" id="tuition">  
+                <div class="detail__section card {{ state.in_state_tuition|yesno:"info--good, info--bad" }}" id="tuition">  
                   <div class="detail__heading"> 
                     <div class="detail__status">{{ state.in_state_tuition|yesno:"Helpful, Harmful" }}</div>          
                     <h3>Undocumented students {{ state.in_state_tuition|yesno:"can, cannot" }} access in-state tuition at public colleges.</h3>
@@ -159,7 +159,7 @@
               {% endif %}
               
               {% if state.barrier is not None %}
-                <div class="detail__section {{state.barrier|yesno:"info--bad,info--good"}}" id="state-services">   
+                <div class="detail__section card {{state.barrier|yesno:"info--bad,info--good"}}" id="state-services">   
                   <div class="detail__heading"> 
                     <div class="detail__status">{{state.barrier|yesno:"Harmful,Helpful"}}</div>         
                     <h3>Immigration status {{state.barrier|yesno:"acts,does not act"}} as a barrier in accessing state services in {{state.name}}.</h3>
@@ -172,7 +172,7 @@
               {% endif %}
               
               {% if state.policies_against_profiling is not None %}
-                <div class="detail__section {{state.policies_against_profiling|yesno:"info--good,info--bad"}}" id="profiling">     
+                <div class="detail__section card {{state.policies_against_profiling|yesno:"info--good,info--bad"}}" id="profiling">     
                   <div class="detail__heading"> 
                     <div class="detail__status">{{state.policies_against_profiling|yesno:"Helpful,Harmful"}}</div>       
                     <h3>{{state.name}} {{state.policies_against_profiling|yesno:"has,has not have"}} adopted policies against profiling.</h3>
@@ -187,7 +187,7 @@
               {% endif %}
               
               {% if state.other_policies_and_services is not None %}
-                <div class="detail__section info--good" id="other-policies">
+                <div class="detail__section card info--good" id="other-policies">
                   <div class="detail__heading"> 
                     <div class="detail__status">Helpful</div>             
                     <h3>{{state.name}} has other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities.</h3>
@@ -199,7 +199,7 @@
                 </div>
               {% endif %}
               
-              <div class="detail__section" id="disclaimer">                
+              <div class="detail__section card" id="disclaimer">                
                 <p>While we strive to display accurate policy info, Sanctuary relies on research compiled daily by volunteers. Because of this, we cannot guarauntee the validity or compeleteness of all the information presented on this page.</p>
               </div>
             </div>
