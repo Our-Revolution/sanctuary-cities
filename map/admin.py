@@ -120,12 +120,13 @@ class CountyAdmin(admin.OSMGeoAdmin):
     fieldsets = (
             (None, {
                 'fields': ('name', 'slug', 'jails_honor_ice_detainers',
-                        'jails_honor_ice_detainers_short_answer', 'jails_prohibit_inquiries',
-                        'jails_prohibit_inquiries_short_answer', 'ice_contracts',
-                        'ice_contracts_short_answer', 'isga', 'isga_short_answer',
-                        'preventing_policies', 'preventing_policies_short_answer',
-                        'permitting_policies', 'permitting_policies_short_answer',
-                        'other_policies_and_services',) }),
+                        'jails_honor_ice_detainers_short_answer', 'jails_honor_ice_detainers_source','jails_prohibit_inquiries',
+                        'jails_prohibit_inquiries_short_answer', 'jails_prohibit_inquiries_source',
+                        'ice_contracts', 'ice_contracts_short_answer','ice_contracts_source',
+                        'isga', 'isga_short_answer', 'isga_source','preventing_policies', 'preventing_policies_short_answer','preventing_policies_source',
+                        'permitting_policies', 'permitting_policies_short_answer','permitting_policies_source',
+                        'other_policies_and_services','other_policies_and_source','local_effort',
+                        'local_effort_short_answer', 'local_effort_link','resources') }),
             ('Advanced options', {
                 'classes': ('collapse',),
                 'fields': ('geom', 'shapefile', 'shapefile_url',),

@@ -53,17 +53,28 @@ class CountyForm(forms.ModelForm):
         labels = {
             'jails_honor_ice_detainers': _("Do county jails honor ice detainers?"),
             'jails_honor_ice_detainers_short_answer': _("If yes, what are the stipulations?"),
+            'jails_honor_ice_detainers_source': _("Source:"),
             'jails_prohibit_inquiries': _("Do county jails prohibit inquiries into immigration status and/or place of birth?"),
-            'jails_prohibit_inquiries_short_answer': _("Source"),
+            'jails_prohibit_inquiries_short_answer': _("Please provide a short description of the city's policy/legislation."),
+            'jails_prohibit_inquiries_source': _("Source"),
             'ice_contracts': _("Does the county have a contract with ICE such as 287(g) or other programs in which there is entanglement with ICE like the Joint Terrorism Task Forces and the Organized Crime and Drug Enforcement Task Force?"),
             'ice_contracts_short_answer': _("Please explain"),
+            'ice_contracts_source': _("Source:"),
             'isga': _("Do county jails have an Intergovernmental Service Agreement (IGSA) or any other detention contracts?"),
             'isga_short_answer': _("Please explain."),
+            'isga_source': _("Source:"),
             'preventing_policies': _("Are there any policies in place put forth by the County Sheriff's office that prevent local police from acting as immigration agents?"),
             'preventing_policies_short_answer': _("Please explain."),
+            'preventing_policies_source': _("Source:"),
             'permitting_policies': _("Are there any policies in place put forth by the County Sheriff's office that permit local police from acting as immigration agents?"),
             'permitting_policies_short_answer': _("Please explain."),
+            'permitting_policies_source': _("Source:"),
             'other_policies_and_services': _("Are there any other policies/services in place that are mentioned here but make the county more welcoming/not welcoming to immigrants?"),
+            'other_policies_and_source': _("Source:"),
+            'local_effort': _("Is there already a known local effort to push for the county to become sanctuary or strengthen policies in place?"),
+            'local_effort_short_answer': _("Please provide a short description of the primary local effort."),
+            'local_effort_link': _("Link to send people to get involved with the primary local effort."),
+            'resources':_("Please list any other resources or local efforts to be displayed under a resources section to users.")
         }
 
 
