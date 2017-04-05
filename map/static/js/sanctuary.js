@@ -8,12 +8,6 @@ var sanctuary = (function($) {
   
   function initMap(mapDiv) {  
     map = L.map(mapDiv);
-    
-    map.on('load', function() {
-      map.invalidateSize();
-      console.log($('.app__map').height());
-    })
-    
     map.setView([37.8, -96.9], 4);
     
     var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/ourrevolution/cj136j7f100042rrvmy6zw2u8/tiles/256/{z}/{x}/{y}?access_token=' + mapboxToken, {
@@ -252,14 +246,12 @@ var sanctuary = (function($) {
   
   function setActive(layer) {
     // layer.options.oldColor = layer.options.color;
-    
     if(active) {
       var oldLayer = map._layers[active];
-      console.log(oldLayer)
-      oldLayer.setStyle({"fillColor": oldLayer.defaultOptions.fillColor})
+      oldLayer.setStyle({"fillColor": oldLayer.defaultOptions.fillColor,"fillOpacity":0.5})
     } 
     
-    layer.setStyle({"fillColor":"#218fff"});
+    layer.setStyle({"fillColor":"#218fff", "fillOpacity":0.8});
     
     active = layer._leaflet_id;
   }
