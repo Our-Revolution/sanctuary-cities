@@ -125,6 +125,36 @@ h1, h2 {
 
 .detail__heading {
   font-weight: bolder;
+  border-left: 8px solid $blue;
+  padding-left: 10px;
+  
+  h3 {
+    margin-top: 0;
+    font-weight: bolder;
+  }
+}
+
+.detail__description {
+  margin-top: 10px;
+}
+
+.detail__status {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+
+.info--good {
+  .detail__heading {
+    border-color: $green;
+  }
+}
+
+.info--bad {
+  .detail__heading {
+    border-color: $red;
+  }
 }
 
 .detail__section {
@@ -433,22 +463,20 @@ h1, h2 {
 .policy-list {
   list-style-type: none;
   padding: 0;
+}
 
-  .policy, li {
-    border-left: 5px solid $blue;
-    padding-left: 8px;
-    margin-bottom: 10px;
-      
-      
-    &--good {
-      @extend .policy;
-      border-left: 5px solid $green;
-    }
+.policy, .policy-list li {
+  border-left: 5px solid $blue;
+  padding-left: 8px;
+  margin-bottom: 10px;
     
-    &--bad {
-      @extend .policy;
-      border-left: 5px solid $red;
-    }
-    
+  &--good {
+    @extend .policy;
+    border-left: 5px solid $green !important;
+  }
+  
+  &--bad {
+    @extend .policy;
+    border-left: 5px solid $red !important;
   }
 }

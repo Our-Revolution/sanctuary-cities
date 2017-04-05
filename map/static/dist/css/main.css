@@ -6463,7 +6463,27 @@ h1, h2 {
   overflow-wrap: break-word; }
 
 .detail__heading {
-  font-weight: bolder; }
+  font-weight: bolder;
+  border-left: 8px solid #218fff;
+  padding-left: 10px; }
+  .detail__heading h3 {
+    margin-top: 0;
+    font-weight: bolder; }
+
+.detail__description {
+  margin-top: 10px; }
+
+.detail__status {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: normal; }
+
+.info--good .detail__heading {
+  border-color: #45d363; }
+
+.info--bad .detail__heading {
+  border-color: #d74e5b; }
 
 .detail__section {
   background: white;
@@ -6668,14 +6688,15 @@ h1, h2 {
 .policy-list {
   list-style-type: none;
   padding: 0; }
-  .policy-list .policy, .policy-list .policy--good, .policy-list li--good, .policy-list .policy--bad, .policy-list li--bad, .policy-list li {
-    border-left: 5px solid #218fff;
-    padding-left: 8px;
-    margin-bottom: 10px; }
-    .policy-list .policy--good, .policy-list li--good {
-      border-left: 5px solid #45d363; }
-    .policy-list .policy--bad, .policy-list li--bad {
-      border-left: 5px solid #d74e5b; }
+
+.policy, .policy--good, .policy-list li--good, .policy--bad, .policy-list li--bad, .policy-list li {
+  border-left: 5px solid #218fff;
+  padding-left: 8px;
+  margin-bottom: 10px; }
+  .policy--good, .policy-list li--good {
+    border-left: 5px solid #45d363 !important; }
+  .policy--bad, .policy-list li--bad {
+    border-left: 5px solid #d74e5b !important; }
 
 .app.container-fluid {
   -webkit-box-flex: 1;
