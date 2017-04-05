@@ -6396,7 +6396,11 @@ h1, h2 {
 
 .banner {
   background: #218fff;
-  color: white; }
+  color: white;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto; }
   .banner a {
     color: white;
     text-decoration: none; }
@@ -6795,7 +6799,11 @@ h1, h2 {
   margin: 0;
   background: white;
   border-bottom: 1px solid #e7e7e7 !important;
-  border-width: 0; }
+  border-width: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 61px;
+  -ms-flex: 0 0 61px;
+  flex: 0 0 61px; }
   .navbar .navbar__logo {
     display: block;
     background: url("../img/logo.svg") center no-repeat;

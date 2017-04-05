@@ -41,6 +41,7 @@ h1, h2 {
 .banner {
   background: $blue;
   color: white;
+  flex: 0 0 auto;
   // font-weight: bolder;
   
   a {
