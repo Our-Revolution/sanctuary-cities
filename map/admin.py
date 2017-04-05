@@ -7,15 +7,17 @@ from django.forms.widgets import Textarea
 from .forms import CityForm, CountyForm, StateForm
 from .mapping import UploadToDataSource
 from .models import State, City, County
+from moderation.admin import ModerationAdmin
 
 
 
 @admin.register(City)
-class CityAdmin(admin.OSMGeoAdmin):
+class CityAdmin(ModerationAdmin, admin.OSMGeoAdmin):
     list_display = ['name', 'limited_ice_cooperation_bool', 'jails_honor_ice_detainers_bool',
                         'participate_287g_program_bool', 'provide_legal_representation_bool',
                         'separate_form_of_id_bool', 'police_use_body_cameras_bool',
                         'local_effort_bool', 'isga_bool']
+    form = CityForm
     fieldsets = (
             (None, {
                 'fields': ('name', 'slug', 'state', 'limited_ice_cooperation', 
@@ -25,12 +27,11 @@ class CityAdmin(admin.OSMGeoAdmin):
                             'provide_legal_representation', 'provide_legal_representation_short_answer', 'provide_legal_representation_source',
                             'city_services', 'city_services_short_answer', 'city_services_source', 'separate_form_of_id', 'separate_form_of_id_short_answer', 'separate_form_of_id_source', 'police_use_body_cameras', 'police_use_body_cameras_short_answer', 'police_use_body_cameras_source','local_effort',
                             'local_effort_short_answer', 'local_effort_link', 'isga', 'isga_source', 'city_council_contact_info') }),
-            ('Advanced options', {
-                'classes': ('collapse',),
-                'fields': ('geom', 'shapefile', 'shapefile_url',),
-            }),
+            # ('Advanced options', {
+            #     'classes': ('collapse',),
+            #     'fields': ('geom', 'shapefile', 'shapefile_url',),
+            # }),
         )
-    form = CityForm
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows':3, 'cols':60})},
     }
@@ -85,7 +86,7 @@ class CityAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(State)
-class StateAdmin(admin.OSMGeoAdmin):
+class StateAdmin(ModerationAdmin, admin.OSMGeoAdmin):
     list_display = ['name']
     fieldsets = (
             (None, {
@@ -111,7 +112,7 @@ class StateAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(County)
-class CountyAdmin(admin.OSMGeoAdmin):
+class CountyAdmin(ModerationAdmin, admin.OSMGeoAdmin):
     list_display = ['name', 'state']
     list_select_related = ['state']
     list_filter = ['state__name']

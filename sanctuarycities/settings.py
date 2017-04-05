@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.gis',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'compressor',
+    'moderation',
 
     'map',
     'onboard'
@@ -148,3 +150,16 @@ CACHES = {
         }
     }
 }
+
+SITE_ID = 2
+
+ANYMAIL = {
+    'MAILGUN_API_KEY': os.environ.get('MAILGUN_API_KEY'),
+    'MAILGUN_SENDER_DOMAIN': os.environ.get('MAILGUN_API_DOMAIN')
+}
+
+DEFAULT_FROM_EMAIL = "organizing@ourrevolution.com"
+
+EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+
+MODERATORS = ( ('Jon Culver', 'jon.c.culver@gmail.com'),)
