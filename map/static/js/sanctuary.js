@@ -7,9 +7,16 @@ var sanctuary = (function($) {
   }
   
   function initMap(mapDiv) {  
-    map = L.map(mapDiv).setView([37.8, -96.9], 4);
+    map = L.map(mapDiv);
     
-    var baseLayer = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
+    map.on('load', function() {
+      map.invalidateSize();
+      console.log($('.app__map').height());
+    })
+    
+    map.setView([37.8, -96.9], 4);
+    
+    var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/ourrevolution/cj136j7f100042rrvmy6zw2u8/tiles/256/{z}/{x}/{y}?access_token=' + mapboxToken, {
         maxZoom: 18 
       }
     ).addTo(map);
@@ -102,35 +109,38 @@ var sanctuary = (function($) {
   
   function getColor(feature) {
     if(feature.properties.model == "map.state") {      
-      if(feature.properties.limited_ice_cooperation == "yes-by-law") {
-        color = "#bf2";
-      } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
-        color = "#ff8";
-      } else if(feature.properties.limited_ice_cooperation == "unlimited") {
-        color = "#f22";
-      } else {
-        color = "#bf2";
-      }
+      color = "#0167D2";
+      // if(feature.properties.limited_ice_cooperation == "yes-by-law") {
+      //   color = "#bf2";
+      // } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
+      //   color = "#ff8";
+      // } else if(feature.properties.limited_ice_cooperation == "unlimited") {
+      //   color = "#f22";
+      // } else {
+      //   color = "#bf2";
+      // }
     } else if (feature.properties.model == "map.city") {
-      if(feature.properties.limited_ice_cooperation == "yes-by-law") {
-        color = "#9d0";
-      } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
-        color = "#dd6";
-      } else if(feature.properties.limited_ice_cooperation == "unlimited") {
-        color = "#d00";
-      } else {
-        color = "#999";
-      }
+      color = "#0A82FF";
+      // if(feature.properties.limited_ice_cooperation == "yes-by-law") {
+      //   color = "#9d0";
+      // } else if(feature.properties.limited_ice_cooperation == "yes-in-practice") {
+      //   color = "#dd6";
+      // } else if(feature.properties.limited_ice_cooperation == "unlimited") {
+      //   color = "#d00";
+      // } else {
+      //   color = "#999";
+      // }
     } else if (feature.properties.model == "map.county") {
-      if(feature.properties.jails_honor_ice_detainers == "yes-by-law") {
-        color = "#9d0";
-      } else if(feature.properties.jails_honor_ice_detainers == "yes-in-practice") {
-        color = "#dd6";
-      } else if(feature.properties.jails_honor_ice_detainers == "unlimited") {
-        color = "#d00";
-      } else {
-        color = "#999";
-      }
+      color = "#218fff";
+      // if(feature.properties.jails_honor_ice_detainers == "yes-by-law") {
+      //   color = "#9d0";
+      // } else if(feature.properties.jails_honor_ice_detainers == "yes-in-practice") {
+      //   color = "#dd6";
+      // } else if(feature.properties.jails_honor_ice_detainers == "unlimited") {
+      //   color = "#d00";
+      // } else {
+      //   color = "#999";
+      // }
     } else {
       color = "#000";
     }
@@ -246,10 +256,10 @@ var sanctuary = (function($) {
     if(active) {
       var oldLayer = map._layers[active];
       console.log(oldLayer)
-      oldLayer.setStyle({"color": oldLayer.defaultOptions.color})
+      oldLayer.setStyle({"fillColor": oldLayer.defaultOptions.fillColor})
     } 
     
-    layer.setStyle({"color":"#78a515"});
+    layer.setStyle({"fillColor":"#218fff"});
     
     active = layer._leaflet_id;
   }

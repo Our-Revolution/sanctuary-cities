@@ -2,8 +2,6 @@
 
 {% block map_content %}
 	
-		{% load cache %}
-		{% cache 120 map %}
 
 		var states = [], cities = [], counties = [], featureGroups = {};
 
@@ -24,12 +22,16 @@
 				// 	stripes.addTo(sanctuary.getMap()); 				
 				// }
 				// 
-				
+					
+				color = "#218fff";
+								
 	      var feature = L.geoJson(this.geometry,
 	        {
+						"fillColor": color,
 						"color": color,
 						"weight": 2,
-						"fillOpacity": "0.6"
+						"fillOpacity": "0.5",
+						"opacity":"0.5"
 					});
 	               
         feature.properties = this.properties;
@@ -70,13 +72,13 @@
 					function(e) {
 						$.each(e.target._layers, function() {
 							if (sanctuary.getActive() != this._leaflet_id) {
-								e.target.setStyle({"color":"#78a515"});
+								e.target.setStyle({"fillColor":"#218fff", "opacity":1,"fillOpacity":0.8});
 							}
 						})
 					}, function(e) {	
 						$.each(e.target._layers, function() {
 							if (sanctuary.getActive() != this._leaflet_id) {
-								e.target.setStyle({"color":e.target.options.color});
+								e.target.setStyle({"fillColor":e.target.options.fillColor, 'fillOpacity':e.target.options.fillOpacity});
 							}
 						})
 					}
@@ -87,7 +89,5 @@
       
       sanctuary.addFeature(sanctuary.data[index]);
     })
-
-	{% endcache %}
-
+		
 {% endblock %}

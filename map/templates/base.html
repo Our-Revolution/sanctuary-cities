@@ -42,7 +42,7 @@
 	{% block extra_head %}
 	{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
 	{% include "partials/banner.html" %}
 
