@@ -90,11 +90,14 @@ class StateAdmin(admin.OSMGeoAdmin):
     list_display = ['name']
     fieldsets = (
             (None, {
-                'fields': ('name', 'slug', 'limited_ice_cooperation', 'limited_ice_cooperation_short_answer',
-                            'ice_contracts', 'ice_contracts_short_answer', 'isga', 'isga_short_answer',
+                'fields': ('name', 'slug', 'limited_ice_cooperation', 
+                            'limited_ice_cooperation_short_answer','limited_ice_cooperation_source',
+                            'ice_contracts', 'ice_contracts_short_answer', 'ice_contracts_source','isga', 'isga_short_answer','isga_source',
                             'provide_legal_representation', 'provide_legal_representation_short_answer',
-                            'drivers_license', 'drivers_license_short_answer', 'in_state_tuition', 'in_state_tuition_short_answer',
-                            'barrier', 'barrier_short_answer', 'policies_against_profiling_short_answer', 'other_policies_and_services', 'local_effort', 'local_effort_short_answer') }),
+                            'provide_legal_representation_source','drivers_license', 'drivers_license_short_answer',
+                            'drivers_license_source', 'in_state_tuition', 'in_state_tuition_short_answer','in_state_tuition_source',
+                            'barrier', 'barrier_short_answer','barrier_source',
+                            'policies_against_profiling', 'policies_against_profiling_short_answer', 'policies_against_profiling_source','other_policies_and_services','other_policies_and_services_source', 'local_effort', 'local_effort_short_answer','local_effort_link','resources') }),
             ('Advanced options', {
                 'classes': ('collapse',),
                 'fields': ('geom', 'shapefile', 'shapefile_url',),

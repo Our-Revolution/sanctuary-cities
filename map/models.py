@@ -64,7 +64,6 @@ class State(FipsTerritory):
     policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
     policies_against_profiling_source = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
-    other_policies_and_services_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services_source = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
