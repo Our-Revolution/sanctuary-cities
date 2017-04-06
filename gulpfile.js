@@ -60,6 +60,7 @@ gulp.task('watch', function() {
 
 });
 
+
 gulp.task('default', ['sass', 'watch', 'images', 'fonts']);
 
 gulp.task('build', ['sass', 'images', 'fonts']);
