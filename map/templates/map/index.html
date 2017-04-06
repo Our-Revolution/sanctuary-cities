@@ -2,6 +2,8 @@
 
 {% block map_content %}
 	
+		{% load cache %}
+		{% cache 120 map %}
 
 		var states = [], cities = [], counties = [], featureGroups = {};
 
@@ -89,5 +91,7 @@
       
       sanctuary.addFeature(sanctuary.data[index]);
     })
+		
+		{% endcache %}
 		
 {% endblock %}
