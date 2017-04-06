@@ -132,6 +132,12 @@ h1, h2 {
   border-left: 8px solid $blue;
   padding-left: 10px;
   
+  &--no-border {
+    @extend .detail__heading;
+    border-left: none;
+    padding-left: 0;
+  }
+  
   h3 {
     margin-top: 0;
     font-weight: bolder;

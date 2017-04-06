@@ -6465,11 +6465,14 @@ h1, h2 {
 .detail__information, .detail__overview {
   overflow-wrap: break-word; }
 
-.detail__heading {
+.detail__heading, .detail__heading--no-border {
   font-weight: bolder;
   border-left: 8px solid #218fff;
   padding-left: 10px; }
-  .detail__heading h3 {
+  .detail__heading--no-border {
+    border-left: none;
+    padding-left: 0; }
+  .detail__heading h3, .detail__heading--no-border h3 {
     margin-top: 0;
     font-weight: bolder; }
 
@@ -6486,10 +6489,10 @@ h1, h2 {
   margin-top: 20px;
   font-size: 13px; }
 
-.info--good .detail__heading {
+.info--good .detail__heading, .info--good .detail__heading--no-border {
   border-color: #45d363; }
 
-.info--bad .detail__heading {
+.info--bad .detail__heading, .info--bad .detail__heading--no-border {
   border-color: #f23d3d; }
 
 .detail__section {

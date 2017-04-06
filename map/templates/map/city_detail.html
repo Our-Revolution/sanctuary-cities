@@ -88,6 +88,18 @@
             </div>
             
             <div class="detail__information col-md-8 pt0">  
+              <!-- <div class="detail__section card" id="intro">
+                <div class="detail__heading--no-border">
+                  <h3>Welcome to Sanctuary</h3>
+                </div>
+                
+                <div class="detail__description">
+                  <p>Sanctuary is a volunteer-led research effort to document policy around the nation that contributes to the criminalization of people of color, police abuse and brutality, the expansion of private prisons, the entanglemnt of immigration and law enforcement, and the targeting of specific populations by the Trump administration.</p>
+                  
+                  <p>Browse the documented policy for {{city.name}}, {{city.state.name}} below, and then join a local push or volunteer for Our Revolution to expand sanctuary communites across the nation.</p>
+                </div>
+              </div> -->
+              
               {% if city.limited_ice_cooperation is not None %}
                 <div class="detail__section card {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}info--good{% elif city.limited_ice_cooperation == "unlimited" %}info--bad{% endif %}" id="ice-cooperation">
                   <div class="detail__heading">
