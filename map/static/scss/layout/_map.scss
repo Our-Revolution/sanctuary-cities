@@ -1,34 +1,78 @@
 //Map App
 .app {
+  
+  &.container-fluid {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 600px;
+    
+    .row {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      @include until($medium) {
+        flex-direction: column;
+      }
+    }
+  }
+  
   &-info {
     padding: 0;
-    height: 600px;
-    width: 300px;
-    float: left;
+    /* height: 600px; */
+    /* width: 350px; */
+    /* float: left; */
+    flex: 0 350px;
+    
+    // @include until($extra-large) {
+    //   width: 300px;
+    // }
     
     @include until($medium) {
       height: auto;
-      max-height: 300px;
-      overflow-y: auto;
+      // max-height: 300px;
+      // overflow-y: auto;
       width: 100%;
       border-bottom: solid 1px #ddd;
       background: white;
+      flex: 0 1 auto; 
     };
     
     &__status {
       max-height: calc(100% - 55px);
       overflow: auto;
+      
+      @include until($medium) {
+        overflow: auto;
+        max-height: 140px;
+        display: block;
+      };
     }
   }
   
+  .leaflet-container {
+    background: #bfbfbf;
+  }
+  
   &__map {
-    height: 600px;
-    margin-left: 300px; 
+    // height: 600px;
+    background: #bfbfbf;
+    // margin-left: 350px;
+    flex: 1;
+    
+    &.loading {
+      visibility: hidden;
+    }
+    
+    @include until($extra-large) {
+      // margin-left: 300px;
+    }
     
     @include until($medium) {
-      height: 400px;
-      width: 100%;
-      margin-left: 0;
+      // height: 400px;
+      // width: 100%;
+      // margin-left: 0;
     }
   }
   

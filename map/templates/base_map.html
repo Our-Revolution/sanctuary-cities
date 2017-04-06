@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% block body_class %}flex{% endblock %}
 
 {% block content %}
   {% block pre_map %}
   {% endblock %}
 
-  <div class="app container container--lg">
+  <div class="app container-fluid">
     <div class="row">
       <div class="app-info ba b--black-10 pa0">
         <div class="app-info__search pa3 bg-light-gray bb b--black-10">
@@ -16,7 +17,7 @@
         </div>
       </div>
       
-      <div class="app__map" id="map-container"></div>
+      <div class="app__map loading" id="map-container"></div>
     </div>
   </div>
 
@@ -31,5 +32,13 @@
   </script>
 
   {% block post_map %}
+  
+  <script>
+    // flexbox hack
+    $(document).ready(function () {
+      sanctuary.getMap().invalidateSize();
+      $('.app__map').removeClass('loading');
+    })
+  </script>
   {% endblock %}
 {% endblock %}
