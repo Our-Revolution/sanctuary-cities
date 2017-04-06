@@ -33,9 +33,10 @@ class CityForm(forms.ModelForm):
             'other_policies_and_services': _("Are there any other policies/services in place that are not in this spreadsheet but make the city more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
             'other_policies_short_answer': _("Please provide a short description of the city's other policeis and services."),
             'other_policies_source': _("Source:"),
-            'local_effort': _("Is there already a known local effort to push for the city to become sanctuary or strengthen policies in place?"),
+            'local_effort': _("Is there a primary local effort to push for the city to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Please provide a short description of the primary local effort."),
             'local_effort_link': _("Link to send people to get involved with the primary local effort."),
+            'local_effort_cta_text': _("Custom text to go on the 'Take Local Action' button. Max length of 22 characters. Leave blank to use 'Take Local Action'."),
             'resources':_("Please list any other resources or local efforts to be displayed under a resources section to users."),
             'isga': _("Do city jails have an Intergovernmental Service Agreement (IGSA)?"),
             'isga_source': _("Source:"),
@@ -71,9 +72,10 @@ class CountyForm(forms.ModelForm):
             'permitting_policies_source': _("Source:"),
             'other_policies_and_services': _("Are there any other policies/services in place that are mentioned here but make the county more welcoming/not welcoming to immigrants?"),
             'other_policies_and_source': _("Source:"),
-            'local_effort': _("Is there already a known local effort to push for the county to become sanctuary or strengthen policies in place?"),
+            'local_effort': _("Is there a primary local effort to push for the county to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Please provide a short description of the primary local effort."),
             'local_effort_link': _("Link to send people to get involved with the primary local effort."),
+            'local_effort_cta_text': _("Custom text to go on the 'Take Local Action' button. Max length of 22 characters. Leave blank to use 'Take Local Action'."),
             'resources':_("Please list any other resources or local efforts to be displayed under a resources section to users.")
         }
 
@@ -111,8 +113,9 @@ class StateForm(forms.ModelForm):
             'policies_against_profiling_source': _("Source:"),
             'other_policies_and_services': _("Are there any other policies/services in place that are not here, but make the state more welcoming to immigrants, people of color, the LGBTQ community and religious minorities?"),
             'other_policies_and_services_source': _("Source:"),
-            'local_effort': _("Is there already a known local effort to push for the state to become sanctuary or strengthen policies in place?"),
+            'local_effort': _("Is there a primary local effort to push for the state to become sanctuary or strengthen policies in place?"),
             'local_effort_short_answer': _("Please provide a short description of the primary local effort."),
             'local_effort_link': _("Link to send people to get involved with the primary local effort."),
+            'local_effort_cta_text': _("Custom text to go on the 'Take Local Action' button. Max length of 22 characters. Leave blank to use 'Take Local Action'."),
             'resources':_("Please list any other resources or local efforts to be displayed under a resources section to users.")
         }

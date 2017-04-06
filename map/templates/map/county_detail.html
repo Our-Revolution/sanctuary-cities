@@ -23,12 +23,13 @@
               <div class="card pa4 bg-white br3 mb4">
                 <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
                 {% if county.local_effort_short_answer %}
-                  <p>{{ county.local_effort_short_answer|urlize|linebreaks }}</p>
+                  {{ county.local_effort_short_answer|urlize|linebreaks }}
+                  {% if county.local_effort_link %}<a href="{{county.local_effort_link}}" class="btn btn-primary btn-uppercase btn-block" target="_blank">{% if county.local_effort_cta_text %}{{county.local_effort_cta_text}}{% else %}Take Local Action{% endif %}</a>{% endif %}
                 {% else %}
-                  <p>We don't know of any local efforts to improve this county's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{county.slug}}-click" target="_blank">click here to let us know</a>.
+                  <p>We don't know of any ongoing local efforts to improve this county's policies, but you can join Our Resistance to help research sanctuary policy or be notified of action alerts in your area.</p>
                 {% endif %}
-                <a class="btn btn-success btn-block btn-uppercase btn-lg mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{county.slug}}" target="_blank">Volunteer</a>
-              </div>  
+                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{county.slug}}" target="_blank">Join Our Resistance</a>
+              </div>
                 
               <div class="card pa4 bg-white br3">
                 <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Policy Summary</h3>

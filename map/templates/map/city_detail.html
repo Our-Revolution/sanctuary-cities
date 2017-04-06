@@ -23,11 +23,12 @@
               <div class="card pa4 bg-white br3 mb4">
                 <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
                 {% if city.local_effort_short_answer %}
-                  <p>{{ city.local_effort_short_answer|urlize|linebreaks }}</p>
+                  {{ city.local_effort_short_answer|urlize|linebreaks }}
+                  {% if city.local_effort_link %}<a href="{{city.local_effort_link}}" class="btn btn-primary btn-uppercase btn-block" target="_blank">{% if city.local_effort_cta_text %}{{city.local_effort_cta_text}}{% else %}Take Local Action{% endif %}</a>{% endif %}
                 {% else %}
-                  <p>We don't know of any local efforts to improve this city's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{city.slug}}-click" target="_blank">click here to let us know</a>.
+                  <p>We don't know of any ongoing local efforts to improve this city's policies, but you can join Our Resistance to help research sanctuary policy or be notified of action alerts in your area.</p>
                 {% endif %}
-                <a class="btn btn-success btn-block btn-uppercase btn-lg mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{city.slug}}" target="_blank">Volunteer</a>
+                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{city.slug}}" target="_blank">Join Our Resistance</a>
               </div>
               
               <div class="card pa4 bg-white br3">  
@@ -73,7 +74,7 @@
                     {% endif %}
                     
                     {% if city.other_policies_and_services is not None %}
-                      <li><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
+                      <li class="policy--good"><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
                     {% endif %}
                   </ul>
               </div>

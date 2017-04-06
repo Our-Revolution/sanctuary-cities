@@ -68,6 +68,7 @@ class State(FipsTerritory):
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
+    local_effort_cta_text = models.CharField(max_length=22,null=True, blank=True)
     resources = models.TextField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
@@ -103,6 +104,7 @@ class County(FipsTerritory):
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
+    local_effort_cta_text = models.CharField(max_length=22,null=True, blank=True)
     resources = models.TextField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
@@ -142,6 +144,7 @@ class City(BaseTerritory):
     local_effort = models.NullBooleanField()
     local_effort_short_answer = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
+    local_effort_cta_text = models.CharField(max_length=22,null=True, blank=True)
     resources = models.TextField(null=True, blank=True)
     isga = models.NullBooleanField()
     isga_source = models.URLField(null=True, blank=True)

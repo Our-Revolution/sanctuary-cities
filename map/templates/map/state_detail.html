@@ -22,11 +22,12 @@
               <div class="card pa4 bg-white br3 mb4">
                 <h2 class="fw7 mt0 bb b--light-gray bw1 pb3">Get Involved</h2>
                 {% if state.local_effort_short_answer %}
-                  <p>{{ state.local_effort_short_answer|urlize|linebreaks }}</p>
+                  {{ state.local_effort_short_answer|urlize|linebreaks }}
+                  {% if state.local_effort_link %}<a href="{{state.local_effort_link}}" class="btn btn-primary btn-uppercase btn-block" target="_blank">{% if state.local_effort_cta_text %}{{state.local_effort_cta_text}}{% else %}Take Local Action{% endif %}</a>{% endif %}
                 {% else %}
-                  <p>We don't know of any local efforts to improve this state's policies. If you are aware of any, <a href="https://go.ourrevolution.com/page/s/promote-your-sanctuary-campaign?source=sanctuary-{{state.slug}}-click" target="_blank">click here to let us know</a>.
+                  <p>We don't know of any ongoing local efforts to improve this state's policies, but you can join Our Resistance to help research sanctuary policy or be notified of action alerts in your area.</p>
                 {% endif %}
-                <a class="btn btn-success btn-block btn-uppercase btn-lg mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{state.slug}}" target="_blank">Volunteer</a>
+                <a class="btn btn-success btn-block btn-uppercase mt4" href="https://go.ourrevolution.com/page/s/sanctuary-ourresistance-alerts?source=sanctuary-{{state.slug}}" target="_blank">Join Our Resistance</a>
               </div>
                 
               <div class="card pa4 bg-white br3 mb4">
