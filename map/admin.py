@@ -111,6 +111,17 @@ class StateAdmin(admin.OSMGeoAdmin):
         return super(StateAdmin, self).get_queryset(request).defer('geom')
 
 
+    def save_model(self, request, obj, form, change):
+        super(StateAdmin, self).save_model(request, obj, form, change)
+        if request.method == 'POST' and (request.FILES.get('shapefile', None) or request.POST.get('shapefile_url', None)):
+            data_source = UploadToDataSource(request=request, file_param='shapefile', url_param='shapefile_url').process()
+            geos = data_source[0].geom.geos
+            if not isinstance(geos, MultiPolygon):
+                geos = MultiPolygon(geos)
+            obj.geom = geos
+            obj.save()
+
+
 @admin.register(County)
 class CountyAdmin(admin.OSMGeoAdmin):
     list_display = ['name', 'state']
@@ -140,3 +151,13 @@ class CountyAdmin(admin.OSMGeoAdmin):
     
     def get_queryset(self, request):
         return super(CountyAdmin, self).get_queryset(request).select_related('state').defer('geom', 'state__geom')
+
+    def save_model(self, request, obj, form, change):
+        super(CountyAdmin, self).save_model(request, obj, form, change)
+        if request.method == 'POST' and (request.FILES.get('shapefile', None) or request.POST.get('shapefile_url', None)):
+            data_source = UploadToDataSource(request=request, file_param='shapefile', url_param='shapefile_url').process()
+            geos = data_source[0].geom.geos
+            if not isinstance(geos, MultiPolygon):
+                geos = MultiPolygon(geos)
+            obj.geom = geos
+            obj.save()
