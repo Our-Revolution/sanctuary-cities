@@ -80,6 +80,10 @@
                   <div class="detail__description">
                     {% if county.jails_honor_ice_detainers_short_answer and 'N/A' not in county.jails_honor_ice_detainers_short_answer %}{{ county.jails_honor_ice_detainers_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if county.jails_honor_ice_detainers_source %}
+                    <div class="detail__source">Source: <a href="{{county.jails_honor_ice_detainers_source}}" target="_blank">{{county.jails_honor_ice_detainers_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -93,6 +97,10 @@
                   <div class="detail__description">
                     {% if county.jails_prohibit_inquiries_short_answer is not None%}<p>{{ county.jails_prohibit_inquiries_short_answer|urlize|linebreaks }}</p>{% endif %}
                   </div>
+                  
+                  {% if county.jails_prohibit_inquiries_source %}
+                    <div class="detail__source">Source: <a href="{{county.jails_prohibit_inquiries_source}}" target="_blank">{{county.jails_prohibit_inquiries_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -108,6 +116,10 @@
                     
                     {% if county.ice_contracts_short_answer is not None%}{{ county.ice_contracts_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if county.ice_contracts_source %}
+                    <div class="detail__source">Source: <a href="{{county.ice_contracts_source}}" target="_blank">{{county.ice_contracts_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -122,6 +134,10 @@
                     <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
                     {% if county.isga_short_answer %}{{county.isga_short_answer|urlize|linebreaks}}{% endif %}
                   </div>
+                  
+                  {% if county.isga_source %}
+                    <div class="detail__source">Source: <a href="{{county.isga_source}}" target="_blank">{{county.isga_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
                 
@@ -135,6 +151,10 @@
                   <div class="detail__description">
                     {% if county.preventing_policies_short_answer is not None %}{{ county.preventing_policies_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if county.preventing_policies_source %}
+                    <div class="detail__source">Source: <a href="{{county.preventing_policies_source}}" target="_blank">{{county.preventing_policies_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -148,6 +168,10 @@
                   <div class="detail__description">
                     {% if county.permitting_policies_short_answer is not None %}{{ county.permitting_policies_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if county.permitting_policies_source %}
+                    <div class="detail__source">Source: <a href="{{county.permitting_policies_source}}" target="_blank">{{county.permitting_policies_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -161,6 +185,10 @@
                   <div class="detail__description">
                     {{ county.other_policies_and_services|urlize|linebreaks }}
                   </div>
+                  
+                  {% if county.other_policies_and_source %}
+                    <div class="detail__source">Source: <a href="{{county.other_policies_and_source}}" target="_blank">{{county.other_policies_and_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
