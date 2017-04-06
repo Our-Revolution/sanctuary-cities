@@ -57,8 +57,9 @@ class State(FipsTerritory):
     policies_against_profiling_short_answer = models.TextField(null=True, blank=True)
     other_policies_and_services = models.TextField(null=True, blank=True)
     local_effort = models.NullBooleanField()
-    resources = models.TextField(null=True, blank=True)
+    local_effort_short_answer = models.TextField(null=True, blank=True)
     local_effort_link = models.URLField(null=True, blank=True)
+    resources = models.TextField(null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
 
