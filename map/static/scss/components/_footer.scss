@@ -1,14 +1,15 @@
 // Footer
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 400px;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  width: 100%;
+  padding: 80px 0;
   background: $blue;
   color: white;
   
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: center;
   
