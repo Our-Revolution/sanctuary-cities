@@ -34,50 +34,57 @@
               <div class="card pa4 bg-white br3">  
                 <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Policy Summary</h3>
                 
-                  <ul class="f3 mr4 policy-list">
-                    {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}
-                      <li class="policy--good"><a href="#ice-cooperation">Limited cooperation with ICE</a></li>
-                    {% elif city.limited_ice_cooperation == "unlimited" %}
-                      <li class="policy--bad"><a href="#ice-cooperation">Cooperates with ICE</a></li>
-                    {% endif %}
+                <ul class="f3 mr4 policy-list">
+                  {% if city.limited_ice_cooperation == "yes-by-law" or city.limited_ice_cooperation == "yes-in-practice" %}
+                    <li class="policy--good"><a href="#ice-cooperation">Limited cooperation with ICE</a></li>
+                  {% elif city.limited_ice_cooperation == "unlimited" %}
+                    <li class="policy--bad"><a href="#ice-cooperation">Cooperates with ICE</a></li>
+                  {% endif %}
+                  
+                  {% if city.jails_honor_ice_detainers is not None %}
+                    <li class="{{ city.jails_honor_ice_detainers|yesno:"policy--bad,policy--good"}}"><a href="#honor-detainers">City jails {{ city.jails_honor_ice_detainers|yesno:",do not"}} honor ICE detainers/notices</a></li>
+                  {% endif %}
+                  
+                  {% if city.participate_287g_program is not None %}
+                    <li class="{{ city.participate_287g_program|yesno:"policy--bad,policy--good"}}"><a href="#contracts">{{ city.participate_287g_program|yesno:"Participates,Does not participate"}} in the 287(g) program</a></li>
+                  {% endif %}
+                  
+                  {% if city.isga is not None %}
+                    <li class="{{ city.isga|yesno:"policy--bad,policy--good"}}"><a href="#igsa">City jails {{ city.isga|yesno:"have,do not have"}} an IGSA</a></li>
+                  {% endif %}
+                  
+                  {% if city.provide_legal_representation is not None %}
+                    <li class="{{ city.provide_legal_representation|yesno:"policy--good,policy--bad" }}"><a href="#legal-representation">{{ city.provide_legal_representation|yesno:"Provides,Does not provide" }} undocumented immigrants with legal representation in court</a></li>
+                  {% endif %}
+                  
+                  {% if city.city_services is not None %}
+                    <li class="{{ city.city_services|yesno:"policy--bad,policy--good" }}"><a href="#city-services">{{ city.city_services|yesno:"Asks,Does not ask" }} about immigration status when applying or accessing city services</a></li>
+                  {% endif %}
                     
-                    {% if city.jails_honor_ice_detainers is not None %}
-                      <li class="{{ city.jails_honor_ice_detainers|yesno:"policy--bad,policy--good"}}"><a href="#honor-detainers">City jails {{ city.jails_honor_ice_detainers|yesno:",do not"}} honor ICE detainers/notices</a></li>
-                    {% endif %}
-                    
-                    {% if city.participate_287g_program is not None %}
-                      <li class="{{ city.participate_287g_program|yesno:"policy--bad,policy--good"}}"><a href="#contracts">{{ city.participate_287g_program|yesno:"Participates,Does not participate"}} in the 287(g) program</a></li>
-                    {% endif %}
-                    
-                    {% if city.isga is not None %}
-                      <li class="{{ city.isga|yesno:"policy--bad,policy--good"}}"><a href="#igsa">City jails {{ city.isga|yesno:"have,do not have"}} an IGSA</a></li>
-                    {% endif %}
-                    
-                    {% if city.provide_legal_representation is not None %}
-                      <li class="{{ city.provide_legal_representation|yesno:"policy--good,policy--bad" }}"><a href="#legal-representation">{{ city.provide_legal_representation|yesno:"Provides,Does not provide" }} undocumented immigrants with legal representation in court</a></li>
-                    {% endif %}
-                    
-                    {% if city.city_services is not None %}
-                      <li class="{{ city.city_services|yesno:"policy--bad,policy--good" }}"><a href="#city-services">{{ city.city_services|yesno:"Asks,Does not ask" }} about immigration status when applying or accessing city services</a></li>
-                    {% endif %}
-                      
-                    {% if city.drivers_license is not None %}
-                      <li class="{{ city.drivers_license|yesno:"policy--good,policy--bad" }}"><a href="#drivers-license">Undocumented immigrants {{ city.drivers_license|yesno:"can,cannot" }} get driver's licenses</a></li>
-                    {% endif %}
-                    
-                    {% if city.separate_form_of_id is not None %}
-                      <li class="{{city.separate_form_of_id|yesno:"policy--good,policy--bad"}}"><a href="#alternate-id">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} form of ID if driver's licenses aren't available</a></li>
-                    {% endif %}
-                    
-                    {% if city.police_use_body_cameras is not None %}
-                      <li class="{{city.police_use_body_cameras|yesno:"policy--good,policy--bad"}}"><a href="#body-cameras">City police {{city.police_use_body_cameras|yesno:"use,do not use"}} body cameras</a></li>
-                    {% endif %}
-                    
-                    {% if city.other_policies_and_services is not None %}
-                      <li class="policy--good"><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
-                    {% endif %}
-                  </ul>
+                  {% if city.drivers_license is not None %}
+                    <li class="{{ city.drivers_license|yesno:"policy--good,policy--bad" }}"><a href="#drivers-license">Undocumented immigrants {{ city.drivers_license|yesno:"can,cannot" }} get driver's licenses</a></li>
+                  {% endif %}
+                  
+                  {% if city.separate_form_of_id is not None %}
+                    <li class="{{city.separate_form_of_id|yesno:"policy--good,policy--bad"}}"><a href="#alternate-id">{{city.separate_form_of_id|yesno:"Provides,Does not provide"}} form of ID if driver's licenses aren't available</a></li>
+                  {% endif %}
+                  
+                  {% if city.police_use_body_cameras is not None %}
+                    <li class="{{city.police_use_body_cameras|yesno:"policy--good,policy--bad"}}"><a href="#body-cameras">City police {{city.police_use_body_cameras|yesno:"use,do not use"}} body cameras</a></li>
+                  {% endif %}
+                  
+                  {% if city.other_policies_and_services is not None %}
+                    <li class="policy--good"><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community and religious minorities</a></li>
+                  {% endif %}
+                </ul>
               </div>
+              
+              {% if city.resources %}
+                <div class="card pa4 bg-white br3 mb4 mt4">
+                  <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Other Resources</h2>
+                  {{city.resources|urlize|linebreaks}}
+                </div>
+              {% endif %}
             </div>
             
             <div class="detail__information col-md-8 pt0">  

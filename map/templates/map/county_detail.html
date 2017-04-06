@@ -34,38 +34,45 @@
               <div class="card pa4 bg-white br3">
                 <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Policy Summary</h3>
                 
-                  <ul class="f3 mr4 policy-list">
-                    {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}
-                      <li class="policy--good"><a href="#ice-cooperation">Jails do not honor ICE detainers</a></li>
-                    {% elif county.jails_honor_ice_detainers == "unlimited" %}
-                      <li class="policy--bad"><a href="#ice-cooperation">Jails honor ICE detainers</a></li>
-                    {% endif %}
-                      
-                    {% if county.jails_prohibit_inquiries is not None %}
-                      <li class="{{ county.jails_prohibit_inquiries|yesno:"policy--good, policy--bad"}}"><a href="#inquiries">Jails {{ county.jails_prohibit_inquiries|yesno:"prohibit,don't prohibit" }} inquiries into immigration status and/or place of birth</a></li>
-                    {% endif %}
+                <ul class="f3 mr4 policy-list">
+                  {% if county.jails_honor_ice_detainers == "yes-by-law" or county.jails_honor_ice_detainers == "yes-in-practice" %}
+                    <li class="policy--good"><a href="#ice-cooperation">Jails do not honor ICE detainers</a></li>
+                  {% elif county.jails_honor_ice_detainers == "unlimited" %}
+                    <li class="policy--bad"><a href="#ice-cooperation">Jails honor ICE detainers</a></li>
+                  {% endif %}
                     
-                    {% if county.ice_contracts is not None %}
-                      <li class="{{ county.ice_contracts|yesno:"policy--bad,policy--good"}}"><a href="#contracts">{{ county.ice_contracts|yesno:"Participates,Does not participate"}} in programs like 287(g)</a></li>
-                    {% endif %}
-                    
-                    {% if county.isga is not None %}
-                      <li class="{{ county.isga|yesno:"policy--bad,policy--good"}}"><a href="#igsa">Jails {{ county.isga|yesno:"have,do not have"}} an IGSA</a></li>
-                    {% endif %}
+                  {% if county.jails_prohibit_inquiries is not None %}
+                    <li class="{{ county.jails_prohibit_inquiries|yesno:"policy--good, policy--bad"}}"><a href="#inquiries">Jails {{ county.jails_prohibit_inquiries|yesno:"prohibit,don't prohibit" }} inquiries into immigration status and/or place of birth</a></li>
+                  {% endif %}
                   
-                    {% if county.preventing_policies is not None %}
-                      <li class="{{ county.preventing_policies|yesno:"policy--good,policy--bad"}}"><a href="#preventing-policies">{{ county.preventing_policies|yesno:"Prevents,Does not prevent"}} local police from acting as immigration agents</a></li>
-                    {% endif %}
-                    
-                    {% if county.permitting_policies is not None %}
-                      <li class="{{ county.permitting_policies|yesno:"policy--bad,policy--good"}}"><a href="#permitting-policies">{{ county.permitting_policies|yesno:"Permits,Does not permit"}} local police to act as immigration agents</a></li>
-                    {% endif %}
-                    
-                    {% if county.other_policies_and_services is not None %}
-                      <li class="policy--good"><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community or religious minorities</a></li>
-                    {% endif %}
-                  </ul>
+                  {% if county.ice_contracts is not None %}
+                    <li class="{{ county.ice_contracts|yesno:"policy--bad,policy--good"}}"><a href="#contracts">{{ county.ice_contracts|yesno:"Participates,Does not participate"}} in programs like 287(g)</a></li>
+                  {% endif %}
+                  
+                  {% if county.isga is not None %}
+                    <li class="{{ county.isga|yesno:"policy--bad,policy--good"}}"><a href="#igsa">Jails {{ county.isga|yesno:"have,do not have"}} an IGSA</a></li>
+                  {% endif %}
+                
+                  {% if county.preventing_policies is not None %}
+                    <li class="{{ county.preventing_policies|yesno:"policy--good,policy--bad"}}"><a href="#preventing-policies">{{ county.preventing_policies|yesno:"Prevents,Does not prevent"}} local police from acting as immigration agents</a></li>
+                  {% endif %}
+                  
+                  {% if county.permitting_policies is not None %}
+                    <li class="{{ county.permitting_policies|yesno:"policy--bad,policy--good"}}"><a href="#permitting-policies">{{ county.permitting_policies|yesno:"Permits,Does not permit"}} local police to act as immigration agents</a></li>
+                  {% endif %}
+                  
+                  {% if county.other_policies_and_services is not None %}
+                    <li class="policy--good"><a href="#other-policies">Has implemented other policies more welcoming to immigrants, people of color, the LGBTQ community or religious minorities</a></li>
+                  {% endif %}
+                </ul>
               </div>
+              
+              {% if county.resources %}
+                <div class="card pa4 bg-white br3 mb4 mt4">
+                  <h2 class="fw7 bb b--light-gray bw1 pb3 mt0">Other Resources</h2>
+                  {{county.resources|urlize|linebreaks}}
+                </div>
+              {% endif %}
             </div>
             
             <div class="detail__information col-md-8 pt0">
