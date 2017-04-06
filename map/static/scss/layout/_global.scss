@@ -149,6 +149,11 @@ h1, h2 {
   font-weight: normal;
 }
 
+.detail__source {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
 .info--good {
   .detail__heading {
     border-color: $green;

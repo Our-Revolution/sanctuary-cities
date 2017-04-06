@@ -87,6 +87,10 @@
                   </div>
                   
                   {% if state.limited_ice_cooperation_short_answer and 'N/A' not in state.limited_ice_cooperation_short_answer %}<div class="detail__description">{{ state.limited_ice_cooperation_short_answer|urlize|linebreaks }}</div>{% endif %}
+                  
+                  {% if state.limited_ice_cooperation_source %}
+                    <div class="detail__source">Source: <a href="{{state.limited_ice_cooperation_source}}" target="_blank">{{state.limited_ice_cooperation_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -102,6 +106,10 @@
                   
                     {% if state.ice_contracts_short_answer is not None %}{{ state.ice_contracts_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.ice_contracts_source %}
+                    <div class="detail__source">Source: <a href="{{state.ice_contracts_source}}" target="_blank">{{state.ice_contracts_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -116,6 +124,10 @@
                     <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
                     {% if state.isga_short_answer is not None %}{{ state.isga_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.isga_source %}
+                    <div class="detail__source">Source: <a href="{{state.isga_source}}" target="_blank">{{state.isga_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -129,6 +141,10 @@
                   <div class="detail__description">
                     {% if state.provide_legal_representation_answer is not None %}{{ state.provide_legal_representation_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.provide_legal_representation_source %}
+                    <div class="detail__source">Source: <a href="{{state.provide_legal_representation_source}}" target="_blank">{{state.provide_legal_representation_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -143,6 +159,10 @@
                   <div class="detail__description">
                     {% if state.drivers_license_answer is not None %}{{ state.drivers_license_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.drivers_license_source %}
+                    <div class="detail__source">Source: <a href="{{state.drivers_license_source}}" target="_blank">{{state.drivers_license_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -156,6 +176,10 @@
                   <div class="detail__description">
                     {% if state.in_state_tuition_answer is not None %}{{ state.in_state_tuition_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.in_state_tuition_source %}
+                    <div class="detail__source">Source: <a href="{{state.in_state_tuition_source}}" target="_blank">{{state.in_state_tuition_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -169,6 +193,10 @@
                   <div class="detail__description">
                     {% if state.barrier_answer is not None %}{{ state.barrier_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.barrier_source %}
+                    <div class="detail__source">Source: <a href="{{state.barrier_source}}" target="_blank">{{state.barrier_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -182,8 +210,12 @@
                   <div class="detail__description">
                     <p>{{state.name}} {{state.policies_against_profiling|yesno:"has,has not"}} adopted and implemented policies or directives against profiling based on actual or perceived sexual orientation, gender, gender identity, disability, immigration status, housing, HIV status, or age. {{state.name}} {{state.policies_against_profiling|yesno:"does,does not"}} prohibit the use of race, religion, color, ethnicity, national origin, immigration status, gender, disability, sexual orientation, or gender identity as a factor in establishing reasonable suspicion or probable cause, exercising discretion to conduct a warrantless search or seek a search warrant</p>
                     
-                    {% if state.barrier_answer is not None %}{{ state.barrier_answer|urlize|linebreaks }}{% endif %}
+                    {% if policies_against_profiling_short_answer is not None %}{{ state.policies_against_profiling_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.policies_against_profiling_source %}
+                    <div class="detail__source">Source: <a href="{{state.policies_against_profiling_source}}" target="_blank">{{state.policies_against_profiling_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
@@ -197,6 +229,10 @@
                   <div class="detail__description">
                     {% if state.other_policies_and_services is not None %}{{ state.other_policies_and_services|urlize|linebreaks }}{% endif %}
                   </div>
+                  
+                  {% if state.other_policies_and_services_source %}
+                    <div class="detail__source">Source: <a href="{{state.other_policies_and_services_source}}" target="_blank">{{state.other_policies_and_services_source}}</a></div>
+                  {% endif %}
                 </div>
               {% endif %}
               
