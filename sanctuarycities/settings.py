@@ -42,9 +42,9 @@ INSTALLED_APPS = [
 
     # niceties
     'bootstrap3',
-    'sass_processor',
     'rest_framework',
     'rest_framework_gis',
+    'compressor',
 
     'map',
     'onboard'
@@ -128,10 +128,12 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, '.static')
 
+COMPRESS_ENABLED = True
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
+    'compressor.finders.CompressorFinder'
 ]
 
 FILE_UPLOAD_HANDLERS = ("django.core.files.uploadhandler.TemporaryFileUploadHandler",)
