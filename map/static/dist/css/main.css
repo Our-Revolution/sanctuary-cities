@@ -6806,26 +6806,11 @@ h1, h2 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 
 .app .component__description {
-  overflow: hidden;
-  position: relative;
-  line-height: 1.2em;
-  max-height: 3.6em;
-  text-align: justify;
-  padding-right: 1em;
   font-size: 14px; }
-  .app .component__description:before {
-    content: '...';
-    position: absolute;
-    right: 2px;
-    bottom: 2px; }
-  .app .component__description:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: white; }
+  .app .component__description .policy-list {
+    font-size: 13px; }
+    .app .component__description .policy-list li {
+      margin-bottom: 6px; }
 
 .navbar {
   border-radius: 0;
