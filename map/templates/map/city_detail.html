@@ -108,7 +108,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.limited_ice_cooperation_short_answer and 'N/A' not in city.limited_ice_cooperation_short_answer %}{{ city.limited_ice_cooperation_short_answer|urlize }}{% endif %}
+                    {% if city.limited_ice_cooperation_short_answer and 'N/A' not in city.limited_ice_cooperation_short_answer %}{{ city.limited_ice_cooperation_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.limited_ice_cooperation_source %}
@@ -125,7 +125,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.jails_honor_ice_detainers_short_answer is not None %}{{ city.jails_honor_ice_detainers_short_answer|urlize }}{% endif %}
+                    {% if city.jails_honor_ice_detainers_short_answer is not None %}{{ city.jails_honor_ice_detainers_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.jails_honor_ice_detainers_source %}
@@ -142,7 +142,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.participate_287g_program_short_answer is not None%}{{ city.participate_287g_program_short_answer|urlize }}{% endif %}
+                    {% if city.participate_287g_program_short_answer is not None%}{{ city.participate_287g_program_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.participate_287g_program_source %}
@@ -160,7 +160,7 @@
                   
                   <div class="detail__description">
                     <p>IGSAs are agreements between the federal government and a state or local government to provide detention beds in jails, prisons, and other local or state government detention facilities. While government owned, these facilities may be operated by either local or state agencies or by a private company in the business of providing detention services. Some of these facilities may even be dedicated for federal use.</p>
-                    {% if city.isga_short_answer %}{{city.isga_short_answer|urlize}}{% endif %}
+                    {% if city.isga_short_answer %}{{city.isga_short_answer|urlize|linebreaks}}{% endif %}
                   </div>
                   
                   {% if city.isga_source %}
@@ -177,7 +177,7 @@
                 </div>
                 
                 <div class="detail__description">
-                  {% if city.provide_legal_representation_short_answer is not None %}{{ city.provide_legal_representation_short_answer|urlize }}{% endif %}
+                  {% if city.provide_legal_representation_short_answer is not None %}{{ city.provide_legal_representation_short_answer|urlize|linebreaks }}{% endif %}
                 </div>
                 
                 {% if city.provide_legal_representation_source %}
@@ -194,7 +194,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.city_services_short_answer is not None %}{{ city.city_services_short_answer|urlize }}{% endif %}
+                    {% if city.city_services_short_answer is not None %}{{ city.city_services_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.city_services_source %}
@@ -211,7 +211,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.separate_form_of_id_short_answer is not None %}{{ city.separate_form_of_id_short_answer|urlize }}{% endif %}
+                    {% if city.separate_form_of_id_short_answer is not None %}{{ city.separate_form_of_id_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.separate_form_of_id_source %}
@@ -228,7 +228,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.police_use_body_cameras_short_answer is not None %}{{ city.police_use_body_cameras_short_answer|urlize }}{% endif %}
+                    {% if city.police_use_body_cameras_short_answer is not None %}{{ city.police_use_body_cameras_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.police_use_body_cameras_source %}
@@ -245,7 +245,7 @@
                   </div>
                   
                   <div class="detail__description">
-                    {% if city.other_policies_and_services_short_answer is not None %}{{ city.other_policies_and_services_short_answer|urlize }}{% endif %}
+                    {% if city.other_policies_and_services_short_answer is not None %}{{ city.other_policies_and_services_short_answer|urlize|linebreaks }}{% endif %}
                   </div>
                   
                   {% if city.other_policies_source %}
