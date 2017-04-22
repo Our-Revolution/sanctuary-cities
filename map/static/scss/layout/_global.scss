@@ -219,7 +219,7 @@ h1, h2 {
   font-size: 4rem;
   line-height: 4rem;
   transition: 0.25s;
-  box-shadow: 0px -10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
   z-index: 9;
   position: relative;
   
@@ -406,43 +406,64 @@ h1, h2 {
   }
   
   @include until($large) {
-    .intro-text {
-      display: table-row;
-      
-      h1 {
-        padding-top: 40px;
-        margin-top: 0;
-      }
-    }
+    // .intro-text {
+    //   display: table-row;
+    //   
+    //   h1 {
+    //     padding-top: 40px;
+    //     margin-top: 0;
+    //   }
+    // }
+    // 
+    // .intro-image {
+    //   width: 100%;
+    //   display: table-row;
+    // }
+    // 
+    // .intro-screenshot {
+    //   padding-top: 40px;
+    //   padding-left: 0;
+    //   
+    //   .image-wrapper {
+    //     height: 300px;
+    //     overflow: hidden;
+    //   }
+    // }
     
-    .intro-image {
-      width: 100%;
-      display: table-row;
-    }
-    
-    .intro-screenshot {
-      padding-top: 40px;
-      padding-left: 0;
-      
-      .image-wrapper {
-        height: 300px;
-        overflow: hidden;
-      }
+    .intro-text .btn {
+      margin-bottom: 10px;
+      display: block;
+      margin-right: 0;
     }
   }
   
   @include until($medium) {
-    .intro-text {
-      padding-bottom: 40px;
-      display: block;
-      
-      .btn {
-        display: block;
-      }
+    background: $blue url('../img/main-bg.png') no-repeat left center;
+    background-size: auto 100%;
+    color: white;
+    
+    .btn-primary {
+      background-color: darken($blue, 20);
+      border-color: darken($blue, 20);
     }
     
     .intro-image {
-      display: none;
+      // opacity: 0.4;
+    }
+    
+    .intro-text {
+      // padding-top: 2rem;
+      padding-bottom: 4rem;
+      // background: url('../img/sanctuary.jpg') center no-repeat;
+      // background-size: 100% auto;
+      // position: absolute;
+      // top: 50%;
+      // transform: translate(0,-50%);
+      // max-width: 500px;
+      // margin: auto;
+      // left: 0;
+      // right: 0;
+      // background: rgba(255,255,255,0.4);
     }
   };
 }

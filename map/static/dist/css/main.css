@@ -6529,7 +6529,7 @@ h1, h2 {
   line-height: 4rem;
   -webkit-transition: 0.25s;
   transition: 0.25s;
-  box-shadow: 0px -10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   z-index: 9;
   position: relative; }
   .learn-more-bar .glyphicon {
@@ -6652,29 +6652,21 @@ h1, h2 {
   padding-top: 100px; }
 
 @media screen and (max-width: 991px) {
-  .sanctuary-intro .intro-text {
-    display: table-row; }
-    .sanctuary-intro .intro-text h1 {
-      padding-top: 40px;
-      margin-top: 0; }
-  .sanctuary-intro .intro-image {
-    width: 100%;
-    display: table-row; }
-  .sanctuary-intro .intro-screenshot {
-    padding-top: 40px;
-    padding-left: 0; }
-    .sanctuary-intro .intro-screenshot .image-wrapper {
-      height: 300px;
-      overflow: hidden; } }
+  .sanctuary-intro .intro-text .btn {
+    margin-bottom: 10px;
+    display: block;
+    margin-right: 0; } }
 
 @media screen and (max-width: 767px) {
-  .sanctuary-intro .intro-text {
-    padding-bottom: 40px;
-    display: block; }
-    .sanctuary-intro .intro-text .btn {
-      display: block; }
-  .sanctuary-intro .intro-image {
-    display: none; } }
+  .sanctuary-intro {
+    background: #218fff url("../img/main-bg.png") no-repeat left center;
+    background-size: auto 100%;
+    color: white; }
+    .sanctuary-intro .btn-primary {
+      background-color: #005cba;
+      border-color: #005cba; }
+    .sanctuary-intro .intro-text {
+      padding-bottom: 4rem; } }
 
 @media screen and (max-width: 991px) {
   .pullquote-image, .pullquote {
@@ -6811,6 +6803,9 @@ h1, h2 {
     font-size: 13px; }
     .app .component__description .policy-list li {
       margin-bottom: 6px; }
+
+body.no-nav-border .navbar {
+  border-bottom: none !important; }
 
 .navbar {
   border-radius: 0;
