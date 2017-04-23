@@ -9,9 +9,13 @@ from .mapping import UploadToDataSource
 from .models import State, City, County
 
 
+class HTTPSOSMGeoAdmin(admin.OSMGeoAdmin):
+    openlayers_url = 'https://openlayers.org/api/2.13.1/OpenLayers.js'
+    wms_url = 'https://vmap0.tiles.osgeo.org/wms/vmap0'
+
 
 @admin.register(City)
-class CityAdmin(admin.OSMGeoAdmin):
+class CityAdmin(HTTPSOSMGeoAdmin):
     list_display = ['name', 'limited_ice_cooperation_bool', 'jails_honor_ice_detainers_bool',
                         'participate_287g_program_bool', 'provide_legal_representation_bool',
                         'separate_form_of_id_bool', 'police_use_body_cameras_bool',
@@ -86,7 +90,7 @@ class CityAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(State)
-class StateAdmin(admin.OSMGeoAdmin):
+class StateAdmin(HTTPSOSMGeoAdmin):
     list_display = ['name']
     fieldsets = (
             (None, {
@@ -126,7 +130,7 @@ class StateAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(County)
-class CountyAdmin(admin.OSMGeoAdmin):
+class CountyAdmin(HTTPSOSMGeoAdmin):
     list_display = ['name', 'state']
     list_select_related = ['state']
     list_filter = ['state__name']
