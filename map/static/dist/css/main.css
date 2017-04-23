@@ -6658,15 +6658,29 @@ h1, h2 {
     margin-right: 0; } }
 
 @media screen and (max-width: 767px) {
-  .sanctuary-intro {
-    background: #218fff url("../img/main-bg.png") no-repeat left center;
-    background-size: auto 100%;
-    color: white; }
-    .sanctuary-intro .btn-primary {
-      background-color: #005cba;
-      border-color: #005cba; }
-    .sanctuary-intro .intro-text {
-      padding-bottom: 4rem; } }
+  .sanctuary-intro .container--table {
+    display: block;
+    padding-left: 0;
+    padding-right: 0; }
+  .sanctuary-intro .intro-text {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    background: url("../img/sanctuary.jpg") no-repeat center;
+    background-size: 100% auto;
+    z-index: 0;
+    position: relative;
+    z-index: 9;
+    padding-bottom: 4rem; }
+    .sanctuary-intro .intro-text::before {
+      display: block;
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: -10; } }
 
 @media screen and (max-width: 991px) {
   .pullquote-image, .pullquote {

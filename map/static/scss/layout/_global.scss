@@ -438,13 +438,15 @@ h1, h2 {
   }
   
   @include until($medium) {
-    background: $blue url('../img/main-bg.png') no-repeat left center;
-    background-size: auto 100%;
-    color: white;
+    // .btn-primary {
+    //   background-color: darken($blue, 20);
+    //   border-color: darken($blue, 20);
+    // }
     
-    .btn-primary {
-      background-color: darken($blue, 20);
-      border-color: darken($blue, 20);
+    .container--table {
+      display: block;
+      padding-left: 0;
+      padding-right: 0;
     }
     
     .intro-image {
@@ -452,6 +454,23 @@ h1, h2 {
     }
     
     .intro-text {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+      background: url('../img/sanctuary.jpg') no-repeat center;
+      background-size: 100% auto;
+      z-index: 0;
+      
+      &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        background: rgba(255,255,255,0.8);
+        z-index: -10;
+      }
+      
+      position: relative;
+      z-index: 9;
       // padding-top: 2rem;
       padding-bottom: 4rem;
       // background: url('../img/sanctuary.jpg') center no-repeat;
