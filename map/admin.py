@@ -12,6 +12,7 @@ from .models import State, City, County
 class HTTPSOSMGeoAdmin(admin.OSMGeoAdmin):
     openlayers_url = 'https://openlayers.org/api/2.13.1/OpenLayers.js'
     wms_url = 'https://vmap0.tiles.osgeo.org/wms/vmap0'
+    map_srid = 4326
 
 
 @admin.register(City)
