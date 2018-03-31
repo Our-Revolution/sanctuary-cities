@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<title>{% block page_title %}Sanctuary - Our Revolution{% endblock %}</title>
 	<meta name="description" content="Browse our map of sanctuary community policies and find out how you can get involved to help build communities where we all feel welcomed and safe." />
 
@@ -19,7 +19,7 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://sanctuary.ourrevolution.com/" />
 	<meta property="og:image" content="https://sanctuary.ourrevolution.com/static/img/meta.jpg" />
-	<meta property="og:description" content="Browse our map of sanctuary community policies and find out how you can get involved to help build communities where we all feel welcomed and safe." /> 
+	<meta property="og:description" content="Browse our map of sanctuary community policies and find out how you can get involved to help build communities where we all feel welcomed and safe." />
 	<meta property="og:site_name" content="Our Revolution" />
 
 	<!--  TODO: Optimize all of this -->
@@ -33,29 +33,30 @@
 	<!-- Our Revolootstrap -->
 	{% load compress %}
 	{% load static %}
-	
+
   <link rel="stylesheet" href="{% static "dist/css/main.css" %}?c=1" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-	
+
 	<!-- OR Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-	
+
 	<!-- Esri Leaflet Plugin -->
 	<script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
-	
+
 	<!-- jQuery -->
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-	
+
 	<!-- Sanctuary App -->
 	<script src="{% static "js/sanctuary.js" %}"></script>
 	<script src="{% static "js/vendor/smooth-scroll.min.js" %}"></script>
 	<script src="{% static "js/vendor/leaflet.pattern.js" %}"></script>
-	
-	<link rel="icon" type="image/x-icon" href="{% static "img/favicon.ico" %}" />
-		
+
+	<link rel="icon" type="image/x-icon"
+	href="https://s3.amazonaws.com/our-revolution-dot-com/images/our-revolution-favicon.ico" />
+
 	{% block extra_head %}
 	{% endblock %}
 </head>
@@ -71,7 +72,7 @@
   {% include "partials/footer.html" %}
 
 	<!-- Load Javascript Libraries that we don't need initially -->
-	
+
 	<!--  Places Libary for Autocomplete -->
 	<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBbScgtw3tU0lX4OG1Ga_JW85Gqpwu0RmA&libraries=places&callback=initAutocomplete" async defer></script>
 	<script>
