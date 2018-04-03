@@ -6824,7 +6824,7 @@ h1, h2 {
   border-width: 0; }
   .navbar .navbar__logo {
     display: block;
-    background: url("../img/logo.svg") center no-repeat;
+    background: url("https://s3.amazonaws.com/our-revolution-dot-com/images/our-revolution-logo.svg") center no-repeat;
     width: 80px;
     height: 40px;
     color: white;
